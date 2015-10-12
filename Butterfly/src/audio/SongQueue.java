@@ -15,16 +15,22 @@ public class SongQueue extends SongList {
     public SongQueue()
     {
         super("Queue");
+        this.currentSong = this.songList.get(0);
+        this.index = 0;
     }
     
     public SongQueue(Song song)
     {
         super("Queue", song);
+        this.currentSong = this.songList.get(0);
+        this.index = 0;
     }
     
     public SongQueue(ArrayList<Song> songs)
     {
         super("Queue", songs);
+        this.currentSong = this.songList.get(0);
+        this.index = 0;
     }
         
     public Song getCurrentSong()
@@ -54,7 +60,7 @@ public class SongQueue extends SongList {
         {
             this.index = 0;
         }
-        else if (this.index >= 0)
+        else if (this.index >= this.songList.size())
         {
             this.currentSong = null;
             return;
@@ -84,6 +90,7 @@ public class SongQueue extends SongList {
     {
         this.songList = new ArrayList<>();
         this.currentSong = null;
+        this.index = 0;
     }
     
     public void toggleRepeat()

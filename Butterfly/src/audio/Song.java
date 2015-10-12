@@ -14,15 +14,15 @@ public class Song {
     
     public Song(MusicMetadata metadata, String filePath)
     {
-        String def = "Unknown";
-        this.artist = metadata.getArtist().equals("") ? metadata.getArtist() : def;
-        this.album = metadata.getAlbum().equals("") ? metadata.getAlbum() : def;
-        this.songName = metadata.getSongTitle().equals("") ? metadata.getSongTitle() : def;
-        this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
-        this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
-        this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
+        //String def = "Unknown";
+        //this.artist = metadata.getArtist().equals("") ? metadata.getArtist() : def;
+        //this.album = metadata.getAlbum().equals("") ? metadata.getAlbum() : def;
+        //this.songName = metadata.getSongTitle().equals("") ? metadata.getSongTitle() : def;
+        //this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
+        //this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
+        //this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
         this.filePath = filePath;
-        audio = new Media(filePath);
+        //audio = new Media(filePath);
     }
     
     public String getArtist()
