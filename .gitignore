@@ -11,3 +11,4 @@ Butterfly/nbproject/private/
 *.jar
 *.war
 *.ear
+!myid3.jar
