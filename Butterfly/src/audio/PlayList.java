@@ -1,9 +1,20 @@
 package audio;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author natec
+ * @author natec, jakew
  */
-public class PlayList {
+public class PlayList extends SongList
+{
+    public PlayList(String name)
+    {
+        super(name);
+    }
     
+    public PlayList(String name, ArrayList<Song> song)
+    {
+        super(name, song);
+    }
 }

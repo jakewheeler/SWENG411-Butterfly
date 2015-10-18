@@ -6,11 +6,13 @@ import java.util.ArrayList;
  *
  * @author natec
  */
-public class Album extends SongList{
+public class Album extends SongList
+{
     protected String genre, artist;
     protected int year;
     
-    public Album(String name) {
+    public Album(String name) 
+    {
         super(name);
         this.genre = "Unknown";
         this.artist = "Unknown";
