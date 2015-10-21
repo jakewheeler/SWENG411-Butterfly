@@ -15,6 +15,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, ID3ReadException {
-        Song song = new Song("Hulster Musik.mp3");
+        Song song = new Song("Hustler Musik.mp3");
     }    
 }
