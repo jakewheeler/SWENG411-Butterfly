@@ -13,7 +13,12 @@ import org.cmc.music.myid3.MyID3;
  * @author natec
  */
 public class Song {
-    private String artist, album, songName, filePath, genre, songLength;
+    private String  artist = "", 
+                    album = "", 
+                    songName = "", 
+                    filePath = "", 
+                    genre = "", 
+                    songLength = "";
     private int numberOnAlbum;
     private Media audio;
     private MusicMetadata metadata;
@@ -21,18 +26,18 @@ public class Song {
     public Song(String filePath) throws IOException, ID3ReadException
     {
         File songfile = new File(filePath);
-        MusicMetadataSet h = new MyID3().read(songfile);
-        this.metadata = (MusicMetadata) h.getSimplified();
-        String def = "Unknown";
-        
-        this.artist = metadata.getArtist().equals("") ? metadata.getArtist() : def;
-        this.album = metadata.getAlbum().equals("") ? metadata.getAlbum() : def;
-        this.songName = metadata.getSongTitle().equals("") ? metadata.getSongTitle() : def;
-        this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
-        this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
-        this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
+//        MusicMetadataSet h = new MyID3().read(songfile);
+//        this.metadata = (MusicMetadata) h.getSimplified();
+//        String def = "Unknown";
+//        
+//        this.artist = metadata.getArtist().equals("") ? metadata.getArtist() : def;
+//        this.album = metadata.getAlbum().equals("") ? metadata.getAlbum() : def;
+//        this.songName = metadata.getSongTitle().equals("") ? metadata.getSongTitle() : def;
+//        this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
+//        this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
+//        this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
         this.filePath = filePath;
-        this.audio = new Media(filePath);
+        //this.audio = new Media(songfile.getCanonicalPath());
     }
     
     public String getArtist()
@@ -43,7 +48,7 @@ public class Song {
     public void setArtist(String artist)
     {
         this.artist = artist;
-        metadata.setAlbum(artist);
+        //this.metadata.setAlbum(artist);
     }
     
     public String getAlbum()
@@ -54,7 +59,7 @@ public class Song {
     public void setAlbum(String album)
     {
         this.album = album;
-        this.metadata.setAlbum(album);
+        //this.metadata.setAlbum(album);
     }
     
     public String getSongName()
@@ -65,7 +70,7 @@ public class Song {
     public void setSongName(String songName)
     {
         this.songName = songName;
-        this.metadata.setSongTitle(songName);
+        //this.metadata.setSongTitle(songName);
     }
     
     public String getGenre()
@@ -76,7 +81,7 @@ public class Song {
     public void setGenre(String genre)
     {
         this.genre = genre;
-        this.metadata.setGenreName(genre);
+        //this.metadata.setGenreName(genre);
     }
     
     public int getNumberOnAlbum()
@@ -87,7 +92,7 @@ public class Song {
     public void setNumberOnAlbum(int num)
     {
         this.numberOnAlbum = num;
-        this.metadata.setTrackNumberNumeric(num);
+        //this.metadata.setTrackNumberNumeric(num);
     }
     
     public Media getAudio()
