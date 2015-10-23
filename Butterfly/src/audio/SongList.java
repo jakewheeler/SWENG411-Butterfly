@@ -59,4 +59,9 @@ public abstract class SongList {
     {
         return this.songList.size();
     }
+    
+    public ArrayList<Song> getList()
+    {
+        return this.songList;
+    }
 }
