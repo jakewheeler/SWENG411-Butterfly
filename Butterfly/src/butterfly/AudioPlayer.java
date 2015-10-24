@@ -4,6 +4,7 @@ package butterfly;
  *
  * @author natec
  */
-public class AudioPlayer {
+public class AudioPlayer 
+{
     
 }

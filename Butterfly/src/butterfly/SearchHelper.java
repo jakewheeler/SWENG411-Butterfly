@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
  *
  * @author natec
  */
-public class SearchHelper {
+public class SearchHelper implements IAudioPlayerComponent
+{
     SongList library;
     
     public SearchHelper(SongList library)

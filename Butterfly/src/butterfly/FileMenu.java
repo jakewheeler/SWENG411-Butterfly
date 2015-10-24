@@ -4,6 +4,7 @@ package butterfly;
  *
  * @author natec
  */
-public class FileMenu {
+public class FileMenu implements IAudioPlayerComponent
+{
     
 }

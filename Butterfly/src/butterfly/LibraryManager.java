@@ -4,6 +4,7 @@ package butterfly;
  *
  * @author natec
  */
-public class LibraryManager {
+public class LibraryManager implements IAudioPlayerComponent
+{
     
 }

@@ -4,6 +4,7 @@ package butterfly;
  *
  * @author natec
  */
-public class AudioControl {
+public class AudioControl implements IAudioPlayerComponent
+{
     
 }
