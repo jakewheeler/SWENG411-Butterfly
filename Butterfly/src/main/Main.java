@@ -30,6 +30,7 @@ public class Main
         Song song2 = new Song("testingsongs/Harmony.mp3");
         Song song3 = new Song("testingsongs/Light Pollution.mp3");
         Song song4 = new Song("Perturbator", "Test", "Perturbator", "testingsongs/Perturbator.mp3");
+        Song song5 = new Song("FutureShock", "Test", "EnV", "testingsongs/FutureShock.mp3");
 
         song0.setArtist("Lil Wayne");
         song1.setArtist("Lights");
@@ -51,6 +52,7 @@ public class Main
         list.add(song2);
         list.add(song3);
         list.add(song4);
+        list.add(song5);
         
         SongQueue library = new SongQueue(list);
         
