@@ -12,3 +12,4 @@ Butterfly/nbproject/private/
 *.war
 *.ear
 !myid3.jar
+!twitter4j-core-4.0.4.jar

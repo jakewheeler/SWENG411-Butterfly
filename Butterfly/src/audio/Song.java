@@ -2,6 +2,8 @@ package audio;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import org.cmc.music.common.ID3ReadException;
 import org.cmc.music.metadata.MusicMetadata;
@@ -20,12 +22,30 @@ public class Song {
                     genre = "", 
                     songLength = "";
     private int numberOnAlbum;
-    private Media audio;
+    private final Media audio;
     private MusicMetadata metadata;
+    private  final File songfile;
+    private final JFXPanel jfxp; // required to initialize JavaFX library
+    private final URL url;
+   
+            
+    public Song(String artist, String album, String songName, String filePath) throws IOException
+    {
+        this.artist = artist;
+        this.album = album;
+        this.songName = songName;
+        this.filePath = filePath;
+        
+        // Media player stuff initiliazation
+        this.songfile = new File(filePath);
+        this.url = songfile.toURI().toURL();
+        this.jfxp = new JFXPanel();
+        this.audio = new Media(url.toString());
+    }
     
     public Song(String filePath) throws IOException, ID3ReadException
     {
-        File songfile = new File(filePath);
+        this.filePath = filePath;
 //        MusicMetadataSet h = new MyID3().read(songfile);
 //        this.metadata = (MusicMetadata) h.getSimplified();
 //        String def = "Unknown";
@@ -36,8 +56,10 @@ public class Song {
 //        this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
 //        this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
 //        this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
-        this.filePath = filePath;
-        //this.audio = new Media(songfile.getCanonicalPath());
+        this.songfile = new File(filePath);
+        this.url = songfile.toURI().toURL();
+        this.jfxp = new JFXPanel();
+        this.audio = new Media(url.toString());
     }
     
     public String getArtist()
