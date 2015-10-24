@@ -36,17 +36,17 @@ public class SearchHelper {
         if (keywords.size() > 1)
         {
             String keyword = keywords.remove(0);
-            return compare(song, keyword) && contains(song, keywords);
+            return compare(song, keyword.toLowerCase()) && contains(song, keywords);
         }
         else
-            return compare(song, keywords.get(0));
+            return compare(song, keywords.get(0).toLowerCase());
     }
     
     private boolean compare(Song song, String keyword)
     {        
-        return  keyword.toLowerCase().equals(song.getArtist().toLowerCase()) || 
-                keyword.toLowerCase().equals(song.getAlbum().toLowerCase()) || 
-                keyword.toLowerCase().equals(song.getGenre().toLowerCase()) || 
-                keyword.toLowerCase().equals(song.getSongName().toLowerCase());
+        return  song.getArtist().toLowerCase().contains(keyword) || 
+                song.getAlbum().toLowerCase().contains(keyword) || 
+                song.getGenre().toLowerCase().contains(keyword) || 
+                song.getSongName().toLowerCase().contains(keyword);
     }
 }

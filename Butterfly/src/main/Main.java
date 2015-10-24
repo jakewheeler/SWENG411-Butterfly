@@ -55,7 +55,7 @@ public class Main {
         
         SearchHelper search = new SearchHelper(library);
         
-        SongList search1 = search.search("Lights   Test ");
+        SongList search1 = search.search(" Flux and flow ");
         search1.getList().forEach(song -> System.out.println(song.getSongName()));
     }    
 }
