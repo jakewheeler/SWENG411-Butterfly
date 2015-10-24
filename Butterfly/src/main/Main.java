@@ -3,23 +3,22 @@ package main;
 import audio.PlayList;
 import audio.Song;
 import audio.SongList;
+import butterfly.AudioControl;
 import butterfly.SearchHelper;
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.scene.media.MediaPlayer;
+import javax.swing.JFrame;
 import org.cmc.music.common.ID3ReadException;
+import ui.AudioControlUI;
 
 /**
  *
  * @author Nate Christiansen, Jake Wheeler, Nick Kapty
  */
 
-public class Main {
+public class Main 
+{
 
-    static MediaPlayer mp; // MP must exist OUTSIDE of method to avoid garbage collection (music will stop prematurely)
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws IOException, ID3ReadException 
     {
         ArrayList<Song> list = new ArrayList();
@@ -57,8 +56,13 @@ public class Main {
         SongList search1 = search.search(" Flux and flow ");
         search1.getList().forEach(song -> System.out.println(song.getSongName()));
         
-        mp  = new MediaPlayer(song1.getAudio());
-        mp.autoPlayProperty();
-        mp.play();
+        // Testing AudioControlUI
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        AudioControl ac = new AudioControl(song4);
+        frame.getContentPane().add(new AudioControlUI(ac));
+        frame.pack();
+        frame.setVisible(true); 
+
     }    
 }
