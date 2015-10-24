@@ -27,6 +27,12 @@ public class AudioControlUI extends javax.swing.JPanel {
         SongLabel = new javax.swing.JLabel();
         ArtistLabel = new javax.swing.JLabel();
         AlbumLabel = new javax.swing.JLabel();
+        NextButton = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
+        ShuffleButton = new javax.swing.JButton();
+        RepeatButton = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(420, 200));
 
         PlayPauseButton.setText("Play");
         PlayPauseButton.addActionListener(new java.awt.event.ActionListener() {
@@ -41,19 +47,57 @@ public class AudioControlUI extends javax.swing.JPanel {
 
         AlbumLabel.setText("album");
 
+        NextButton.setText("Next");
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
+
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
+        ShuffleButton.setText("Shuffle");
+        ShuffleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShuffleButtonActionPerformed(evt);
+            }
+        });
+
+        RepeatButton.setText("Repeat");
+        RepeatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepeatButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ArtistLabel)
-                        .addComponent(SongLabel)
-                        .addComponent(AlbumLabel)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(RepeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ArtistLabel)
+                    .addComponent(SongLabel)
+                    .addComponent(AlbumLabel))
+                .addGap(184, 184, 184))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,8 +108,13 @@ public class AudioControlUI extends javax.swing.JPanel {
                 .addComponent(ArtistLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AlbumLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(PlayPauseButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PlayPauseButton)
+                    .addComponent(NextButton)
+                    .addComponent(BackButton)
+                    .addComponent(ShuffleButton)
+                    .addComponent(RepeatButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -89,6 +138,26 @@ public class AudioControlUI extends javax.swing.JPanel {
             
     }//GEN-LAST:event_PlayPauseButtonActionPerformed
 
+    private void RepeatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepeatButtonActionPerformed
+        this.acController.repeat();
+    }//GEN-LAST:event_RepeatButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        this.acController.previous();
+        this.setAllLabels();
+        PlayPauseButton.setText("Pause");
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        this.acController.next();
+        this.setAllLabels();
+        PlayPauseButton.setText("Pause");
+    }//GEN-LAST:event_NextButtonActionPerformed
+
+    private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed
+        this.acController.shuffle();
+    }//GEN-LAST:event_ShuffleButtonActionPerformed
+
     private void setAllLabels()
     {
         this.SongLabel.setText(acController.getCurrentSong());
@@ -106,7 +175,11 @@ public class AudioControlUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AlbumLabel;
     private javax.swing.JLabel ArtistLabel;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JButton NextButton;
     private javax.swing.JButton PlayPauseButton;
+    private javax.swing.JButton RepeatButton;
+    private javax.swing.JButton ShuffleButton;
     private javax.swing.JLabel SongLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,10 +3,13 @@ package main;
 import audio.PlayList;
 import audio.Song;
 import audio.SongList;
+import audio.SongQueue;
 import butterfly.AudioControl;
 import butterfly.SearchHelper;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import org.cmc.music.common.ID3ReadException;
 import ui.AudioControlUI;
@@ -49,7 +52,7 @@ public class Main
         list.add(song3);
         list.add(song4);
         
-        SongList library = new PlayList("Library", list);
+        SongQueue library = new SongQueue(list);
         
         SearchHelper search = new SearchHelper(library);
         
@@ -59,10 +62,25 @@ public class Main
         // Testing AudioControlUI
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        AudioControl ac = new AudioControl(song4);
+        AudioControl ac = new AudioControl(library);
         frame.getContentPane().add(new AudioControlUI(ac));
         frame.pack();
         frame.setVisible(true); 
 
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ac.playSong(song4);
+        
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ac.newQueue(library);
     }    
 }

@@ -46,44 +46,39 @@ public class SongQueue extends SongList {
         this.index = this.songList.indexOf(song);
     }
     
-    public void setCurrentSong(Song song, ArrayList<Song> songList)
+    public void setCurrentSong(ArrayList<Song> songList)
     {
-        this.currentSong = song;
-        this.songList = songList;
-        this.index = this.songList.indexOf(song);
+        this.songList.addAll(songList);
+        this.index = 0;
+        this.currentSong = this.songList.get(index);
     }
     
     public void next()
     {
-        this.index++;
-        if (this.index >= this.songList.size() && this.isRepeat)
+        if (!this.isRepeat)
         {
-            this.index = 0;
+            this.index++;
+            if (this.index >= this.songList.size())
+            {
+                this.index = 0;
+            }
+
+            this.currentSong = this.songList.get(this.index);
         }
-        else if (this.index >= this.songList.size())
-        {
-            this.currentSong = null;
-            return;
-        }
-        
-        this.currentSong = this.songList.get(this.index);
     }
     
     public void previous()
     {
-        
-        this.index--;
-        if (this.index < 0 && this.isRepeat)
+        if (!this.isRepeat)
         {
-            this.index = this.songList.size()-1;
+            this.index--;
+            if (this.index < 0)
+            {
+                this.index = this.songList.size()-1;
+            }
+
+            this.currentSong = this.songList.get(this.index);
         }
-        else if (this.index < 0)
-        {
-            this.currentSong = null;
-            return;
-        }
-        
-        this.currentSong = this.songList.get(this.index);
     }
     
     public void clear()
