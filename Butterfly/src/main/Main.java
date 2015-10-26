@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import org.cmc.music.common.ID3ReadException;
 import ui.AudioControlUI;
 
 /**
@@ -22,7 +21,7 @@ import ui.AudioControlUI;
 public class Main 
 {
 
-    public static void main(String[] args) throws IOException, ID3ReadException 
+    public static void main(String[] args) throws IOException 
     {
         ArrayList<Song> list = new ArrayList();
         Song song0 = new Song("testingsongs/Hustler Musik.mp3");
@@ -31,8 +30,11 @@ public class Main
         Song song3 = new Song("testingsongs/Light Pollution.mp3");
         Song song4 = new Song("Perturbator", "Test", "Perturbator", "testingsongs/Perturbator.mp3");
         Song song5 = new Song("FutureShock", "Test", "EnV", "testingsongs/FutureShock.mp3");
+        
+        System.out.println(song0.getArtist());
+        System.out.println(song0.getSongName()); //Test cases for mp3 tag library
 
-        song0.setArtist("Lil Wayne");
+        song0.setArtist("Lil' Wayne");
         song1.setArtist("Lights");
         song2.setArtist("Ian Taylor");
         song3.setArtist("Lights");

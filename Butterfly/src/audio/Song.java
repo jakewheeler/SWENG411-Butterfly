@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
-import org.cmc.music.common.ID3ReadException;
-import org.cmc.music.metadata.MusicMetadata;
-import org.cmc.music.metadata.MusicMetadataSet;
-import org.cmc.music.myid3.MyID3;
+import com.beaglebuddy.mp3.MP3;
+
 
 /**
  *
@@ -23,8 +21,8 @@ public class Song {
                     songLength = "";
     private int numberOnAlbum;
     private final Media audio;
-    private MusicMetadata metadata;
-    private  final File songfile;
+    private MP3 mp3;
+    private final File songfile;
     private final JFXPanel jfxp; // required to initialize JavaFX library
     private final URL url;
    
@@ -36,26 +34,29 @@ public class Song {
         this.songName = songName;
         this.filePath = filePath;
         
-        // Media player stuff initiliazation
+        // Media player stuff initialization
         this.songfile = new File(filePath);
         this.url = songfile.toURI().toURL();
         this.jfxp = new JFXPanel();
         this.audio = new Media(url.toString());
     }
     
-    public Song(String filePath) throws IOException, ID3ReadException
+    public Song(String filePath) throws IOException
     {
         this.filePath = filePath;
-//        MusicMetadataSet h = new MyID3().read(songfile);
-//        this.metadata = (MusicMetadata) h.getSimplified();
-//        String def = "Unknown";
-//        
-//        this.artist = metadata.getArtist().equals("") ? metadata.getArtist() : def;
-//        this.album = metadata.getAlbum().equals("") ? metadata.getAlbum() : def;
-//        this.songName = metadata.getSongTitle().equals("") ? metadata.getSongTitle() : def;
-//        this.genre = metadata.getGenreName().equals("") ? metadata.getGenreName() : def;
-//        this.numberOnAlbum = metadata.getTrackNumberNumeric() == null ? metadata.getTrackNumberNumeric().intValue() : 0;
-//        this.songLength = metadata.getDurationSeconds().intValue() / 60 + ":" + metadata.getDurationSeconds().intValue() % 60;
+        
+       this.mp3 = new MP3(filePath);
+       
+        String def = "Unknown"; //Needs new implementation
+        
+        this.artist = mp3.getBand(); //actually is artist
+        this.album = mp3.getAlbum();
+        this.songName = mp3.getTitle();
+        this.genre = mp3.getMusicType();
+        this.numberOnAlbum = mp3.getTrack();
+        this.songLength = Integer.toString(mp3.getAudioDuration()); //returns length in seconds needs converted into formatted string 
+        
+        //Media Player stuff initialization
         this.songfile = new File(filePath);
         this.url = songfile.toURI().toURL();
         this.jfxp = new JFXPanel();
@@ -70,7 +71,7 @@ public class Song {
     public void setArtist(String artist)
     {
         this.artist = artist;
-        //this.metadata.setAlbum(artist);
+        
     }
     
     public String getAlbum()
@@ -80,8 +81,8 @@ public class Song {
     
     public void setAlbum(String album)
     {
-        this.album = album;
-        //this.metadata.setAlbum(album);
+       this.album = album;
+       
     }
     
     public String getSongName()
@@ -92,7 +93,7 @@ public class Song {
     public void setSongName(String songName)
     {
         this.songName = songName;
-        //this.metadata.setSongTitle(songName);
+        
     }
     
     public String getGenre()
@@ -103,7 +104,7 @@ public class Song {
     public void setGenre(String genre)
     {
         this.genre = genre;
-        //this.metadata.setGenreName(genre);
+        
     }
     
     public int getNumberOnAlbum()
@@ -114,7 +115,7 @@ public class Song {
     public void setNumberOnAlbum(int num)
     {
         this.numberOnAlbum = num;
-        //this.metadata.setTrackNumberNumeric(num);
+        
     }
     
     public Media getAudio()
