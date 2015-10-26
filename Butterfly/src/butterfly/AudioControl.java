@@ -17,6 +17,7 @@ public class AudioControl implements IAudioController
     private boolean playFlag;
     private final SongQueue queue;
     private AudioControlUI ui;
+    private double volume = 100;
     
     public AudioControl()
     {
@@ -26,7 +27,8 @@ public class AudioControl implements IAudioController
     public AudioControl(SongList list)
     {
         this.queue = new SongQueue(list.getList());
-        mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setVolume(this.volume);
     }
     
     @Override
@@ -85,7 +87,9 @@ public class AudioControl implements IAudioController
         this.stop();
         this.queue.next();
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setVolume(this.volume);
         this.play();
+        updateUI();
     }
     
     // skip to previous song
@@ -94,7 +98,9 @@ public class AudioControl implements IAudioController
         this.stop();
         this.queue.previous();
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setVolume(this.volume);
         this.play();
+        updateUI();
     }
     
     // toggle queue to repeat song
@@ -128,7 +134,9 @@ public class AudioControl implements IAudioController
         this.queue.clear();
         this.queue.setCurrentSong(song);
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setVolume(this.volume);
         this.play();
+        updateUI();
     }
     
     // changes the queue to have the new list
@@ -138,6 +146,23 @@ public class AudioControl implements IAudioController
         this.queue.clear();
         this.queue.setCurrentSong(songs.getList());
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setVolume(this.volume);
         this.play();
+        updateUI();
+    }
+    
+    private void updateUI()
+    {
+        Song song = this.queue.getCurrentSong();
+        this.ui.SongLabel.setText(song.getSongName());
+        this.ui.ArtistLabel.setText(song.getArtist());
+        this.ui.AlbumLabel.setText(song.getAlbum());
+    }
+    
+    // change the volume of media player
+    public void setVolume(double volume)
+    {
+        this.volume = volume;
+        this.mp.setVolume(this.volume);
     }
 }

@@ -53,7 +53,10 @@ public class Main
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         AudioControl ac = new AudioControl(library);
-        frame.getContentPane().add(new AudioControlUI(ac));
+        AudioControlUI acui = new AudioControlUI();
+        ac.setUI(acui);
+        acui.setController(ac);
+        frame.getContentPane().add(acui);
         frame.pack();
         frame.setVisible(true); 
     }    
