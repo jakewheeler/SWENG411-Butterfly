@@ -9,8 +9,9 @@ package ui;
  *
  * @author ncc5136
  */
-public class AudioPlayerUI extends javax.swing.JFrame {
-
+public class AudioPlayerUI extends javax.swing.JFrame 
+{
+    
     /**
      * Creates new form AudioPlayerUI
      */

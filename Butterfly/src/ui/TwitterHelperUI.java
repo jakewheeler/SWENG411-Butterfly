@@ -1,11 +1,15 @@
 package ui;
 
+import butterfly.IAudioController;
+import twitter.TwitterHelper;
+
 /**
  *
  * @author natec
  */
-public class TwitterHelperUI extends javax.swing.JPanel {
-
+public class TwitterHelperUI extends javax.swing.JPanel implements IAudioUI
+{
+    private TwitterHelper controller;
     /**
      * Creates new form TwitterHelperUI
      */
@@ -34,6 +38,12 @@ public class TwitterHelperUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    @Override
+    public void setController(IAudioController controller)
+    {
+        this.controller = (TwitterHelper) controller;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

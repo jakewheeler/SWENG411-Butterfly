@@ -45,7 +45,7 @@ public class Song {
     {
         this.filePath = filePath;
         
-       this.mp3 = new MP3(filePath);
+        this.mp3 = new MP3(filePath);
        
         String def = "Unknown"; //Needs new implementation
         
@@ -71,7 +71,6 @@ public class Song {
     public void setArtist(String artist)
     {
         this.artist = artist;
-        
     }
     
     public String getAlbum()
@@ -81,8 +80,7 @@ public class Song {
     
     public void setAlbum(String album)
     {
-       this.album = album;
-       
+       this.album = album;       
     }
     
     public String getSongName()
@@ -92,8 +90,7 @@ public class Song {
     
     public void setSongName(String songName)
     {
-        this.songName = songName;
-        
+        this.songName = songName;        
     }
     
     public String getGenre()
@@ -103,8 +100,7 @@ public class Song {
     
     public void setGenre(String genre)
     {
-        this.genre = genre;
-        
+        this.genre = genre;        
     }
     
     public int getNumberOnAlbum()
@@ -114,8 +110,7 @@ public class Song {
     
     public void setNumberOnAlbum(int num)
     {
-        this.numberOnAlbum = num;
-        
+        this.numberOnAlbum = num;        
     }
     
     public Media getAudio()

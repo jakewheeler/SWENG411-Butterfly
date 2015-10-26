@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author natec
  */
-public abstract class SongList {
+public class SongList {
     protected String name;
     protected ArrayList<Song> songList;
     

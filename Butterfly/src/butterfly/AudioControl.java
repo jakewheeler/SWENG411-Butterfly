@@ -4,17 +4,19 @@ import audio.Song;
 import audio.SongList;
 import audio.SongQueue;
 import javafx.scene.media.MediaPlayer;
+import ui.AudioControlUI;
+import ui.IAudioUI;
 
 /**
  *
  * @author Jake
  */
-public class AudioControl implements IAudioPlayerComponent
+public class AudioControl implements IAudioController
 {
     private MediaPlayer mp;
-    //private final Song currentSong;
     private boolean playFlag;
     private final SongQueue queue;
+    private AudioControlUI ui;
     
     public AudioControl()
     {
@@ -25,6 +27,12 @@ public class AudioControl implements IAudioPlayerComponent
     {
         this.queue = new SongQueue(list.getList());
         mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+    }
+    
+    @Override
+    public void setUI(IAudioUI ui)
+    {
+        this.ui = (AudioControlUI) ui;
     }
     
     // starts playing from the beginning

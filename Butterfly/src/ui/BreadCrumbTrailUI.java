@@ -1,11 +1,15 @@
 package ui;
 
+import butterfly.BreadCrumbTrail;
+import butterfly.IAudioController;
+
 /**
  *
  * @author natec
  */
-public class BreadCrumbTrailUI extends javax.swing.JPanel {
-
+public class BreadCrumbTrailUI extends javax.swing.JPanel implements IAudioUI
+{
+    private BreadCrumbTrail controller;
     /**
      * Creates new form BreadCrumbTrailUI
      */
@@ -33,7 +37,12 @@ public class BreadCrumbTrailUI extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+      
+    @Override
+    public void setController(IAudioController controller)
+    {
+        this.controller = (BreadCrumbTrail) controller;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

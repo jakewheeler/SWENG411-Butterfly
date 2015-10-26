@@ -1,6 +1,5 @@
 package butterfly;
 
-import audio.PlayList;
 import audio.Song;
 import audio.SongList;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class SearchHelper implements IAudioPlayerComponent
         ArrayList<String> keywords = new ArrayList<>(Arrays.asList(keyword.trim().split(" +")));
         
         // Create a list and add any song that matches all of the keywords entered
-        SongList list = new PlayList("Search Result");
+        SongList list = new SongList("Search Result");
         list.addSongs((ArrayList<Song>) library.getList().stream().filter(song -> contains(song, new ArrayList(keywords))).collect(Collectors.toList()));
         return list;
     }

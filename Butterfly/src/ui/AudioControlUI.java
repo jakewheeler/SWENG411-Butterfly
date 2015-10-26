@@ -1,18 +1,20 @@
 package ui;
 
 import butterfly.AudioControl;
+import butterfly.IAudioController;
 
 /**
  *
  * @author Jake
  */
-public class AudioControlUI extends javax.swing.JPanel {
-
-    AudioControl acController;
+public class AudioControlUI extends javax.swing.JPanel implements IAudioUI 
+{
+    private AudioControl controller;
+    
     public AudioControlUI(AudioControl acController) 
     {
         initComponents();
-        this.acController = acController;
+        this.controller = acController;
         
         SongLabel.setVisible(false);
         ArtistLabel.setVisible(false);
@@ -120,9 +122,9 @@ public class AudioControlUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PlayPauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayPauseButtonActionPerformed
-        if (acController.isPlaying())
+        if (controller.isPlaying())
         {
-          acController.pause();
+          controller.pause();
           PlayPauseButton.setText("Play");
         }
         else
@@ -132,37 +134,37 @@ public class AudioControlUI extends javax.swing.JPanel {
                 setAllLabels();
                 setAllLabelsVisibility(true);
             }
-            acController.play();
+            controller.play();
             PlayPauseButton.setText("Pause");
         }
             
     }//GEN-LAST:event_PlayPauseButtonActionPerformed
 
     private void RepeatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepeatButtonActionPerformed
-        this.acController.repeat();
+        this.controller.repeat();
     }//GEN-LAST:event_RepeatButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        this.acController.previous();
+        this.controller.previous();
         this.setAllLabels();
         PlayPauseButton.setText("Pause");
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
-        this.acController.next();
+        this.controller.next();
         this.setAllLabels();
         PlayPauseButton.setText("Pause");
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed
-        this.acController.shuffle();
+        this.controller.shuffle();
     }//GEN-LAST:event_ShuffleButtonActionPerformed
 
     private void setAllLabels()
     {
-        this.SongLabel.setText(acController.getCurrentSong());
-        this.ArtistLabel.setText(acController.getCurrentArtist());
-        this.AlbumLabel.setText(acController.getCurrentAlbum());
+        this.SongLabel.setText(controller.getCurrentSong());
+        this.ArtistLabel.setText(controller.getCurrentArtist());
+        this.AlbumLabel.setText(controller.getCurrentAlbum());
     }
     
     private void setAllLabelsVisibility(boolean bool)
@@ -170,6 +172,12 @@ public class AudioControlUI extends javax.swing.JPanel {
         this.SongLabel.setVisible(bool);
         this.ArtistLabel.setVisible(bool);
         this.AlbumLabel.setVisible(bool);
+    }
+    
+    @Override
+    public void setController(IAudioController controller)
+    {
+        this.controller = (AudioControl) controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

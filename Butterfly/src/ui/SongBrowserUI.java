@@ -1,11 +1,15 @@
 package ui;
 
+import butterfly.IAudioController;
+import butterfly.SongBrowser;
+
 /**
  *
  * @author natec
  */
-public class SongBrowserUI extends javax.swing.JPanel {
-
+public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
+{
+    private SongBrowser controller;
     /**
      * Creates new form SongBrowserUI
      */
@@ -33,7 +37,12 @@ public class SongBrowserUI extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    @Override
+    public void setController(IAudioController controller)
+    {
+        this.controller = (SongBrowser) controller;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
