@@ -2,7 +2,6 @@ package ui;
 
 import butterfly.AudioControl;
 import butterfly.IAudioController;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -16,10 +15,6 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     {
         
         initComponents();
-        
-        SongLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        ArtistLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        AlbumLabel.setHorizontalAlignment(SwingConstants.CENTER);
         
         SongLabel.setVisible(false);
         ArtistLabel.setVisible(false);
@@ -49,10 +44,13 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        SongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SongLabel.setText("songName");
 
+        ArtistLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ArtistLabel.setText("artist");
 
+        AlbumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AlbumLabel.setText("album");
 
         NextButton.setText("Next");
@@ -126,7 +124,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                     .addComponent(SongLabel)
                     .addComponent(ArtistLabel)
                     .addComponent(AlbumLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(PlayPauseButton)

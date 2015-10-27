@@ -47,13 +47,8 @@ public class Main
         list.add(song5);
         list.add(song6);
         
-        SongQueue library = new SongQueue(list);
-        
-        SearchHelper search = new SearchHelper(library);
-        
-        SongList search1 = search.search(" Flux and flow ");
-        search1.getList().forEach(song -> System.out.println(song.getSongName()));
-        
+        SongList library = new SongList("Library", list);
+                
         // Testing AudioControlUI
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
