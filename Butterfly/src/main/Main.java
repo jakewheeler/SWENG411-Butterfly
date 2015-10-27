@@ -27,6 +27,7 @@ public class Main
         Song song3 = new Song("testingsongs/Light Pollution.mp3");
         Song song4 = new Song("testingsongs/Perturbator.mp3");
         Song song5 = new Song("testingsongs/FutureShock.mp3");
+        Song song6 = new Song("testingsongs/My Really Short Song.mp3");
         
         System.out.println(song0.getSongName());
         System.out.println(song1.getSongName()); //Test cases for mp3 tag library
@@ -34,6 +35,9 @@ public class Main
         System.out.println(song3.getSongName()); //Test cases for mp3 tag library
         System.out.println(song4.getSongName()); //Test cases for mp3 tag library
         System.out.println(song5.getSongName()); //Test cases for mp3 tag library
+        System.out.println(song6.getSongName()); //Test cases for mp3 tag library
+        
+        //song2.setSongName("Hi");
         
         list.add(song0);
         list.add(song1);
@@ -41,6 +45,7 @@ public class Main
         list.add(song3);
         list.add(song4);
         list.add(song5);
+        list.add(song6);
         
         SongQueue library = new SongQueue(list);
         

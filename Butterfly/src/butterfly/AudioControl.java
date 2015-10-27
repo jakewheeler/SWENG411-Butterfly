@@ -17,7 +17,7 @@ public class AudioControl implements IAudioController
     private boolean playFlag;
     private final SongQueue queue;
     private AudioControlUI ui;
-    private double volume = 100;
+    private double volume = 1;
     
     public AudioControl()
     {
@@ -27,8 +27,7 @@ public class AudioControl implements IAudioController
     public AudioControl(SongList list)
     {
         this.queue = new SongQueue(list.getList());
-        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
-        this.mp.setVolume(this.volume);
+        changeSong();
     }
     
     @Override
@@ -42,6 +41,7 @@ public class AudioControl implements IAudioController
     {
         mp.play();
         playFlag = true;
+        updateUI();
     }
     
     public boolean isPlaying()
@@ -86,10 +86,8 @@ public class AudioControl implements IAudioController
     {
         this.stop();
         this.queue.next();
-        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
-        this.mp.setVolume(this.volume);
+        changeSong();
         this.play();
-        updateUI();
     }
     
     // skip to previous song
@@ -97,10 +95,8 @@ public class AudioControl implements IAudioController
     {
         this.stop();
         this.queue.previous();
-        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
-        this.mp.setVolume(this.volume);
+        changeSong();
         this.play();
-        updateUI();
     }
     
     // toggle queue to repeat song
@@ -133,10 +129,8 @@ public class AudioControl implements IAudioController
         this.stop();
         this.queue.clear();
         this.queue.setCurrentSong(song);
-        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
-        this.mp.setVolume(this.volume);
+        changeSong();
         this.play();
-        updateUI();
     }
     
     // changes the queue to have the new list
@@ -145,10 +139,8 @@ public class AudioControl implements IAudioController
         this.stop();
         this.queue.clear();
         this.queue.setCurrentSong(songs.getList());
-        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
-        this.mp.setVolume(this.volume);
+        changeSong();
         this.play();
-        updateUI();
     }
     
     private void updateUI()
@@ -163,6 +155,13 @@ public class AudioControl implements IAudioController
     public void setVolume(double volume)
     {
         this.volume = volume;
+        this.mp.setVolume(this.volume);
+    }
+    
+    private void changeSong()
+    {
+        this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
+        this.mp.setOnEndOfMedia(() -> this.next());
         this.mp.setVolume(this.volume);
     }
 }

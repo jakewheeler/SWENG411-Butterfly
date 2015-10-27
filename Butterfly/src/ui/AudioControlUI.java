@@ -14,6 +14,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     
     public AudioControlUI() 
     {
+        
         initComponents();
         
         SongLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -36,8 +37,8 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         NextButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         ShuffleButton = new javax.swing.JButton();
-        RepeatButton = new javax.swing.JButton();
         VolumeSlider = new javax.swing.JSlider();
+        repeatButton = new javax.swing.JToggleButton();
 
         setPreferredSize(new java.awt.Dimension(1279, 150));
 
@@ -75,17 +76,17 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        RepeatButton.setText("Repeat");
-        RepeatButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RepeatButtonActionPerformed(evt);
-            }
-        });
-
         VolumeSlider.setValue(100);
         VolumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 VolumeSliderStateChanged(evt);
+            }
+        });
+
+        repeatButton.setText("Repeat");
+        repeatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repeatButtonActionPerformed(evt);
             }
         });
 
@@ -104,7 +105,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(AlbumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(440, 440, 440)
-                        .addComponent(RepeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(repeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,7 +116,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(597, Short.MAX_VALUE))
+                .addContainerGap(359, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +133,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(NextButton)
                         .addComponent(BackButton)
                         .addComponent(ShuffleButton)
-                        .addComponent(RepeatButton))
+                        .addComponent(repeatButton))
                     .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -153,12 +154,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             controller.play();
             PlayPauseButton.setText("Pause");
         }
-            
     }//GEN-LAST:event_PlayPauseButtonActionPerformed
-
-    private void RepeatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepeatButtonActionPerformed
-        this.controller.repeat();
-    }//GEN-LAST:event_RepeatButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.controller.previous();
@@ -177,6 +173,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private void VolumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_VolumeSliderStateChanged
         this.controller.setVolume(((double) this.VolumeSlider.getValue()) / 100);
     }//GEN-LAST:event_VolumeSliderStateChanged
+
+    private void repeatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repeatButtonActionPerformed
+        this.controller.repeat();
+    }//GEN-LAST:event_repeatButtonActionPerformed
     
     private void setAllLabelsVisibility(boolean bool)
     {
@@ -198,9 +198,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private javax.swing.JButton BackButton;
     private javax.swing.JButton NextButton;
     private javax.swing.JButton PlayPauseButton;
-    private javax.swing.JButton RepeatButton;
     private javax.swing.JButton ShuffleButton;
     public javax.swing.JLabel SongLabel;
     private javax.swing.JSlider VolumeSlider;
+    private javax.swing.JToggleButton repeatButton;
     // End of variables declaration//GEN-END:variables
 }

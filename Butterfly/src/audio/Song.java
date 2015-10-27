@@ -21,41 +21,23 @@ public class Song {
                     songLength = "";
     private int numberOnAlbum;
     private final Media audio;
-    private MP3 mp3;
+    private final MP3 mp3;
     private final File songfile;
     private final JFXPanel jfxp; // required to initialize JavaFX library
     private final URL url;
-   
-            
-    public Song(String artist, String album, String songName, String filePath) throws IOException
-    {
-        this.artist = artist;
-        this.album = album;
-        this.songName = songName;
-        this.filePath = filePath;
-        
-        // Media player stuff initialization
-        this.songfile = new File(filePath);
-        this.url = songfile.toURI().toURL();
-        this.jfxp = new JFXPanel();
-        this.audio = new Media(url.toString());
-    }
     
     public Song(String filePath) throws IOException
     {
         this.filePath = filePath;
-        
         this.mp3 = new MP3(filePath);
-       
-        String def = "Unknown"; //Needs new implementation
         
-        this.artist = mp3.getBand(); //actually is artist
-        this.album = mp3.getAlbum();
-        this.songName = mp3.getTitle();
-        this.genre = mp3.getMusicType();
+        this.artist = getTag(mp3.getBand()); //actually is artist
+        this.album = getTag(mp3.getAlbum());
+        this.songName = getTag(mp3.getTitle());
+        this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack();
-        this.songLength = Integer.toString(mp3.getAudioDuration()); //returns length in seconds needs converted into formatted string 
-        
+        this.songLength = mp3.getAudioDuration() / 60 + ":" + mp3.getAudioDuration() % 60;
+                
         //Media Player stuff initialization
         this.songfile = new File(filePath);
         this.url = songfile.toURI().toURL();
@@ -71,6 +53,7 @@ public class Song {
     public void setArtist(String artist)
     {
         this.artist = artist;
+        this.mp3.setBand(artist);
     }
     
     public String getAlbum()
@@ -80,7 +63,8 @@ public class Song {
     
     public void setAlbum(String album)
     {
-       this.album = album;       
+        this.album = album;  
+        this.mp3.setAlbum(album);
     }
     
     public String getSongName()
@@ -91,6 +75,7 @@ public class Song {
     public void setSongName(String songName)
     {
         this.songName = songName;        
+        this.mp3.setTitle(songName);
     }
     
     public String getGenre()
@@ -100,7 +85,8 @@ public class Song {
     
     public void setGenre(String genre)
     {
-        this.genre = genre;        
+        this.genre = genre;     
+        this.mp3.setMusicType(genre);
     }
     
     public int getNumberOnAlbum()
@@ -110,7 +96,8 @@ public class Song {
     
     public void setNumberOnAlbum(int num)
     {
-        this.numberOnAlbum = num;        
+        this.numberOnAlbum = num;   
+        this.mp3.setTrack(num);
     }
     
     public Media getAudio()
@@ -121,5 +108,20 @@ public class Song {
     public String getFilePath()
     {
         return this.filePath;
+    }
+    
+    public String getFormattedLength()
+    {
+        return this.songLength;
+    }
+    
+    public int getSongLength()
+    {
+        return this.mp3.getAudioDuration();
+    }
+    
+    private String getTag(String tag)
+    {
+        return (tag == null || tag.isEmpty()) ? "Unknown" : tag;
     }
 }
