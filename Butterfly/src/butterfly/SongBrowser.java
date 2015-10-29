@@ -15,7 +15,7 @@ public class SongBrowser implements IAudioController
 {
     private SongBrowserUI ui;
     private final SongList library;
-    SearchHelper searcher;
+    private final SearchHelper searcher;
     
     public SongBrowser(SongList library)
     {
@@ -30,7 +30,7 @@ public class SongBrowser implements IAudioController
     }
     
     // simply adds all songs in the SongList to the SongBrowserUI table
-    public void addSongsToLibrary()
+    public void displaySongList()
     {
         DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
         

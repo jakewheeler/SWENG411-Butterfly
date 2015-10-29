@@ -25,6 +25,12 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         SearchLibraryLabel = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 0, 0));
+
+        LibraryTableScrollPane.setBackground(new java.awt.Color(0, 0, 0));
+
+        LibraryTable.setBackground(new java.awt.Color(51, 51, 51));
+        LibraryTable.setForeground(new java.awt.Color(255, 255, 255));
         LibraryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -38,8 +44,13 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             LibraryTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
+        SearchLibraryLabel.setBackground(new java.awt.Color(255, 255, 255));
+        SearchLibraryLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SearchLibraryLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SearchLibraryLabel.setText("Search Library:");
 
+        SearchField.setBackground(new java.awt.Color(51, 51, 51));
+        SearchField.setForeground(new java.awt.Color(255, 255, 255));
         SearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 SearchFieldKeyReleased(evt);
@@ -53,12 +64,13 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LibraryTableScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SearchLibraryLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 976, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,8 +80,8 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
                     .addComponent(SearchLibraryLabel)
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

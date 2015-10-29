@@ -38,8 +38,11 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         SongEndLabel = new javax.swing.JLabel();
         SongLocationSlider = new javax.swing.JSlider();
 
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1279, 100));
 
+        PlayPauseButton.setBackground(new java.awt.Color(51, 51, 51));
         PlayPauseButton.setText("Play");
         PlayPauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,15 +50,22 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        SongLabel.setBackground(new java.awt.Color(255, 255, 255));
+        SongLabel.setForeground(new java.awt.Color(255, 255, 255));
         SongLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SongLabel.setText("songName");
 
+        ArtistLabel.setBackground(new java.awt.Color(255, 255, 255));
+        ArtistLabel.setForeground(new java.awt.Color(255, 255, 255));
         ArtistLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ArtistLabel.setText("artist");
 
+        AlbumLabel.setBackground(new java.awt.Color(255, 255, 255));
+        AlbumLabel.setForeground(new java.awt.Color(255, 255, 255));
         AlbumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AlbumLabel.setText("album");
 
+        NextButton.setBackground(new java.awt.Color(51, 51, 51));
         NextButton.setText("Next");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +73,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        BackButton.setBackground(new java.awt.Color(51, 51, 51));
         BackButton.setText("Back");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +81,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        ShuffleButton.setBackground(new java.awt.Color(51, 51, 51));
         ShuffleButton.setText("Shuffle");
         ShuffleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +96,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        repeatButton.setBackground(new java.awt.Color(51, 51, 51));
         repeatButton.setText("Repeat");
         repeatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,8 +104,12 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        SongStartLabel.setBackground(new java.awt.Color(255, 255, 255));
+        SongStartLabel.setForeground(new java.awt.Color(255, 255, 255));
         SongStartLabel.setText("0:00");
 
+        SongEndLabel.setBackground(new java.awt.Color(255, 255, 255));
+        SongEndLabel.setForeground(new java.awt.Color(255, 255, 255));
         SongEndLabel.setText("99:99");
 
         SongLocationSlider.setMaximum(1000);

@@ -1,12 +1,8 @@
 package ui;
 
-import audio.Song;
-import audio.SongList;
-import butterfly.AudioControl;
 import butterfly.AudioPlayer;
-import butterfly.SongBrowser;
+import java.awt.Color;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
@@ -18,48 +14,17 @@ public class AudioPlayerUI extends javax.swing.JFrame
     public AudioPlayerUI(AudioPlayer controller) 
     {
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK); // not working in editor, works in here....
+        this.controller = controller;
+        this.controller.setUI(this);
+        
         try 
         {
-            initMain();
+            this.controller.initMain();
         } catch (IOException ex) 
         {
             
         }
-        this.controller = controller;
-    }
-    
-    private void initMain() throws IOException
-    {
-        ArrayList<Song> list = new ArrayList<>();
-        Song song0 = new Song("testingsongs/Hustler Musik.mp3");
-        Song song1 = new Song("testingsongs/Flux and Flow.mp3");
-        Song song2 = new Song("testingsongs/Harmony.mp3");
-        Song song3 = new Song("testingsongs/Light Pollution.mp3");
-        Song song4 = new Song("testingsongs/Perturbator.mp3");
-        Song song5 = new Song("testingsongs/FutureShock.mp3");
-        Song song6 = new Song("testingsongs/My Really Short Song.mp3");
-        
-        for (int i = 0; i < 10000; i++)
-        {
-            list.add(song0);
-            list.add(song1);
-            list.add(song2);
-            list.add(song3);
-            list.add(song4);
-            list.add(song5);
-            list.add(song6);
-        }
-        
-        SongList library = new SongList("Library", list);
-
-        AudioControl ac = new AudioControl(library);
-        ac.setUI(acui);
-        acui.setController(ac);
-        
-        SongBrowser sb = new SongBrowser(library);
-        this.SongBrowserUI.setController(sb);
-        sb.setUI(this.SongBrowserUI);
-        sb.addSongsToLibrary();
     }
 
     @SuppressWarnings("unchecked")
@@ -71,8 +36,9 @@ public class AudioPlayerUI extends javax.swing.JFrame
         SongBrowserUI = new ui.SongBrowserUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         javax.swing.GroupLayout SongBrowserPanelLayout = new javax.swing.GroupLayout(SongBrowserPanel);
         SongBrowserPanel.setLayout(SongBrowserPanelLayout);
@@ -82,7 +48,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         );
         SongBrowserPanelLayout.setVerticalGroup(
             SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 195, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         acui.setPreferredSize(new java.awt.Dimension(1280, 100));
@@ -97,7 +63,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SongBrowserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -105,10 +71,10 @@ public class AudioPlayerUI extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addComponent(SongBrowserUI, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SongBrowserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -151,7 +117,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel SongBrowserPanel;
-    private ui.SongBrowserUI SongBrowserUI;
-    private ui.AudioControlUI acui;
+    public ui.SongBrowserUI SongBrowserUI;
+    public ui.AudioControlUI acui;
     // End of variables declaration//GEN-END:variables
 }
