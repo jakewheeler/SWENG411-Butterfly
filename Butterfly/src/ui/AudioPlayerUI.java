@@ -39,23 +39,15 @@ public class AudioPlayerUI extends javax.swing.JFrame
         Song song5 = new Song("testingsongs/FutureShock.mp3");
         Song song6 = new Song("testingsongs/My Really Short Song.mp3");
         
-        System.out.println(song0.getSongName());
-        System.out.println(song1.getSongName()); //Test cases for mp3 tag library
-        System.out.println(song2.getSongName()); //Test cases for mp3 tag library
-        System.out.println(song3.getSongName()); //Test cases for mp3 tag library
-        System.out.println(song4.getSongName()); //Test cases for mp3 tag library
-        System.out.println(song5.getSongName()); //Test cases for mp3 tag library
-        System.out.println(song6.getSongName()); //Test cases for mp3 tag library
-        
         for (int i = 0; i < 10000; i++)
         {
-        list.add(song0);
-        list.add(song1);
-        list.add(song2);
-        list.add(song3);
-        list.add(song4);
-        list.add(song5);
-        list.add(song6);
+            list.add(song0);
+            list.add(song1);
+            list.add(song2);
+            list.add(song3);
+            list.add(song4);
+            list.add(song5);
+            list.add(song6);
         }
         
         SongList library = new SongList("Library", list);
@@ -68,8 +60,6 @@ public class AudioPlayerUI extends javax.swing.JFrame
         this.SongBrowserUI.setController(sb);
         sb.setUI(this.SongBrowserUI);
         sb.addSongsToLibrary();
-        
-        song6.setAlbum("Some Guy");
     }
 
     @SuppressWarnings("unchecked")
