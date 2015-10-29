@@ -3,6 +3,8 @@ package butterfly;
 import audio.Song;
 import audio.SongList;
 import audio.SongQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import ui.AudioControlUI;
@@ -60,8 +62,8 @@ public class AudioControl implements IAudioController
     // stops current song
     public void stop()
     {
-        this.mp.stop();
         playFlag = false;
+        this.mp.stop();
     }
     
     // set song label
@@ -151,7 +153,13 @@ public class AudioControl implements IAudioController
         this.ui.ArtistLabel.setText(song.getArtist());
         this.ui.AlbumLabel.setText(song.getAlbum());
         this.ui.setSongEndLabel(song.getFormattedLength());
-        this.ui.SongLocationSlider.setValue(0);
+        if (this.playFlag)
+        {
+            int time = (int) ((int) this.mp.getCurrentTime().toSeconds() / this.mp.getTotalDuration().toSeconds() * 1000);
+            this.ui.SongLocationSlider.setValue(time);
+        }
+        else
+            this.ui.SongLocationSlider.setValue(0);
     }
     
     // change the volume of media player
@@ -165,6 +173,18 @@ public class AudioControl implements IAudioController
     {
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
         this.mp.setOnEndOfMedia(() -> this.next());
+        this.mp.setOnPlaying(() -> {
+            Song song = this.queue.getCurrentSong();
+            while (this.mp.getCurrentTime().toSeconds() < this.mp.getTotalDuration().toSeconds())
+            {
+                try {
+                    Thread.sleep(this.queue.getCurrentSong().getSongLength());
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(AudioControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.ui.SongLocationSlider.setValue(this.ui.SongLocationSlider.getValue() + 1);
+            }
+        });
         this.mp.setVolume(this.volume);
     }
     
