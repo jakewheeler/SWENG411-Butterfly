@@ -4,6 +4,7 @@ import audio.Song;
 import audio.SongList;
 import audio.SongQueue;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import ui.AudioControlUI;
 import ui.IAudioUI;
 
@@ -149,6 +150,8 @@ public class AudioControl implements IAudioController
         this.ui.SongLabel.setText(song.getSongName());
         this.ui.ArtistLabel.setText(song.getArtist());
         this.ui.AlbumLabel.setText(song.getAlbum());
+        this.ui.setSongEndLabel(song.getFormattedLength());
+        this.ui.SongLocationSlider.setValue(0);
     }
     
     // change the volume of media player
@@ -163,5 +166,14 @@ public class AudioControl implements IAudioController
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
         this.mp.setOnEndOfMedia(() -> this.next());
         this.mp.setVolume(this.volume);
+    }
+    
+    // percentage is an int from 0 to 100
+    public void setDuration(int percentage)
+    {
+        Song song = this.queue.getCurrentSong();
+        int millsec = song.getSongLength() * 1000;
+        double newDuration = ((double) (millsec * percentage)) / 100;
+        this.mp.seek(new Duration(newDuration));
     }
 }

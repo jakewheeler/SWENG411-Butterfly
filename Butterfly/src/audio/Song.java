@@ -6,6 +6,9 @@ import java.net.URL;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import com.beaglebuddy.mp3.MP3;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.util.Duration;
 
 
 /**
@@ -36,13 +39,12 @@ public class Song {
         this.songName = getTag(mp3.getTitle());
         this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack();
-        this.songLength = mp3.getAudioDuration() / 60 + ":" + mp3.getAudioDuration() % 60;
                 
         //Media Player stuff initialization
         this.songfile = new File(filePath);
         this.url = songfile.toURI().toURL();
         this.jfxp = new JFXPanel();
-        this.audio = new Media(url.toString());
+        this.audio = new Media(url.toString());  
     }
     
     public String getArtist()
@@ -54,6 +56,11 @@ public class Song {
     {
         this.artist = artist;
         this.mp3.setBand(artist);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println(ex);
+        }
     }
     
     public String getAlbum()
@@ -65,6 +72,11 @@ public class Song {
     {
         this.album = album;  
         this.mp3.setAlbum(album);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println(ex);
+        }
     }
     
     public String getSongName()
@@ -76,6 +88,11 @@ public class Song {
     {
         this.songName = songName;        
         this.mp3.setTitle(songName);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println(ex);
+        }
     }
     
     public String getGenre()
@@ -87,6 +104,11 @@ public class Song {
     {
         this.genre = genre;     
         this.mp3.setMusicType(genre);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println(ex);
+        }
     }
     
     public int getNumberOnAlbum()
@@ -98,6 +120,11 @@ public class Song {
     {
         this.numberOnAlbum = num;   
         this.mp3.setTrack(num);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            System.out.println(ex);
+        }
     }
     
     public Media getAudio()
@@ -111,13 +138,19 @@ public class Song {
     }
     
     public String getFormattedLength()
-    {
-        return this.songLength;
+    {    
+        try {
+            Thread.sleep(15);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int secs = (int) this.audio.getDuration().toSeconds();
+        return this.songLength = String.format("%02d:%02d", secs / 60, secs % 60);
     }
     
     public int getSongLength()
     {
-        return this.mp3.getAudioDuration();
+        return (int) this.audio.getDuration().toSeconds();
     }
     
     private String getTag(String tag)

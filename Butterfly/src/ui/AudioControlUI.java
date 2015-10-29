@@ -34,6 +34,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         ShuffleButton = new javax.swing.JButton();
         VolumeSlider = new javax.swing.JSlider();
         repeatButton = new javax.swing.JToggleButton();
+        SongStartLabel = new javax.swing.JLabel();
+        SongEndLabel = new javax.swing.JLabel();
+        SongLocationSlider = new javax.swing.JSlider();
 
         setPreferredSize(new java.awt.Dimension(1279, 150));
 
@@ -88,6 +91,18 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
+        SongStartLabel.setText("0:00");
+
+        SongEndLabel.setText("99:99");
+
+        SongLocationSlider.setMaximum(1000);
+        SongLocationSlider.setValue(0);
+        SongLocationSlider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SongLocationSliderMouseReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,8 +128,15 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(359, Short.MAX_VALUE))
+                        .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(SongStartLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SongLocationSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 1187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SongEndLabel)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +146,13 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                     .addComponent(SongLabel)
                     .addComponent(ArtistLabel)
                     .addComponent(AlbumLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(SongStartLabel)
+                        .addComponent(SongEndLabel))
+                    .addComponent(SongLocationSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(PlayPauseButton)
@@ -175,6 +203,11 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private void repeatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repeatButtonActionPerformed
         this.controller.repeat();
     }//GEN-LAST:event_repeatButtonActionPerformed
+
+    private void SongLocationSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SongLocationSliderMouseReleased
+        if (this.controller.isPlaying())
+            this.controller.setDuration(this.SongLocationSlider.getValue() / 10);
+    }//GEN-LAST:event_SongLocationSliderMouseReleased
     
     private void setAllLabelsVisibility(boolean bool)
     {
@@ -189,6 +222,11 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         this.controller = (AudioControl) controller;
         this.controller.setVolume(((double) this.VolumeSlider.getValue()) / 100);
     }
+    
+    public void setSongEndLabel(String time)
+    {
+        this.SongEndLabel.setText(time);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel AlbumLabel;
@@ -197,7 +235,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private javax.swing.JButton NextButton;
     private javax.swing.JButton PlayPauseButton;
     private javax.swing.JButton ShuffleButton;
+    private javax.swing.JLabel SongEndLabel;
     public javax.swing.JLabel SongLabel;
+    public javax.swing.JSlider SongLocationSlider;
+    private javax.swing.JLabel SongStartLabel;
     private javax.swing.JSlider VolumeSlider;
     private javax.swing.JToggleButton repeatButton;
     // End of variables declaration//GEN-END:variables

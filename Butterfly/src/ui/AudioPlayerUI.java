@@ -91,7 +91,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
             SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SongBrowserPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
