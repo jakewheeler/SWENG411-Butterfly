@@ -47,6 +47,8 @@ public class AudioPlayerUI extends javax.swing.JFrame
         System.out.println(song5.getSongName()); //Test cases for mp3 tag library
         System.out.println(song6.getSongName()); //Test cases for mp3 tag library
         
+        for (int i = 0; i < 10000; i++)
+        {
         list.add(song0);
         list.add(song1);
         list.add(song2);
@@ -54,6 +56,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         list.add(song4);
         list.add(song5);
         list.add(song6);
+        }
         
         SongList library = new SongList("Library", list);
 
@@ -62,17 +65,19 @@ public class AudioPlayerUI extends javax.swing.JFrame
         acui.setController(ac);
         
         SongBrowser sb = new SongBrowser(library);
+        this.SongBrowserUI.setController(sb);
         sb.setUI(this.SongBrowserUI);
         sb.addSongsToLibrary();
         
+        song6.setAlbum("Some Guy");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        acui = new ui.AudioControlUI();
         SongBrowserPanel = new javax.swing.JPanel();
+        acui = new ui.AudioControlUI();
         SongBrowserUI = new ui.SongBrowserUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,17 +88,16 @@ public class AudioPlayerUI extends javax.swing.JFrame
         SongBrowserPanel.setLayout(SongBrowserPanelLayout);
         SongBrowserPanelLayout.setHorizontalGroup(
             SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SongBrowserPanelLayout.createSequentialGroup()
-                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 1290, Short.MAX_VALUE)
         );
         SongBrowserPanelLayout.setVerticalGroup(
             SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SongBrowserPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 195, Short.MAX_VALUE)
         );
+
+        acui.setPreferredSize(new java.awt.Dimension(1280, 100));
+
+        SongBrowserUI.setPreferredSize(new java.awt.Dimension(1280, 400));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,19 +105,21 @@ public class AudioPlayerUI extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(SongBrowserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SongBrowserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SongBrowserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
