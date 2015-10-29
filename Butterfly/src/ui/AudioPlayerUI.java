@@ -4,6 +4,7 @@ import audio.Song;
 import audio.SongList;
 import butterfly.AudioControl;
 import butterfly.AudioPlayer;
+import butterfly.SongBrowser;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -59,6 +60,11 @@ public class AudioPlayerUI extends javax.swing.JFrame
         AudioControl ac = new AudioControl(library);
         ac.setUI(acui);
         acui.setController(ac);
+        
+        SongBrowser sb = new SongBrowser(library);
+        sb.setUI(this.SongBrowserUI);
+        sb.addSongsToLibrary();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -66,10 +72,28 @@ public class AudioPlayerUI extends javax.swing.JFrame
     private void initComponents() {
 
         acui = new ui.AudioControlUI();
+        SongBrowserPanel = new javax.swing.JPanel();
+        SongBrowserUI = new ui.SongBrowserUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        javax.swing.GroupLayout SongBrowserPanelLayout = new javax.swing.GroupLayout(SongBrowserPanel);
+        SongBrowserPanel.setLayout(SongBrowserPanelLayout);
+        SongBrowserPanelLayout.setHorizontalGroup(
+            SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SongBrowserPanelLayout.createSequentialGroup()
+                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        SongBrowserPanelLayout.setVerticalGroup(
+            SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SongBrowserPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SongBrowserUI, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,14 +101,19 @@ public class AudioPlayerUI extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SongBrowserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(acui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 544, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SongBrowserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -125,6 +154,8 @@ public class AudioPlayerUI extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel SongBrowserPanel;
+    private ui.SongBrowserUI SongBrowserUI;
     private ui.AudioControlUI acui;
     // End of variables declaration//GEN-END:variables
 }
