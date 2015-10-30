@@ -175,7 +175,7 @@ public class AudioControl implements IAudioController
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
         this.mp.setOnEndOfMedia(() -> this.next());
         this.mp.setOnPlaying(() -> {
-            while (this.mp.getCurrentTime().toSeconds() < this.mp.getTotalDuration().toSeconds() && this.isPlaying())
+            while ((int) this.mp.getCurrentTime().toSeconds() < (int) this.mp.getTotalDuration().toSeconds() && this.isPlaying())
             {
                 try {
                     Thread.sleep(this.queue.getCurrentSong().getSongLength());
