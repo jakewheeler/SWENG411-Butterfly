@@ -47,6 +47,7 @@ public class AudioControl implements IAudioController
         updateUI();
     }
     
+    // flag to check if song is playing or paused/stopped
     public boolean isPlaying()
     {
         return playFlag;

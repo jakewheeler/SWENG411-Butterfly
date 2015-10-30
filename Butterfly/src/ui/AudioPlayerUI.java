@@ -37,6 +37,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         SongBrowserUI = new ui.SongBrowserUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Butterfly");
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -78,7 +79,6 @@ public class AudioPlayerUI extends javax.swing.JFrame
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 990;
         gridBagConstraints.ipady = 504;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
