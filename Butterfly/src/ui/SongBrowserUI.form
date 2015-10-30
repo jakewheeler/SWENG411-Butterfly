@@ -21,15 +21,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LibraryTableScrollPane" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="LibraryTableScrollPane" alignment="1" pref="1260" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="BackToLibraryButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="SearchLibraryLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="SearchField" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="976" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -43,9 +45,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="SearchLibraryLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SearchField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BackToLibraryButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="LibraryTableScrollPane" pref="541" max="32767" attributes="0"/>
+              <Component id="LibraryTableScrollPane" pref="349" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -132,6 +135,17 @@
       <Events>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SearchFieldKeyReleased"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BackToLibraryButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Library"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackToLibraryButtonActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="BackToLibraryButton.setBackground(new java.awt.Color(51, 51, 51));&#xa;BackToLibraryButton.setForeground(Color.white);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
