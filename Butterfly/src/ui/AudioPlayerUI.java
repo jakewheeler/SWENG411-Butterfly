@@ -56,7 +56,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1366, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         javax.swing.GroupLayout SongBrowserPanelLayout = new javax.swing.GroupLayout(SongBrowserPanel);

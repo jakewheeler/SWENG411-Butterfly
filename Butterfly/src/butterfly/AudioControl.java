@@ -153,7 +153,6 @@ public class AudioControl implements IAudioController
         this.ui.SongLabel.setText(song.getSongName());
         this.ui.ArtistLabel.setText(song.getArtist());
         this.ui.AlbumLabel.setText(song.getAlbum());
-        this.ui.setSongEndLabel(song.getFormattedLength());
         if (this.playFlag)
         {
             int time = (int) ((int) this.mp.getCurrentTime().toSeconds() / this.mp.getTotalDuration().toSeconds() * 1000);
@@ -175,6 +174,7 @@ public class AudioControl implements IAudioController
         this.mp = new MediaPlayer(this.queue.getCurrentSong().getAudio());
         this.mp.setOnEndOfMedia(() -> this.next());
         this.mp.setOnPlaying(() -> {
+            this.ui.setSongEndLabel(this.queue.getCurrentSong().getFormattedLength());
             while ((int) this.mp.getCurrentTime().toSeconds() < (int) this.mp.getTotalDuration().toSeconds() && this.isPlaying())
             {
                 try {
@@ -183,6 +183,8 @@ public class AudioControl implements IAudioController
                     Logger.getLogger(AudioControl.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.ui.SongLocationSlider.setValue(this.ui.SongLocationSlider.getValue() + 1);
+                int secs = (int) this.mp.getCurrentTime().toSeconds();
+                this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
             }
         });
         this.mp.setVolume(this.volume);

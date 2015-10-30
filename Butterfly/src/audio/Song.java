@@ -30,7 +30,13 @@ public class Song {
     private final URL url;
     
     public Song(String filePath) throws IOException
-    {
+    {                
+        //Media Player stuff initialization
+        this.songfile = new File(filePath);
+        this.url = songfile.toURI().toURL();
+        this.jfxp = new JFXPanel();
+        this.audio = new Media(url.toString()); 
+        
         this.filePath = filePath;
         this.mp3 = new MP3(filePath);
         
@@ -38,13 +44,7 @@ public class Song {
         this.album = getTag(mp3.getAlbum());
         this.songName = getTag(mp3.getTitle());
         this.genre = getTag(mp3.getMusicType());
-        this.numberOnAlbum = mp3.getTrack();
-                
-        //Media Player stuff initialization
-        this.songfile = new File(filePath);
-        this.url = songfile.toURI().toURL();
-        this.jfxp = new JFXPanel();
-        this.audio = new Media(url.toString());  
+        this.numberOnAlbum = mp3.getTrack(); 
     }
     
     public String getArtist()
@@ -140,12 +140,13 @@ public class Song {
     public String getFormattedLength()
     {    
         try {
-            Thread.sleep(15);
+            Thread.sleep(5);
         } catch (InterruptedException ex) {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
         }
         int secs = (int) this.audio.getDuration().toSeconds();
-        return this.songLength = String.format("%02d:%02d", secs / 60, secs % 60);
+        this.songLength = String.format("%02d:%02d", secs / 60, secs % 60);
+        return this.songLength;
     }
     
     public int getSongLength()
