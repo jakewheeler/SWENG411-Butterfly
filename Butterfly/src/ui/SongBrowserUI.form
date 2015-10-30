@@ -48,11 +48,7 @@
                   <Component id="BackToLibraryButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-              <Component id="LibraryTableScrollPane" pref="514" max="32767" attributes="0"/>
-=======
               <Component id="LibraryTableScrollPane" pref="349" max="32767" attributes="0"/>
->>>>>>> 596eaf7c9ec3ee5c72db07a35b1adba56106b19e
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
