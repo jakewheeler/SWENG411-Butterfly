@@ -1,8 +1,8 @@
 package butterfly;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  *
@@ -34,7 +34,7 @@ public class LibraryManager implements IAudioPlayerComponent
     // recursively adds mp3 files found in directory and all subdirectories
     private void getMP3s(ArrayList<File> songs, File file)
     {
-        if (file.isFile())
+        if (file.isFile() && file.getPath().endsWith(".mp3"))
             songs.add(file);
         else if (file.isDirectory())
         {

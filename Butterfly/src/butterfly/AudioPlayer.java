@@ -5,9 +5,6 @@ import audio.SongList;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import ui.AudioPlayerUI;
 
 /**
@@ -23,11 +20,7 @@ public final class AudioPlayer
 
     public AudioPlayer()
     {
-        try {
-            initMain();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
+        initMain();
     }
     
     public void setSearchHelper(SearchHelper helper)
@@ -45,23 +38,36 @@ public final class AudioPlayer
         this.ui = ui;
     }
     
-    public void initMain() throws IOException
+    public void initMain()
     {
+        this.ui = new AudioPlayerUI();
+        this.ui.setComponents(this);
+        this.ui.setVisible(true);
         LibraryManager manager = new LibraryManager();
         ArrayList<File> mp3s = manager.getSongsInDirectory("testingsongs");
+        
+        /*
+         *  add your own music directory 
+         *  watch the magic happen
+         *  still throws a ton of exceptions but we'll cross that bridge when we get to it
+         */
+        mp3s.addAll(manager.getSongsInDirectory("F:\\Music"));
+        
         ArrayList<Song> list = new ArrayList<>();
         
         for (int i = 0; i < mp3s.size(); i++)
         {
-            list.add(new Song(mp3s.get(i).getPath()));
+            try {
+                list.add(new Song(mp3s.get(i).getPath()));
+            } catch (IOException ex) {
+                System.out.println("Error reading " + mp3s.get(i));
+            }
         }
         
         list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
         
         SongList library = new SongList("Library", list);
 
-        this.ui = new AudioPlayerUI();
-        this.ui.setComponents(this);
         AudioControl ac = new AudioControl(library);
         ac.setUI(this.ui.acui);
         this.ui.acui.setController(ac);
@@ -70,7 +76,6 @@ public final class AudioPlayer
         this.ui.SongBrowserUI.setController(sb);
         sb.setUI(this.ui.SongBrowserUI);
         sb.displaySongList();
-        this.ui.setVisible(true);
     }
     
     public static void main(String[] args)
