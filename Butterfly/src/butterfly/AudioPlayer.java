@@ -2,8 +2,10 @@ package butterfly;
 
 import audio.Song;
 import audio.SongList;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ui.AudioPlayerUI;
@@ -45,25 +47,16 @@ public final class AudioPlayer
     
     public void initMain() throws IOException
     {
+        LibraryManager manager = new LibraryManager();
+        ArrayList<File> mp3s = manager.getSongsInDirectory("testingsongs");
         ArrayList<Song> list = new ArrayList<>();
-        Song song0 = new Song("testingsongs/Hustler Musik.mp3");
-        Song song1 = new Song("testingsongs/Flux and Flow.mp3");
-        Song song2 = new Song("testingsongs/Harmony.mp3");
-        Song song3 = new Song("testingsongs/Light Pollution.mp3");
-        Song song4 = new Song("testingsongs/Perturbator.mp3");
-        Song song5 = new Song("testingsongs/FutureShock.mp3");
-        Song song6 = new Song("testingsongs/My Really Short Song.mp3");
         
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < mp3s.size(); i++)
         {
-            list.add(song0);
-            list.add(song1);
-            list.add(song2);
-            list.add(song3);
-            list.add(song4);
-            list.add(song5);
-            list.add(song6);
+            list.add(new Song(mp3s.get(i).getPath()));
         }
+        
+        list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
         
         SongList library = new SongList("Library", list);
 

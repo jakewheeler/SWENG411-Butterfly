@@ -33,6 +33,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
 
         LibraryTableScrollPane.setBackground(new java.awt.Color(0, 0, 0));
 
+        LibraryTable.setAutoCreateRowSorter(true);
         LibraryTable.setBackground(new java.awt.Color(51, 51, 51));
         LibraryTable.setForeground(new java.awt.Color(255, 255, 255));
         LibraryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,7 +97,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
                     .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BackToLibraryButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

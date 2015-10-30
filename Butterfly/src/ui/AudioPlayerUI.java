@@ -88,8 +88,6 @@ public class AudioPlayerUI extends javax.swing.JFrame
         gridBagConstraints.ipadx = 14;
         gridBagConstraints.ipady = 33;
         getContentPane().add(acui, gridBagConstraints);
-
-        SongBrowserUI.setPreferredSize(new java.awt.Dimension(1280, 400));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
