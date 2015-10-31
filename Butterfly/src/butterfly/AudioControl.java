@@ -190,12 +190,14 @@ public class AudioControl implements IAudioController
         this.mp.setVolume(this.volume);
     }
     
-    // percentage is an int from 0 to 100
+    // percentage is an int from 0 to 1000
     public void setDuration(int percentage)
     {
         Song song = this.queue.getCurrentSong();
-        int millsec = song.getSongLength() * 1000;
-        double newDuration = ((double) (millsec * percentage)) / 100;
+        double millsec = song.getSongLength() * 1000;
+        double newDuration = ((double) (millsec * percentage)) / 1000;
         this.mp.seek(new Duration(newDuration));
+        int secs = (int) this.mp.getCurrentTime().toSeconds();
+        this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
     }
 }

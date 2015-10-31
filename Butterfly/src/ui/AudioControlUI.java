@@ -219,7 +219,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     }//GEN-LAST:event_repeatButtonActionPerformed
 
     private void SongLocationSliderMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SongLocationSliderMouseReleased
-        this.controller.setDuration(this.SongLocationSlider.getValue() / 10);
+        this.controller.setDuration(this.SongLocationSlider.getValue());
     }//GEN-LAST:event_SongLocationSliderMouseReleased
         
     @Override
