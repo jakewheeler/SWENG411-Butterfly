@@ -17,6 +17,7 @@ public final class AudioPlayer
     private AudioControl audiocontrol;
     private SearchHelper searchhelper;
     private SongBrowser songbrowser;
+    private LibraryManager manager;
 
     public AudioPlayer()
     {
@@ -43,39 +44,43 @@ public final class AudioPlayer
         this.ui = new AudioPlayerUI();
         this.ui.setComponents(this);
         this.ui.setVisible(true);
-        LibraryManager manager = new LibraryManager();
-        ArrayList<File> mp3s = manager.getSongsInDirectory("testingsongs");
+        this.manager = new LibraryManager();
+        ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
         
         /*
          *  add your own music directory 
          *  watch the magic happen
          *  still throws a ton of exceptions but we'll cross that bridge when we get to it
          */
-        mp3s.addAll(manager.getSongsInDirectory("F:\\Music"));
+        mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music"));
         
         ArrayList<Song> list = new ArrayList<>();
         
-        for (int i = 0; i < mp3s.size(); i++)
-        {
+        mp3s.stream().forEach(mp3 -> {
             try {
-                list.add(new Song(mp3s.get(i).getPath()));
+                list.add(new Song(mp3.getPath()));
             } catch (IOException ex) {
-                System.out.println("Error reading " + mp3s.get(i));
+                System.out.println("Error reading " + mp3);
             }
-        }
+        });
         
         list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
         
         SongList library = new SongList("Library", list);
 
-        AudioControl ac = new AudioControl(library);
-        ac.setUI(this.ui.acui);
-        this.ui.acui.setController(ac);
+        this.audiocontrol = new AudioControl(library);
+        this.audiocontrol.setUI(this.ui.acui);
+        this.ui.acui.setController(this.audiocontrol);
         
-        SongBrowser sb = new SongBrowser(library);
-        this.ui.SongBrowserUI.setController(sb);
-        sb.setUI(this.ui.SongBrowserUI);
-        sb.displaySongList();
+        this.songbrowser = new SongBrowser(library, this);
+        this.ui.SongBrowserUI.setController(this.songbrowser);
+        this.songbrowser.setUI(this.ui.SongBrowserUI);
+        this.songbrowser.displaySongList();
+    }
+    
+    public void changeQueue(Song song, SongList newList)
+    {
+        this.audiocontrol.newQueue(song, newList);
     }
     
     public static void main(String[] args)

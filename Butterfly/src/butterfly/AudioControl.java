@@ -142,7 +142,19 @@ public class AudioControl implements IAudioController
     {
         this.stop();
         this.queue.clear();
-        this.queue.setCurrentSong(songs.getList());
+        this.queue.setCurrentQueue(songs.getList());
+        changeSong();
+        this.play();
+    }
+    
+    // changes the queue to have the new list
+    // sets song to currentsong
+    public void newQueue(Song song, SongList songs)
+    {
+        this.stop();
+        this.queue.clear();
+        this.queue.setCurrentQueue(songs.getList());
+        this.queue.setCurrentSong(song);
         changeSong();
         this.play();
     }

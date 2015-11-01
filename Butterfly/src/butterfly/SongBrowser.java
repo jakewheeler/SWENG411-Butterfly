@@ -14,13 +14,17 @@ import ui.SongBrowserUI;
 public class SongBrowser implements IAudioController
 {
     private SongBrowserUI ui;
+    private final AudioPlayer player;
     private final SongList library;
     private final SearchHelper searcher;
+    private SongList currentList;
     
-    public SongBrowser(SongList library)
+    public SongBrowser(SongList library, AudioPlayer player)
     {
         this.library = library;
+        this.currentList = library;
         this.searcher = new SearchHelper(library);
+        this.player = player;
     }
         
     @Override
@@ -49,6 +53,13 @@ public class SongBrowser implements IAudioController
         {
           model.addRow( new Object[] { list.getList().get(i).getSongName(), list.getList().get(i).getArtist(), list.getList().get(i).getAlbum() } );  
         }
+        this.currentList = list;
+    }
+    
+    public void playList()
+    {
+        int songIndex = this.ui.LibraryTable.getSelectedRow();
+        this.player.changeQueue(this.currentList.getList().get(songIndex), currentList);
     }
     
     // threaded this to slightly boost performance, searching a lot of songs still breaks shit

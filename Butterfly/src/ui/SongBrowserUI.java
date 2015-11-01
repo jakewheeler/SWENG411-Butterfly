@@ -44,6 +44,11 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
                 "Song", "Artist", "Album"
             }
         ));
+        LibraryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LibraryTableMousePressed(evt);
+            }
+        });
         LibraryTableScrollPane.setViewportView(LibraryTable);
         if (LibraryTable.getColumnModel().getColumnCount() > 0) {
             LibraryTable.getColumnModel().getColumn(0).setResizable(false);
@@ -110,6 +115,11 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         this.SearchField.setText("");
         this.search("");
     }//GEN-LAST:event_BackToLibraryButtonActionPerformed
+
+    private void LibraryTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryTableMousePressed
+        if (evt.getClickCount() == 2)
+            this.controller.playList();
+    }//GEN-LAST:event_LibraryTableMousePressed
     
     @Override
     public void setController(IAudioController controller)

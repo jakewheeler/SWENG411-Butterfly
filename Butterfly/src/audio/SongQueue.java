@@ -38,6 +38,8 @@ public class SongQueue extends SongList {
         return this.currentSong;
     }
     
+    // adds a song to the current queue
+    // or sets the queue position to that song if it's in it
     public void setCurrentSong(Song song)
     {
         this.currentSong = song;
@@ -46,7 +48,8 @@ public class SongQueue extends SongList {
         this.index = this.songList.indexOf(song);
     }
     
-    public void setCurrentSong(ArrayList<Song> songList)
+    // adds a songlist to the current queue and starts it from beginning
+    public void setCurrentQueue(ArrayList<Song> songList)
     {
         this.songList.addAll(songList);
         this.index = 0;
