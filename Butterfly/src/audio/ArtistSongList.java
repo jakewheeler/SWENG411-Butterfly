@@ -6,17 +6,17 @@ import java.util.ArrayList;
  *
  * @author natec, jakew
  */
-public class Artist extends SongList
+public class ArtistSongList extends SongList
 {
     protected ArrayList<Album> albums;
     
-    public Artist(String name)
+    public ArtistSongList(String name)
     {
         super(name);
         this.albums = new ArrayList<>();
     }
     
-    public Artist(String name, ArrayList<Song> songs)
+    public ArtistSongList(String name, ArrayList<Song> songs)
     {
         super(name, songs);
         this.albums = new ArrayList<>();
