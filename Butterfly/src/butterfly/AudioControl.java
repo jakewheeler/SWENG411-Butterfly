@@ -44,6 +44,7 @@ public class AudioControl implements IAudioController
     {
         mp.play();
         playFlag = true;
+        this.ui.PlayPauseButton.setText("Pause");
         updateUI();
     }
     
@@ -56,14 +57,16 @@ public class AudioControl implements IAudioController
     // pauses current song
     public void pause()
     {
-       mp.pause();
-       playFlag = false;
+        mp.pause();
+        this.ui.PlayPauseButton.setText("Play");
+        playFlag = false;
     }
     
     // stops current song
     public void stop()
     {
         playFlag = false;
+        this.ui.PlayPauseButton.setText("Play");
         this.mp.stop();
     }
     

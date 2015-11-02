@@ -12,8 +12,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private AudioControl controller;
     
     public AudioControlUI() 
-    {
-        
+    {        
         initComponents();
         
         SongLabel.setText(" ");
@@ -186,13 +185,11 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     private void PlayPauseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayPauseButtonActionPerformed
         if (controller.isPlaying())
         {
-          controller.pause();
-          PlayPauseButton.setText("Play");
+            controller.pause();
         }
         else
         {
             controller.play();
-            PlayPauseButton.setText("Pause");
         }
     }//GEN-LAST:event_PlayPauseButtonActionPerformed
 
@@ -244,7 +241,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     public javax.swing.JLabel ArtistLabel;
     private javax.swing.JButton BackButton;
     private javax.swing.JButton NextButton;
-    private javax.swing.JButton PlayPauseButton;
+    public javax.swing.JButton PlayPauseButton;
     private javax.swing.JButton ShuffleButton;
     private javax.swing.JLabel SongEndLabel;
     public javax.swing.JLabel SongLabel;

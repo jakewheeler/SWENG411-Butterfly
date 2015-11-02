@@ -44,6 +44,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
                 "Song", "Artist", "Album"
             }
         ));
+        LibraryTable.setFocusable(false);
         LibraryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 LibraryTableMousePressed(evt);
