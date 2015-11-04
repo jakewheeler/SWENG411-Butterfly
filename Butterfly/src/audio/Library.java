@@ -8,18 +8,14 @@ import java.util.Map;
  *
  * @author natec
  */
-public class Library extends SongList
+public class Library implements ISongList
 {
-    HashMap<String, ArtistSongList> artists;
-    HashMap<String, Album> albums;
+    protected HashMap<String, ArtistSongList> artists;
     
     public Library(ArrayList<Song> list) 
     {
-        super("Library");
-        this.songList = list;
         this.artists = new HashMap<>();
-        this.albums = new HashMap<>();
-        this.organize();
+        this.organize(list);
     }
     
     public ArtistSongList getArtist(String name)
@@ -34,32 +30,64 @@ public class Library extends SongList
     
     public Album getAlbum(String name)
     {
-        return this.albums.get(name);
-    }
-    
-    public Album getAlbumBySong(Song song)
-    {
-        return this.albums.get(song.getAlbum());
+        Album foundAlbum = null;
+        for (Map.Entry<String, ArtistSongList> artist : this.artists.entrySet()) {
+            HashMap<String, Album> albums = artist.getValue().getAlbums();
+            if (albums.containsKey(name))
+                foundAlbum = albums.get(name);
+        }
+        return foundAlbum;
     }
     
     @Override
     public void removeSong(Song song)
     {
         this.artists.get(song.getArtist()).removeSong(song);
-        super.songList.remove(song);
     }
     
-    private void organize()
+    private void organize(ArrayList<Song> songList)
     {
-        this.songList.stream().forEach(song -> {
+        songList.stream().forEach(song -> {
             if (this.artists.get(song.getArtist()) == null)
                 this.artists.put(song.getArtist(), new ArtistSongList(song.getArtist(), song));
             else
                 this.artists.get(song.getArtist()).addSong(song);
         });
-        
-        this.artists.entrySet().stream().forEach((artist) -> {
-            this.albums.putAll(artist.getValue().getAlbums());
+    }
+
+    @Override
+    public void addSong(Song song) {
+        if (!this.artists.containsKey(song.getArtist()))
+            this.artists.put(song.getArtist(), new ArtistSongList(song.getArtist(), song));
+        else
+            this.artists.get(song.getArtist()).addSong(song);
+    }
+
+    @Override
+    public void addSongs(ArrayList<Song> songs) {
+        songs.forEach(song -> this.addSong(song));
+    }
+
+    @Override
+    public int getLength() {
+        int i = 0;
+        i = this.artists.entrySet().stream().map((artist) -> artist.getValue().getLength()).reduce(i, Integer::sum);
+        return i;
+    }
+
+    @Override
+    public ArrayList<Song> getList() {
+        ArrayList<Song> library = new ArrayList<>();
+        this.artists.entrySet().forEach((artist) -> {
+            library.addAll(artist.getValue().getList());
         });
+                
+        library.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
+        return library;
+    }
+
+    @Override
+    public void removeSongs(ArrayList<Song> songs) {
+        songs.forEach(song -> this.removeSong(song));
     }
 }

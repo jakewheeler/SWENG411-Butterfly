@@ -26,7 +26,7 @@ public class SearchHelper implements IAudioPlayerComponent
         ArrayList<String> keywords = new ArrayList<>(Arrays.asList(keyword.trim().split(" +")));
         
         // Create a list and add any song that matches all of the keywords entered
-        SongList list = new SongList("Search Result");
+        SongList list = new SongList();
         list.addSongs((ArrayList<Song>) this.player.getLibrary().getList().stream().filter(song -> contains(song, new ArrayList(keywords))).collect(Collectors.toList()));
         return list;
     }

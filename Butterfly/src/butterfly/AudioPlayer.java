@@ -65,9 +65,7 @@ public final class AudioPlayer
                 System.out.println("Error reading " + mp3);
             }
         });
-        
-        list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
-        
+                
         this.library = new Library(list);
 
         this.audiocontrol = new AudioControl(this);
@@ -85,13 +83,13 @@ public final class AudioPlayer
         this.audiocontrol.newQueue(song, newList);
     }
     
-    public static void main(String[] args)
-    {
-        AudioPlayer player = new AudioPlayer();
-    }
-    
     public Library getLibrary()
     {
         return this.library;
+    }
+    
+    public static void main(String[] args)
+    {
+        AudioPlayer player = new AudioPlayer();
     }
 }

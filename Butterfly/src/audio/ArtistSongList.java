@@ -7,36 +7,29 @@ import java.util.HashMap;
  *
  * @author natec, jakew
  */
-public class ArtistSongList extends SongList
-{
-    ////////////////////////////////////////
-    // NOTE TO ALL EDITORS
-    // DO NOT INTERACT WITH THE SUPER.SONGLIST
-    // IT IS NOT KEPT UP TO DATE FOR EACH SONG
-    // USE A LAMBDA (OR OTHER ALTERNATIVE)
-    // TO INTERACT WITH EACH ALBUM IF YOU HAVE TO
-    // MAY BE SUBJECT TO CHANGE ON WHIM
-    /////////////////////////////////////////
-    
+public class ArtistSongList implements INamedSongList
+{    
+    protected String name;
     protected HashMap<String, Album> albums;
     
     public ArtistSongList(String name)
     {
-        super(name);
+        this.name = name;
         this.albums = new HashMap<>();
     }
     
     public ArtistSongList(String name, Song song)
     {
-        super(name);
+        this.name = name;
         this.albums = new HashMap<>();
         this.addSong(song);
     }
     
     public ArtistSongList(String name, ArrayList<Song> songs)
     {
-        super(name, songs);
+        this.name = name;
         this.albums = new HashMap<>();
+        this.addSongs(songs);
     }
     
     public HashMap<String, Album> getAlbums()
@@ -51,7 +44,6 @@ public class ArtistSongList extends SongList
     }
     
     // completely removes an album based on it's name
-    // also removes all songs in the album from the songlist
     public void removeAlbum(String name)
     {
         this.albums.remove(name);
@@ -63,7 +55,7 @@ public class ArtistSongList extends SongList
     public void addSong(Song song)
     {
         String albumname = song.getAlbum();
-        if (this.albums.get(albumname) == null)
+        if (!this.albums.containsKey(albumname))
             this.albums.put(albumname, new Album(albumname, song.getGenre(), song.getArtist(), song.getYear(), song));
         else 
             this.albums.get(albumname).addSong(song);
@@ -76,7 +68,7 @@ public class ArtistSongList extends SongList
     {
         Album album = this.albums.get(song.getAlbum());
         album.removeSong(song);
-        if (album.songList.isEmpty())
+        if (album.getList().isEmpty())
             this.albums.remove(album.name);
     }
     
@@ -98,5 +90,26 @@ public class ArtistSongList extends SongList
             list.addAll(album.getValue().getList());
         });        
         return list;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+        this.albums.entrySet().forEach(album -> album.getValue().setArtist(name));
+    }
+
+    @Override
+    public void addSongs(ArrayList<Song> songs) {
+        songs.forEach(song -> this.addSong(song));
+    }
+
+    @Override
+    public void removeSongs(ArrayList<Song> songs) {
+        songs.forEach(song -> this.removeSong(song));
     }
 }

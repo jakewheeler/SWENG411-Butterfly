@@ -22,7 +22,7 @@ public class SongBrowser implements IAudioController
     public SongBrowser(AudioPlayer player)
     {
         this.player = player;
-        this.currentList = this.player.getLibrary();
+        this.currentList = new SongList(this.player.getLibrary().getList());
         this.searcher = new SearchHelper(this.player);
     }
         
