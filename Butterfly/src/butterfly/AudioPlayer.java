@@ -50,7 +50,6 @@ public final class AudioPlayer
     
     public void initMain() throws InterruptedException
     {
-        long timetodo = System.currentTimeMillis();
         Thread getlibthread = new Thread(() -> {
             this.manager = new LibraryManager();
             ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
@@ -98,7 +97,6 @@ public final class AudioPlayer
         sbthread.start();
         acthread.join();
         sbthread.join();
-        System.out.println(System.currentTimeMillis() - timetodo);
     }
     
     public void changeQueue(Song song, SongList newList)
