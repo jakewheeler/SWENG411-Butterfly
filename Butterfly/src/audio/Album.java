@@ -1,7 +1,5 @@
 package audio;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author natec
@@ -19,14 +17,9 @@ public class Album extends SongList
         this.year = 0;
     }
     
-    public Album(String name, ArrayList<Song> songs)
+    public Album(String name, String genre, String artist, int year, Song song)
     {
-        super(name, songs);
-    }
-    
-    public Album(String name, String genre, String artist, int year, ArrayList<Song> songs)
-    {
-        super(name, songs);
+        super(name, song);
         this.genre = genre;
         this.artist = artist;
         this.year = year;

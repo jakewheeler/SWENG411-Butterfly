@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.Library;
 import audio.Song;
 import audio.SongList;
 import java.io.File;
@@ -18,6 +19,7 @@ public final class AudioPlayer
     private SearchHelper searchhelper;
     private SongBrowser songbrowser;
     private LibraryManager manager;
+    private Library library;
 
     public AudioPlayer()
     {
@@ -66,13 +68,13 @@ public final class AudioPlayer
         
         list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
         
-        SongList library = new SongList("Library", list);
+        this.library = new Library(list);
 
-        this.audiocontrol = new AudioControl(library);
+        this.audiocontrol = new AudioControl(this);
         this.audiocontrol.setUI(this.ui.acui);
         this.ui.acui.setController(this.audiocontrol);
         
-        this.songbrowser = new SongBrowser(library, this);
+        this.songbrowser = new SongBrowser(this);
         this.ui.SongBrowserUI.setController(this.songbrowser);
         this.songbrowser.setUI(this.ui.SongBrowserUI);
         this.songbrowser.displaySongList();
@@ -86,5 +88,10 @@ public final class AudioPlayer
     public static void main(String[] args)
     {
         AudioPlayer player = new AudioPlayer();
+    }
+    
+    public Library getLibrary()
+    {
+        return this.library;
     }
 }

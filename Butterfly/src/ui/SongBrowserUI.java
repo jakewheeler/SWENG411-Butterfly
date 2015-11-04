@@ -41,7 +41,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
 
             },
             new String [] {
-                "Song", "Artist", "Album"
+                "Song", "Artist", "Album", "Genre", "Year"
             }
         ));
         LibraryTable.setFocusable(false);
@@ -51,9 +51,6 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             }
         });
         LibraryTableScrollPane.setViewportView(LibraryTable);
-        if (LibraryTable.getColumnModel().getColumnCount() > 0) {
-            LibraryTable.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         SearchLibraryLabel.setBackground(new java.awt.Color(255, 255, 255));
         SearchLibraryLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,7 +80,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BackToLibraryButton)

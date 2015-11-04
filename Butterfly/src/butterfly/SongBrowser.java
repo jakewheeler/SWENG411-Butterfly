@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.Song;
 import audio.SongList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,16 +16,14 @@ public class SongBrowser implements IAudioController
 {
     private SongBrowserUI ui;
     private final AudioPlayer player;
-    private final SongList library;
     private final SearchHelper searcher;
     private SongList currentList;
     
-    public SongBrowser(SongList library, AudioPlayer player)
+    public SongBrowser(AudioPlayer player)
     {
-        this.library = library;
-        this.currentList = library;
-        this.searcher = new SearchHelper(library);
         this.player = player;
+        this.currentList = this.player.getLibrary();
+        this.searcher = new SearchHelper(this.player);
     }
         
     @Override
@@ -38,9 +37,17 @@ public class SongBrowser implements IAudioController
     {
         DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
         
-        for (int i = 0; i < this.library.getLength(); i++)
+        for (int i = 0; i < this.player.getLibrary().getLength(); i++)
         {
-          model.addRow( new Object[] { this.library.getList().get(i).getSongName(), this.library.getList().get(i).getArtist(), this.library.getList().get(i).getAlbum() } );  
+            Song song = this.player.getLibrary().getList().get(i);
+            model.addRow( new Object[] 
+            {
+                song.getSongName(),
+                song.getArtist(), 
+                song.getAlbum(),
+                song.getGenre(),
+                song.getYear()
+            });  
         }        
     }
     
@@ -51,7 +58,15 @@ public class SongBrowser implements IAudioController
         
         for (int i = 0; i < list.getLength(); i++)
         {
-          model.addRow( new Object[] { list.getList().get(i).getSongName(), list.getList().get(i).getArtist(), list.getList().get(i).getAlbum() } );  
+            Song song = list.getList().get(i);
+            model.addRow( new Object[] 
+            { 
+                song.getSongName(),
+                song.getArtist(), 
+                song.getAlbum(),
+                song.getGenre(),
+                song.getYear()
+            });  
         }
         this.currentList = list;
     }

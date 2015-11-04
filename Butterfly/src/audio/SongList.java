@@ -45,9 +45,11 @@ public class SongList {
         this.songList.add(song);
     }
     
+    // adds each song in the list to the list
+    // does it like this to allow overrides
     public void addSongs(ArrayList<Song> songs)
     {
-        this.songList.addAll(songs);
+        songs.forEach(song -> this.addSong(song));
     }
     
     public void removeSong(Song song)
