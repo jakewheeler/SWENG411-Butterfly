@@ -8,7 +8,6 @@ import javafx.scene.media.Media;
 import com.beaglebuddy.mp3.MP3;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Duration;
 
 
 /**
@@ -163,6 +162,12 @@ public class Song {
     public void setYear(int year)
     {
         this.year = year;
+        this.mp3.setYear(year);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private String getTag(String tag)

@@ -42,6 +42,13 @@ public class Library extends SongList
         return this.albums.get(song.getAlbum());
     }
     
+    @Override
+    public void removeSong(Song song)
+    {
+        this.artists.get(song.getArtist()).removeSong(song);
+        super.songList.remove(song);
+    }
+    
     private void organize()
     {
         this.songList.stream().forEach(song -> {
