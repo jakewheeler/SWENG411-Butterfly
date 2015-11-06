@@ -3,6 +3,7 @@ package ui;
 import butterfly.IAudioController;
 import butterfly.SongBrowser;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -116,8 +117,14 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
     }//GEN-LAST:event_BackToLibraryButtonActionPerformed
 
     private void LibraryTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryTableMousePressed
-        if (evt.getClickCount() == 2)
+        if (evt.getButton() == MouseEvent.BUTTON3)
+        {
+            this.controller.rightClick(evt.getPoint());
+        }
+        else if (evt.getClickCount() == 2)
+        {
             this.controller.playList();
+        }
     }//GEN-LAST:event_LibraryTableMousePressed
     
     @Override

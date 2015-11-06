@@ -3,6 +3,7 @@ package butterfly;
 import audio.ISongList;
 import audio.Song;
 import audio.SongList;
+import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -60,8 +61,8 @@ public class SongBrowser implements IAudioController
         for (int i = 0; i < list.getLength(); i++)
         {
             Song song = list.getList().get(i);
-            model.addRow( new Object[] 
-            { 
+            model.addRow(new Object[] 
+            {
                 song.getSongName(),
                 song.getArtist(), 
                 song.getAlbum(),
@@ -93,6 +94,13 @@ public class SongBrowser implements IAudioController
         }
         search = st.getResult();
         this.displaySongList(search);
+    }
+    
+    public void rightClick(Point p)
+    {
+        int row = this.ui.LibraryTable.rowAtPoint(p);
+        this.ui.LibraryTable.setRowSelectionInterval(row, row);
+        this.player.songRightClicked(this.currentList.getList().get(row), p.x, p.y);
     }
 
     private class SearchThread implements Runnable

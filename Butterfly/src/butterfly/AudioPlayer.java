@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.INamedSongList;
 import audio.ISongList;
 import audio.Library;
 import audio.Song;
@@ -124,6 +125,13 @@ public final class AudioPlayer
     public Library getLibrary()
     {
         return this.library;
+    }
+    
+    public void songRightClicked(Song song, int x, int y)
+    {
+        RightClickMenu menu = new RightClickMenu(this.ui, true);
+        menu.setLocation(x, y);
+        menu.setVisible(true);
     }
     
     public static void main(String[] args)
