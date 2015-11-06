@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ui.AudioPlayerUI;
+import ui.RightClickMenu;
 
 /**
  *
@@ -90,8 +91,8 @@ public final class AudioPlayer
 
         Thread acthread = new Thread(() -> {
             this.audiocontrol = new AudioControl(this);
-            this.audiocontrol.setUI(this.ui.acui);
-            this.ui.acui.setController(this.audiocontrol);
+            this.audiocontrol.setUI(this.ui.AudioControlUI);
+            this.ui.AudioControlUI.setController(this.audiocontrol);
         });
         acthread.start();
         
@@ -105,8 +106,8 @@ public final class AudioPlayer
         
         Thread lbthread = new Thread(() -> {
             this.libbrowser = new LibraryBrowser(this);
-            this.ui.libraryBrowserUI1.setController(this.libbrowser);
-            this.libbrowser.setUI(this.ui.libraryBrowserUI1);
+            this.ui.LibraryBrowserUI.setController(this.libbrowser);
+            this.libbrowser.setUI(this.ui.LibraryBrowserUI);
             this.libbrowser.update();
         });
         lbthread.start();

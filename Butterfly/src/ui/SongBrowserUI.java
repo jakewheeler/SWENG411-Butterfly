@@ -28,10 +28,9 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTable = new javax.swing.JTable();
         SearchLibraryLabel = new javax.swing.JLabel();
         SearchField = new javax.swing.JTextField();
-        BackToLibraryButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(1060, 400));
+        setPreferredSize(new java.awt.Dimension(700, 400));
 
         LibraryTableScrollPane.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -67,42 +66,30 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        BackToLibraryButton.setText("Library");
-        BackToLibraryButton.setBackground(new java.awt.Color(51, 51, 51));
-        BackToLibraryButton.setForeground(Color.white);
-        BackToLibraryButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackToLibraryButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+                    .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BackToLibraryButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(SearchLibraryLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchLibraryLabel)
-                    .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BackToLibraryButton))
+                    .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(LibraryTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -110,11 +97,6 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
     private void SearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchFieldKeyReleased
         this.search(this.SearchField.getText());
     }//GEN-LAST:event_SearchFieldKeyReleased
-
-    private void BackToLibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackToLibraryButtonActionPerformed
-        this.SearchField.setText("");
-        this.search("");
-    }//GEN-LAST:event_BackToLibraryButtonActionPerformed
 
     private void LibraryTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryTableMousePressed
         if (evt.getButton() == MouseEvent.BUTTON3)
@@ -139,7 +121,6 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackToLibraryButton;
     public javax.swing.JTable LibraryTable;
     private javax.swing.JScrollPane LibraryTableScrollPane;
     private javax.swing.JTextField SearchField;
