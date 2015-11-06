@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.ISongList;
 import audio.Library;
 import audio.Song;
 import audio.SongList;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
 import ui.AudioPlayerUI;
 
 /**
@@ -22,6 +22,7 @@ public final class AudioPlayer
     private SearchHelper searchhelper;
     private SongBrowser songbrowser;
     private LibraryManager manager;
+    private LibraryBrowser libbrowser;
     private Library library;
 
     public AudioPlayer()
@@ -46,6 +47,11 @@ public final class AudioPlayer
     public void setUI(AudioPlayerUI ui)
     {
         this.ui = ui;
+    }
+    
+    public void displaySongs(ISongList list)
+    {
+        this.songbrowser.displaySongList(list);
     }
     
     public void initMain() throws InterruptedException
@@ -95,11 +101,22 @@ public final class AudioPlayer
             this.songbrowser.displaySongList();
         });
         sbthread.start();
+        
+        Thread lbthread = new Thread(() -> {
+            this.libbrowser = new LibraryBrowser(this);
+            this.ui.libraryBrowserUI1.setController(this.libbrowser);
+            this.libbrowser.setUI(this.ui.libraryBrowserUI1);
+            this.libbrowser.update();
+        });
+        lbthread.start();
+        
+        // wait for all threads
         acthread.join();
         sbthread.join();
+        lbthread.join();
     }
     
-    public void changeQueue(Song song, SongList newList)
+    public void changeQueue(Song song, ISongList newList)
     {
         this.audiocontrol.newQueue(song, newList);
     }

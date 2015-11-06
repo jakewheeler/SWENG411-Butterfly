@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.ISongList;
 import audio.Song;
 import audio.SongList;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ public class SongBrowser implements IAudioController
     private SongBrowserUI ui;
     private final AudioPlayer player;
     private final SearchHelper searcher;
-    private SongList currentList;
+    private ISongList currentList;
     
     public SongBrowser(AudioPlayer player)
     {
@@ -51,7 +52,7 @@ public class SongBrowser implements IAudioController
         }        
     }
     
-    public void displaySongList(SongList list)
+    public void displaySongList(ISongList list)
     {        
         DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
         model.setRowCount(0);

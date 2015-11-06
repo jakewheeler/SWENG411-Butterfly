@@ -1,7 +1,7 @@
 package audio;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  *
@@ -10,29 +10,29 @@ import java.util.HashMap;
 public class ArtistSongList implements INamedSongList
 {    
     protected String name;
-    protected HashMap<String, Album> albums;
+    protected TreeMap<String, Album> albums;
     
     public ArtistSongList(String name)
     {
         this.name = name;
-        this.albums = new HashMap<>();
+        this.albums = new TreeMap<>();
     }
     
     public ArtistSongList(String name, Song song)
     {
         this.name = name;
-        this.albums = new HashMap<>();
+        this.albums = new TreeMap<>();
         this.addSong(song);
     }
     
     public ArtistSongList(String name, ArrayList<Song> songs)
     {
         this.name = name;
-        this.albums = new HashMap<>();
+        this.albums = new TreeMap<>();
         this.addSongs(songs);
     }
     
-    public HashMap<String, Album> getAlbums()
+    public TreeMap<String, Album> getAlbums()
     {
         return albums;
     }
@@ -49,7 +49,7 @@ public class ArtistSongList implements INamedSongList
         this.albums.remove(name);
     }
     
-    // adds a song to the album it belongs to in the hashmap
+    // adds a song to the album it belongs to in the treemap
     // if the album doesn't exist, create a new album with that songs info and add that song
     @Override
     public void addSong(Song song)

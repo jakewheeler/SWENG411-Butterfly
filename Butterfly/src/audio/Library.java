@@ -1,8 +1,8 @@
 package audio;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -10,11 +10,12 @@ import java.util.Map;
  */
 public class Library implements ISongList
 {
-    protected HashMap<String, ArtistSongList> artists;
+    protected TreeMap<String, ArtistSongList> artists;
+    protected TreeMap<String, PlayList> playlists;
     
     public Library(ArrayList<Song> list) 
     {
-        this.artists = new HashMap<>();
+        this.artists = new TreeMap<>();
         this.organize(list);
     }
     
@@ -32,7 +33,7 @@ public class Library implements ISongList
     {
         Album foundAlbum = null;
         for (Map.Entry<String, ArtistSongList> artist : this.artists.entrySet()) {
-            HashMap<String, Album> albums = artist.getValue().getAlbums();
+            TreeMap<String, Album> albums = artist.getValue().getAlbums();
             if (albums.containsKey(name))
                 foundAlbum = albums.get(name);
         }
@@ -89,5 +90,10 @@ public class Library implements ISongList
     @Override
     public void removeSongs(ArrayList<Song> songs) {
         songs.forEach(song -> this.removeSong(song));
+    }
+    
+    public TreeMap<String, ArtistSongList> getLibraryMap()
+    {
+        return this.artists;
     }
 }

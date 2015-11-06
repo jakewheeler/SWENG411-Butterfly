@@ -47,9 +47,9 @@ public class AudioPlayerUI extends javax.swing.JFrame
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        SongBrowserPanel = new javax.swing.JPanel();
         acui = new ui.AudioControlUI();
         SongBrowserUI = new ui.SongBrowserUI();
+        libraryBrowserUI1 = new ui.LibraryBrowserUI();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Butterfly");
@@ -59,29 +59,9 @@ public class AudioPlayerUI extends javax.swing.JFrame
         setPreferredSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout SongBrowserPanelLayout = new javax.swing.GroupLayout(SongBrowserPanel);
-        SongBrowserPanel.setLayout(SongBrowserPanelLayout);
-        SongBrowserPanelLayout.setHorizontalGroup(
-            SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        SongBrowserPanelLayout.setVerticalGroup(
-            SongBrowserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 1290;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
-        getContentPane().add(SongBrowserPanel, gridBagConstraints);
-
         acui.setPreferredSize(new java.awt.Dimension(1280, 100));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -89,7 +69,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         gridBagConstraints.ipady = 33;
         getContentPane().add(acui, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 990;
@@ -97,12 +77,19 @@ public class AudioPlayerUI extends javax.swing.JFrame
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 6);
         getContentPane().add(SongBrowserUI, gridBagConstraints);
 
+        libraryBrowserUI1.setMinimumSize(new java.awt.Dimension(400, 23));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(libraryBrowserUI1, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel SongBrowserPanel;
     public ui.SongBrowserUI SongBrowserUI;
     public ui.AudioControlUI acui;
+    public ui.LibraryBrowserUI libraryBrowserUI1;
     // End of variables declaration//GEN-END:variables
 }
