@@ -54,7 +54,11 @@ public class LibraryBrowser implements IAudioController
     {
         int row = this.ui.LibraryTree.getRowForLocation(x, y);
         TreePath path = this.ui.LibraryTree.getPathForLocation(x, y);
-        if (row > -1)
+        if (row == 0)
+        {
+            this.player.displaySongs(this.player.getLibrary());
+        }
+        else if (row > 0)
         {
             SongListNode node = (SongListNode) path.getLastPathComponent();
             this.player.displaySongs(node.heldlist);
