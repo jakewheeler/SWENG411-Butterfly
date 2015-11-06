@@ -1,10 +1,14 @@
 package butterfly;
 
+import audio.Library;
 import audio.Song;
 import audio.SongList;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 import ui.AudioPlayerUI;
 
 /**
@@ -18,10 +22,15 @@ public final class AudioPlayer
     private SearchHelper searchhelper;
     private SongBrowser songbrowser;
     private LibraryManager manager;
+    private Library library;
 
     public AudioPlayer()
     {
-        initMain();
+        try {
+            initMain();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void setSearchHelper(SearchHelper helper)
@@ -39,48 +48,65 @@ public final class AudioPlayer
         this.ui = ui;
     }
     
-    public void initMain()
+    public void initMain() throws InterruptedException
     {
+        Thread getlibthread = new Thread(() -> {
+            this.manager = new LibraryManager();
+            ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
+
+            /*
+             *  add your own music directory 
+             *  watch the magic happen
+             *  still throws a ton of exceptions but we'll cross that bridge when we get to it
+             */
+            mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music"));
+
+            ArrayList<Song> list = new ArrayList<>();
+
+            mp3s.stream().forEach(mp3 -> {
+                try {
+                    list.add(new Song(mp3.getPath()));
+                } catch (IOException ex) {
+                    System.out.println("Error reading " + mp3);
+                }
+            });
+            
+            this.library = new Library(list);
+        });        
+        getlibthread.start();
+        
         this.ui = new AudioPlayerUI();
         this.ui.setComponents(this);
         this.ui.setVisible(true);
-        this.manager = new LibraryManager();
-        ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
         
-        /*
-         *  add your own music directory 
-         *  watch the magic happen
-         *  still throws a ton of exceptions but we'll cross that bridge when we get to it
-         */
-        mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music"));
-        
-        ArrayList<Song> list = new ArrayList<>();
-        
-        mp3s.stream().forEach(mp3 -> {
-            try {
-                list.add(new Song(mp3.getPath()));
-            } catch (IOException ex) {
-                System.out.println("Error reading " + mp3);
-            }
-        });
-        
-        list.sort((Song song1, Song song2) -> song1.getArtist().compareTo(song2.getArtist()));
-        
-        SongList library = new SongList("Library", list);
+        getlibthread.join();
 
-        this.audiocontrol = new AudioControl(library);
-        this.audiocontrol.setUI(this.ui.acui);
-        this.ui.acui.setController(this.audiocontrol);
+        Thread acthread = new Thread(() -> {
+            this.audiocontrol = new AudioControl(this);
+            this.audiocontrol.setUI(this.ui.acui);
+            this.ui.acui.setController(this.audiocontrol);
+        });
+        acthread.start();
         
-        this.songbrowser = new SongBrowser(library, this);
-        this.ui.SongBrowserUI.setController(this.songbrowser);
-        this.songbrowser.setUI(this.ui.SongBrowserUI);
-        this.songbrowser.displaySongList();
+        Thread sbthread = new Thread(() -> {
+            this.songbrowser = new SongBrowser(this);
+            this.ui.SongBrowserUI.setController(this.songbrowser);
+            this.songbrowser.setUI(this.ui.SongBrowserUI);
+            this.songbrowser.displaySongList();
+        });
+        sbthread.start();
+        acthread.join();
+        sbthread.join();
     }
     
     public void changeQueue(Song song, SongList newList)
     {
         this.audiocontrol.newQueue(song, newList);
+    }
+    
+    public Library getLibrary()
+    {
+        return this.library;
     }
     
     public static void main(String[] args)

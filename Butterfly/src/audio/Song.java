@@ -8,7 +8,6 @@ import javafx.scene.media.Media;
 import com.beaglebuddy.mp3.MP3;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Duration;
 
 
 /**
@@ -22,7 +21,7 @@ public class Song {
                     filePath = "", 
                     genre = "", 
                     songLength = "";
-    private int numberOnAlbum;
+    private int numberOnAlbum, year;
     private final Media audio;
     private final MP3 mp3;
     private final File songfile;
@@ -45,6 +44,7 @@ public class Song {
         this.songName = getTag(mp3.getTitle());
         this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack(); 
+        this.year = mp3.getYear();
     }
     
     public String getArtist()
@@ -152,6 +152,22 @@ public class Song {
     public int getSongLength()
     {
         return (int) this.audio.getDuration().toSeconds();
+    }
+    
+    public int getYear()
+    {
+        return this.year;
+    }
+    
+    public void setYear(int year)
+    {
+        this.year = year;
+        this.mp3.setYear(year);
+        try {
+            this.mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private String getTag(String tag)

@@ -21,15 +21,12 @@ public class AudioControl implements IAudioController
     private final SongQueue queue;
     private AudioControlUI ui;
     private double volume = 1;
+    private final AudioPlayer player;
     
-    public AudioControl()
+    public AudioControl(AudioPlayer player)
     {
-        this.queue = new SongQueue();
-    }
-    
-    public AudioControl(SongList list)
-    {
-        this.queue = new SongQueue(list.getList());
+        this.player = player;
+        this.queue = new SongQueue(this.player.getLibrary().getList());
         changeSong();
     }
     

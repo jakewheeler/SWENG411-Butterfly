@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
  * @author natec
  */
 public class SearchHelper implements IAudioPlayerComponent
-{
-    SongList library;
+{    
+    private final AudioPlayer player;
     
-    public SearchHelper(SongList library)
+    public SearchHelper(AudioPlayer player)
     {
-        this.library = library;
+        this.player = player;
     }
     
     public SongList search(String keyword)
@@ -26,8 +26,8 @@ public class SearchHelper implements IAudioPlayerComponent
         ArrayList<String> keywords = new ArrayList<>(Arrays.asList(keyword.trim().split(" +")));
         
         // Create a list and add any song that matches all of the keywords entered
-        SongList list = new SongList("Search Result");
-        list.addSongs((ArrayList<Song>) library.getList().stream().filter(song -> contains(song, new ArrayList(keywords))).collect(Collectors.toList()));
+        SongList list = new SongList();
+        list.addSongs((ArrayList<Song>) this.player.getLibrary().getList().stream().filter(song -> contains(song, new ArrayList(keywords))).collect(Collectors.toList()));
         return list;
     }
     
