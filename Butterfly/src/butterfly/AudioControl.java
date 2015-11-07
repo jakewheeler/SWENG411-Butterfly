@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.ISongList;
 import audio.Song;
 import audio.SongList;
 import audio.SongQueue;
@@ -21,15 +22,12 @@ public class AudioControl implements IAudioController
     private final SongQueue queue;
     private AudioControlUI ui;
     private double volume = 1;
+    private final AudioPlayer player;
     
-    public AudioControl()
+    public AudioControl(AudioPlayer player)
     {
-        this.queue = new SongQueue();
-    }
-    
-    public AudioControl(SongList list)
-    {
-        this.queue = new SongQueue(list.getList());
+        this.player = player;
+        this.queue = new SongQueue(this.player.getLibrary().getList());
         changeSong();
     }
     
@@ -125,7 +123,7 @@ public class AudioControl implements IAudioController
     }
     
     // adds a list of songs to the current queue
-    public void addSongsToQueue(SongList songs)
+    public void addSongsToQueue(ISongList songs)
     {
         this.queue.addSongs(songs.getList());
     }
@@ -152,7 +150,7 @@ public class AudioControl implements IAudioController
     
     // changes the queue to have the new list
     // sets song to currentsong
-    public void newQueue(Song song, SongList songs)
+    public void newQueue(Song song, ISongList songs)
     {
         this.stop();
         this.queue.clear();

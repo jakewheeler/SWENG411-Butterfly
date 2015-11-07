@@ -1,7 +1,9 @@
 package butterfly;
 
+import audio.ISongList;
+import audio.Song;
 import audio.SongList;
-import java.awt.Color;
+import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -16,16 +18,14 @@ public class SongBrowser implements IAudioController
 {
     private SongBrowserUI ui;
     private final AudioPlayer player;
-    private final SongList library;
     private final SearchHelper searcher;
-    private SongList currentList;
+    private ISongList currentList;
     
-    public SongBrowser(SongList library, AudioPlayer player)
+    public SongBrowser(AudioPlayer player)
     {
-        this.library = library;
-        this.currentList = library;
-        this.searcher = new SearchHelper(library);
         this.player = player;
+        this.currentList = new SongList(this.player.getLibrary().getList());
+        this.searcher = new SearchHelper(this.player);
     }
         
     @Override
@@ -39,20 +39,36 @@ public class SongBrowser implements IAudioController
     {
         DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
         
-        for (int i = 0; i < this.library.getLength(); i++)
+        for (int i = 0; i < this.player.getLibrary().getLength(); i++)
         {
-          model.addRow( new Object[] { this.library.getList().get(i).getSongName(), this.library.getList().get(i).getArtist(), this.library.getList().get(i).getAlbum() } );  
+            Song song = this.player.getLibrary().getList().get(i);
+            model.addRow( new Object[] 
+            {
+                song.getSongName(),
+                song.getArtist(), 
+                song.getAlbum(),
+                song.getGenre(),
+                song.getYear()
+            });  
         }        
     }
     
-    public void displaySongList(SongList list)
+    public void displaySongList(ISongList list)
     {        
         DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
         model.setRowCount(0);
         
         for (int i = 0; i < list.getLength(); i++)
         {
-          model.addRow( new Object[] { list.getList().get(i).getSongName(), list.getList().get(i).getArtist(), list.getList().get(i).getAlbum() } );  
+            Song song = list.getList().get(i);
+            model.addRow(new Object[] 
+            {
+                song.getSongName(),
+                song.getArtist(), 
+                song.getAlbum(),
+                song.getGenre(),
+                song.getYear()
+            });  
         }
         this.currentList = list;
     }
@@ -78,6 +94,13 @@ public class SongBrowser implements IAudioController
         }
         search = st.getResult();
         this.displaySongList(search);
+    }
+    
+    public void rightClick(Point p)
+    {
+        int row = this.ui.LibraryTable.rowAtPoint(p);
+        this.ui.LibraryTable.setRowSelectionInterval(row, row);
+        this.player.songRightClicked(this.currentList.getList().get(row), p.x, p.y);
     }
 
     private class SearchThread implements Runnable

@@ -1,0 +1,9 @@
+Twitter stuff - Jake's working on it
+Custom JTable (need to be able to highlight currently playing song, store Song object in the row, change border color,
+	       double click won't edit strings)
+Scalable UI (adjust to any resolution to fit screen)
+Right-click menu (for JTable stuff)
+File menu (which should include directory)
+Add playlists/save playlists
+Functionality to edit song info
+Library browser (Library and playlists underneath that, maybe artist, album drop downs)

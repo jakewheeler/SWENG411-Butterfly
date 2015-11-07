@@ -1,16 +1,27 @@
 package ui;
 
+import butterfly.IAudioController;
+import butterfly.LibraryBrowser;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+
 /**
  *
  * @author natec
  */
-public class LibraryBrowserUI extends javax.swing.JPanel {
+public class LibraryBrowserUI extends javax.swing.JPanel implements IAudioUI
+{
+    private LibraryBrowser controller;
 
     /**
      * Creates new form LibraryBrowser
      */
     public LibraryBrowserUI() {
         initComponents();
+        initTree();
+
     }
 
     /**
@@ -22,19 +33,53 @@ public class LibraryBrowserUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        TreeScollPane = new javax.swing.JScrollPane();
+        LibraryTree = new javax.swing.JTree();
+
+        LibraryTree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LibraryTreeMousePressed(evt);
+            }
+        });
+        TreeScollPane.setViewportView(LibraryTree);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(TreeScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(TreeScollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void LibraryTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryTreeMousePressed
+        this.controller.displaySelection(evt.getX(), evt.getY());
+    }//GEN-LAST:event_LibraryTreeMousePressed
+
+    public JTree getTree()
+    {
+        return this.LibraryTree;
+    }
+    
+    @Override
+    public void setController(IAudioController controller) {
+        this.controller = (LibraryBrowser) controller;
+    }
+    
+    private void initTree()
+    {
+        DefaultTreeModel model = (DefaultTreeModel)this.LibraryTree.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
+        root.removeAllChildren();
+        root.setUserObject("Library");
+        model.reload(root);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTree LibraryTree;
+    private javax.swing.JScrollPane TreeScollPane;
     // End of variables declaration//GEN-END:variables
 }

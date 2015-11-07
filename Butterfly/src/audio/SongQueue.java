@@ -7,32 +7,29 @@ import java.util.Collections;
  *
  * @author natec
  */
-public class SongQueue extends SongList {
+public class SongQueue implements ISongList {
     private Song currentSong;
     private boolean isRepeat;
     private int index;
-    
-    public SongQueue()
-    {
-        super("Queue");
-        this.currentSong = this.songList.get(0);
-        this.index = 0;
-    }
+    private ArrayList<Song> songList;
     
     public SongQueue(Song song)
     {
-        super("Queue", song);
+        this.songList = new ArrayList<>();
+        this.addSong(song);
         this.currentSong = this.songList.get(0);
         this.index = 0;
     }
     
     public SongQueue(ArrayList<Song> songs)
     {
-        super("Queue", songs);
+        this.songList = new ArrayList<>();
+        this.addSongs(songs);
         this.currentSong = this.songList.get(0);
         this.index = 0;
     }
         
+    // returns current playing song
     public Song getCurrentSong()
     {
         return this.currentSong;
@@ -43,7 +40,7 @@ public class SongQueue extends SongList {
     public void setCurrentSong(Song song)
     {
         this.currentSong = song;
-        if (this.songList.indexOf(song) <= 0)
+        if (!this.songList.contains(song))
             this.addSong(song);
         this.index = this.songList.indexOf(song);
     }
@@ -56,6 +53,7 @@ public class SongQueue extends SongList {
         this.currentSong = this.songList.get(index);
     }
     
+    // skips to the next song in the list
     public void next()
     {
         if (!this.isRepeat)
@@ -70,6 +68,7 @@ public class SongQueue extends SongList {
         }
     }
     
+    // skips to the previous song in the list
     public void previous()
     {
         if (!this.isRepeat)
@@ -84,21 +83,62 @@ public class SongQueue extends SongList {
         }
     }
     
+    // clears the entire songlist
     public void clear()
     {
-        this.songList = new ArrayList<>();
+        this.songList.clear();
         this.currentSong = null;
         this.index = 0;
     }
     
+    // turns on/off repeat of 1 song
     public void toggleRepeat()
     {
         this.isRepeat = !this.isRepeat;
     }
     
+    // shuffles the songlist into a new order
     public void shuffle()
     {
         Collections.shuffle(this.songList);
         this.index = this.songList.indexOf(this.currentSong);
+    }
+
+    // adds any song to the queue if it is not already in it
+    @Override
+    public void addSong(Song song) {
+        if (!this.songList.contains(song))
+            this.songList.add(song);
+    }
+
+    // adds each song if the song is not found
+    @Override
+    public void addSongs(ArrayList<Song> songs) {
+        songs.forEach(song -> this.addSong(song));
+    }
+
+    // removes a song
+    @Override
+    public void removeSong(Song song) {
+        this.songList.remove(song);
+    }
+    
+    // removes a collection of songs
+    @Override
+    public void removeSongs(ArrayList<Song> songs)
+    {
+        this.songList.removeAll(songs);
+    }
+
+    // returns the length of the songlist
+    @Override
+    public int getLength() {
+        return this.songList.size();
+    }
+
+    // returns the actual list of songs
+    @Override
+    public ArrayList<Song> getList() {
+        return this.songList;
     }
 }
