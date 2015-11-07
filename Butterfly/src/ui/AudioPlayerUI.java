@@ -45,6 +45,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         AudioControlUI = new ui.AudioControlUI();
         jSplitPane1 = new javax.swing.JSplitPane();
@@ -55,39 +56,34 @@ public class AudioPlayerUI extends javax.swing.JFrame
         setTitle("Butterfly");
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
-        setMinimumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(1366, 720));
         setPreferredSize(new java.awt.Dimension(1366, 720));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 0));
         AudioControlUI.setPreferredSize(new java.awt.Dimension(1280, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 1345;
+        gridBagConstraints.ipady = 133;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 0);
+        getContentPane().add(AudioControlUI, gridBagConstraints);
 
         jSplitPane1.setPreferredSize(new java.awt.Dimension(720, 400));
 
         LibraryBrowserUI.setMinimumSize(new java.awt.Dimension(50, 23));
         jSplitPane1.setLeftComponent(LibraryBrowserUI);
-
-        SongBrowserUI.setPreferredSize(new java.awt.Dimension(700, 400));
         jSplitPane1.setRightComponent(SongBrowserUI);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1345, Short.MAX_VALUE)
-                    .addComponent(AudioControlUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AudioControlUI, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 995;
+        gridBagConstraints.ipady = 334;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jSplitPane1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
