@@ -17,6 +17,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTable.setVisible(true);
         LibraryTable.setShowGrid(true);
         LibraryTable.setShowHorizontalLines(true);
+        LibraryTableScrollPane.setBackground(Color.black);
     }
 
     @SuppressWarnings("unchecked")
