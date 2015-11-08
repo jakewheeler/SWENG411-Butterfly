@@ -13,3 +13,6 @@ Butterfly/nbproject/private/
 *.ear
 !beaglebuddy_mp3.jar
 !twitter4j-core-4.0.4.jar
+
+# Other #
+twitter.txt

@@ -26,8 +26,9 @@ public final class AudioPlayer
     private LibraryManager manager;
     private LibraryBrowser libbrowser;
     private Library library;
+    private TwitterHelper twitterHelper;
 
-    public AudioPlayer()
+    public AudioPlayer() throws IOException
     {
         try {
             initMain();
@@ -56,7 +57,7 @@ public final class AudioPlayer
         this.songbrowser.displaySongList(list);
     }
     
-    public void initMain() throws InterruptedException
+    public void initMain() throws InterruptedException, IOException
     {
         Thread getlibthread = new Thread(() -> {
             this.manager = new LibraryManager();
@@ -111,11 +112,25 @@ public final class AudioPlayer
             this.libbrowser.update();
         });
         lbthread.start();
+
+        Thread twtthread = new Thread(() -> {
+            try {
+                this.twitterHelper = new TwitterHelper(this);
+            } catch (IOException ex) {
+                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
+        });
+        twtthread.start();
+        
         
         // wait for all threads
         acthread.join();
         sbthread.join();
         lbthread.join();
+        twtthread.join();
+        
+        
     }
     
     public void changeQueue(Song song, ISongList newList)
@@ -128,6 +143,11 @@ public final class AudioPlayer
         return this.library;
     }
     
+    public AudioControl getAudioControl()
+    {
+        return this.audiocontrol;
+    }
+    
     public void songRightClicked(Song song, int x, int y)
     {
         RightClickMenu menu = new RightClickMenu(this.ui, true);
@@ -135,7 +155,7 @@ public final class AudioPlayer
         menu.setVisible(true);
     }
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         AudioPlayer player = new AudioPlayer();
     }

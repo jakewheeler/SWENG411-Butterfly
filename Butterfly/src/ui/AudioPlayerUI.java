@@ -51,13 +51,14 @@ public class AudioPlayerUI extends javax.swing.JFrame
         jSplitPane1 = new javax.swing.JSplitPane();
         LibraryBrowserUI = new ui.LibraryBrowserUI();
         SongBrowserUI = new ui.SongBrowserUI();
+        TwitterButtonControl = new ui.TwitterButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Butterfly");
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1366, 720));
-        setPreferredSize(new java.awt.Dimension(1366, 720));
+        setPreferredSize(new java.awt.Dimension(1400, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -84,6 +85,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         gridBagConstraints.ipady = 334;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jSplitPane1, gridBagConstraints);
+        getContentPane().add(TwitterButtonControl, new java.awt.GridBagConstraints());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,6 +94,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
     public ui.AudioControlUI AudioControlUI;
     public ui.LibraryBrowserUI LibraryBrowserUI;
     public ui.SongBrowserUI SongBrowserUI;
+    public ui.TwitterButton TwitterButtonControl;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

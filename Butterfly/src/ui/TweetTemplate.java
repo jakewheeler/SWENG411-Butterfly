@@ -1,12 +1,21 @@
 package ui;
 
+import butterfly.TwitterHelper;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import twitter4j.TwitterException;
+
 /**
  *
  * @author natec
  */
-public class TweetTemplate extends javax.swing.JDialog {
-
-    public TweetTemplate(java.awt.Frame parent, boolean modal) {
+public class TweetTemplate extends javax.swing.JDialog 
+{
+    private final TwitterHelper twitterHelper;
+    
+    public TweetTemplate(TwitterHelper twitterHelper, java.awt.Frame parent, boolean modal) 
+    {
         super(parent, modal);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -31,6 +40,7 @@ public class TweetTemplate extends javax.swing.JDialog {
         }
         //</editor-fold>
         initComponents();
+        this.twitterHelper = twitterHelper;
     }
 
     @SuppressWarnings("unchecked")
@@ -48,12 +58,23 @@ public class TweetTemplate extends javax.swing.JDialog {
         EnterMessageLabel.setText("Share what you're currently listening to on Twitter");
 
         TweetTextArea.setColumns(20);
+        TweetTextArea.setLineWrap(true);
         TweetTextArea.setRows(5);
         TweetScrollPane.setViewportView(TweetTextArea);
 
         CancelButton.setText("Cancel");
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
+            }
+        });
 
         SendTweetButton.setText("Post Tweet");
+        SendTweetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendTweetButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,11 +114,27 @@ public class TweetTemplate extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SendTweetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendTweetButtonActionPerformed
+
+        // sends the tweet out
+        try {
+            twitterHelper.sendTweet(this);
+        } catch (TwitterException ex) {
+            Logger.getLogger(TweetTemplate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_SendTweetButtonActionPerformed
+
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
+        // lets the user cancel the tweet
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)); // close the form
+    }//GEN-LAST:event_CancelButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelButton;
+    public javax.swing.JButton CancelButton;
     private javax.swing.JLabel EnterMessageLabel;
-    private javax.swing.JButton SendTweetButton;
+    public javax.swing.JButton SendTweetButton;
     private javax.swing.JScrollPane TweetScrollPane;
-    private javax.swing.JTextArea TweetTextArea;
+    public javax.swing.JTextArea TweetTextArea;
     // End of variables declaration//GEN-END:variables
 }
