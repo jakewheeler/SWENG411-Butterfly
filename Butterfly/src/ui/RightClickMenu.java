@@ -2,6 +2,7 @@ package ui;
 
 import audio.Album;
 import audio.ArtistSongList;
+import audio.ISongList;
 import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
@@ -9,11 +10,11 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -57,10 +58,10 @@ public class RightClickMenu extends JPopupMenu
     
     private void init(ArtistSongList artist)
     {
-        map.put("Add Songs To Queue", "addArtistToQueue");
-        map.put("Remove Artist From Library", "removeArtistFromLibrary");
+        map.put("Add Songs To Queue", "addSongListToQueue");
+        map.put("Remove Artist From Library", "removeSongListFromLibrary");
         map.put("Edit Artist Info", "editArtistInfo");
-        map.put("Add Songs To Playlist", "addArtistToPlaylist");
+        map.put("Add Songs To Playlist", "addSonglistToPlaylist");
         
         map.entrySet().forEach(key -> {
             JMenuItem item = new JMenuItem(key.getKey());
@@ -74,7 +75,7 @@ public class RightClickMenu extends JPopupMenu
                 public void mousePressed(MouseEvent e) {
                     try {
                         String methodName = map.get(item.getActionCommand());
-                        Method method = player.getClass().getMethod(methodName, ArtistSongList.class);
+                        Method method = player.getClass().getMethod(methodName, ISongList.class);
                         method.invoke(player, artist);
                         dispose();
                     } catch (Exception ex) {
@@ -102,10 +103,10 @@ public class RightClickMenu extends JPopupMenu
     
     private void init(Album album)
     {
-        map.put("Add Album To Queue", "addAlbumToQueue");
-        map.put("Remove Album From Library", "removeAlbumFromLibrary");
+        map.put("Add Album To Queue", "addSongListToQueue");
+        map.put("Remove Album From Library", "removeSongListFromLibrary");
         map.put("Edit Album Info", "editAlbumInfo");
-        map.put("Add Album To Playlist", "addAlbumToPlayList");
+        map.put("Add Album To Playlist", "addSonglistToPlaylist");
         
         map.entrySet().forEach(key -> {
             JMenuItem item = new JMenuItem(key.getKey());
@@ -119,7 +120,7 @@ public class RightClickMenu extends JPopupMenu
                 public void mousePressed(MouseEvent e) {
                     try {
                         String methodName = map.get(item.getActionCommand());
-                        Method method = player.getClass().getMethod(methodName, Album.class);
+                        Method method = player.getClass().getMethod(methodName, ISongList.class);
                         method.invoke(player, album);
                         dispose();
                     } catch (Exception ex) {
@@ -147,7 +148,7 @@ public class RightClickMenu extends JPopupMenu
     
     private void init(PlayList list)
     {
-        map.put("Add Playlist To Queue", "addPlaylistToQueue");
+        map.put("Add Playlist To Queue", "addSongListToQueue");
         map.put("Remove Playlist From Library", "removePlaylistFromLibrary");
         map.put("Edit Playlist Info", "editPlaylistInfo");
         
@@ -163,7 +164,7 @@ public class RightClickMenu extends JPopupMenu
                 public void mousePressed(MouseEvent e) {
                     try {
                         String methodName = map.get(item.getActionCommand());
-                        Method method = player.getClass().getMethod(methodName, PlayList.class);
+                        Method method = player.getClass().getMethod(methodName, ISongList.class);
                         method.invoke(player, list);
                         dispose();
                     } catch (Exception ex) {

@@ -128,7 +128,10 @@ public class SongQueue implements ISongList {
     // adds each song if the song is not found
     @Override
     public void addSongs(ArrayList<Song> songs) {
+        boolean b = this.songList.isEmpty();
         songs.forEach(song -> this.addSong(song));
+        if (b)
+            this.setCurrentSong(songs.get(0));
     }
 
     // removes a song

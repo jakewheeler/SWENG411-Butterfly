@@ -110,8 +110,27 @@ public class Library implements ISongList
     public void updateArtistName(ArtistSongList artist, String newName)
     {
         ArtistSongList value = this.artists.remove(artist.getName());
-        value.setName(newName);
-        this.artists.put(newName, value);
+        if (this.artists.get(newName) != null)
+        {
+            this.artists.get(newName).addSongs(value.getList());
+        }
+        else
+        {
+            value.setName(newName);        
+            this.artists.put(newName, value);
+        }
+    }
+    
+    public void updateAlbumArtist(Album album, String name, String newArtist, String genre, int year)
+    {
+        this.artists.get(album.getArtist()).removeAlbum(album.getName());
+        album.updateAlbum(name, newArtist, genre, year);
+        if (this.artists.get(album.getArtist()) == null)
+        {
+            this.artists.put(album.getArtist(), new ArtistSongList(album.getArtist(), album.getList()));
+        }
+        else
+            this.artists.get(album.getArtist()).addAlbum(album);
     }
     
     public void updatePlaylistName(PlayList list, String newName)

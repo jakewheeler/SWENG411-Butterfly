@@ -104,4 +104,12 @@ public class Album implements INamedSongList
     public ArrayList<Song> getList() {
         return this.songList;
     }
+    
+    public void updateAlbum(String name, String artist, String genre, int year)
+    {
+        this.setName(name);
+        this.setArtist(artist);
+        this.setGenre(genre);
+        this.setYear(year);
+    }
 }

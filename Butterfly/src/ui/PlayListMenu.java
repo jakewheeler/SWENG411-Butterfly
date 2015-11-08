@@ -24,10 +24,10 @@ public class PlayListMenu extends javax.swing.JFrame
         start();
     }
     
-    public PlayListMenu(AudioPlayer player, ArtistSongList artist)
+    public PlayListMenu(AudioPlayer player, ISongList list)
     {
         this.player = player;
-        this.list = artist;
+        this.list = list;
         start();
     }
     

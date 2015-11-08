@@ -42,7 +42,7 @@
                       <Component id="SongEndLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="478" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="483" max="32767" attributes="0"/>
                       <Component id="repeatButton" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="BackButton" min="-2" pref="75" max="-2" attributes="0"/>
@@ -54,7 +54,8 @@
                       <Component id="ShuffleButton" min="-2" pref="75" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="VolumeSlider" min="-2" pref="75" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="396" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
+                      <Component id="ClearQueueButton" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -63,7 +64,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="SongLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -71,23 +72,24 @@
                   <Component id="ArtistLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="SongStartLabel" min="-2" max="-2" attributes="0"/>
-                  <Component id="SongLocationSlider" min="-2" max="-2" attributes="0"/>
-                  <Component id="SongEndLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="SongLocationSlider" max="32767" attributes="0"/>
+                  <Component id="SongEndLabel" alignment="1" max="32767" attributes="0"/>
+                  <Component id="SongStartLabel" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="VolumeSlider" min="-2" max="-2" attributes="0"/>
-                  <Component id="ShuffleButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="repeatButton" alignment="0" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="NextButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="PlayPauseButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BackButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="repeatButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="ShuffleButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="VolumeSlider" alignment="0" max="32767" attributes="0"/>
+                  <Component id="ClearQueueButton" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -286,6 +288,23 @@
         </Property>
         <Property name="text" type="java.lang.String" value="00:00"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ClearQueueButton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Clear Queue"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[58, 33]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearQueueButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
