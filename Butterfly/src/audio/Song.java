@@ -6,6 +6,7 @@ import java.net.URL;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import com.beaglebuddy.mp3.MP3;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,13 +15,14 @@ import java.util.logging.Logger;
  *
  * @author natec
  */
-public class Song {
+public class Song implements Serializable
+{
     private int numberOnAlbum, year;
-    private final Media audio;
-    private final MP3 mp3;
-    private final File songfile;
-    private final JFXPanel jfxp; // required to initialize JavaFX library
-    private final URL url;
+    private transient Media audio;
+    private transient MP3 mp3;
+    private File songfile;
+    private transient JFXPanel jfxp; // required to initialize JavaFX library
+    private URL url;
     private String  artist = "", 
                     album = "", 
                     songName = "", 
@@ -45,6 +47,19 @@ public class Song {
         this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack(); 
         this.year = mp3.getYear();
+    }
+    
+    public void load()
+    { 
+        try {
+            this.songfile = new File(filePath);
+            this.url = songfile.toURI().toURL();
+            this.jfxp = new JFXPanel();
+            this.audio = new Media(url.toString());
+            this.mp3 = new MP3(filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public String getArtist()

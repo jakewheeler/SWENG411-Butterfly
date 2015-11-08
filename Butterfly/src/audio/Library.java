@@ -16,7 +16,14 @@ public class Library implements ISongList
     public Library(ArrayList<Song> list) 
     {
         this.artists = new TreeMap<>();
+        this.playlists = new TreeMap<>();
         this.organize(list);
+    }
+    
+    public Library()
+    {
+        this.artists = new TreeMap<>();
+        this.playlists = new TreeMap<>();        
     }
     
     public ArtistSongList getArtist(String name)
@@ -95,8 +102,48 @@ public class Library implements ISongList
         songs.forEach(song -> this.removeSong(song));
     }
     
-    public TreeMap<String, ArtistSongList> getLibraryMap()
+    public void addPlaylist(String name)
+    {
+        if (!this.playlists.containsKey(name))
+            this.playlists.put(name, new PlayList(name));
+    }
+    
+    public void addPlaylist(String name, Song song)
+    {
+        if (!this.playlists.containsKey(name))
+            this.playlists.put(name, new PlayList(name, song));
+    }
+    
+    public void addPlaylist(String name, ArrayList<Song> songs)
+    {
+        if (!this.playlists.containsKey(name))
+            this.playlists.put(name, new PlayList(name, songs));
+    }
+    
+    public void addSongToPlaylist(String name, Song song)
+    {
+        PlayList list = this.playlists.get(name);
+        if (!list.songList.contains(song))
+            list.addSong(song);
+    }
+    
+    public ISongList getAllPlaylists()
+    {
+        ArrayList<Song> list = new ArrayList<>();
+        this.playlists.entrySet().forEach(playlist -> {
+            list.addAll(playlist.getValue().getList());
+        });
+        
+        return new SongList(list);
+    }
+    
+    public TreeMap<String, ArtistSongList> getArtistMap()
     {
         return this.artists;
+    }
+    
+    public TreeMap<String, PlayList> getPlayListMap()
+    {
+        return this.playlists;
     }
 }

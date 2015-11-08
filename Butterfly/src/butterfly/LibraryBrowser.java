@@ -2,6 +2,7 @@ package butterfly;
 
 import audio.ArtistSongList;
 import audio.ISongList;
+import audio.PlayList;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -26,11 +27,13 @@ public class LibraryBrowser implements IAudioController
     
     public void update()
     {
-        TreeMap<String, ArtistSongList> map = this.player.getLibrary().getLibraryMap();
+        TreeMap<String, ArtistSongList> map = this.player.getLibrary().getArtistMap();
         DefaultTreeModel model = (DefaultTreeModel)this.ui.LibraryTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         root.setUserObject("Library");
+        DefaultMutableTreeNode artistnode = new DefaultMutableTreeNode();
+        artistnode.setUserObject("Artists");
         
         map.entrySet().stream().map((artist) -> {
             SongListNode node = new SongListNode(artist);
@@ -40,8 +43,20 @@ public class LibraryBrowser implements IAudioController
             });
             return node;
         }).forEach((node) -> {
-            root.add(node);
+            artistnode.add(node);
+        });        
+        root.add(artistnode);
+        
+        TreeMap<String, PlayList> playlists = this.player.getLibrary().getPlayListMap();
+        DefaultMutableTreeNode playlistnode = new DefaultMutableTreeNode();
+        playlistnode.setUserObject("Playlists");
+        
+        playlists.entrySet().stream().forEach((playlist) -> {
+            SongListNode node = new SongListNode(playlist);
+            playlistnode.add(node);
         });
+        root.add(playlistnode);
+        
         model.reload(root);
     }
 
@@ -53,15 +68,26 @@ public class LibraryBrowser implements IAudioController
     public void displaySelection(int x, int y)
     {
         int row = this.ui.LibraryTree.getRowForLocation(x, y);
-        TreePath path = this.ui.LibraryTree.getPathForLocation(x, y);
-        if (row == 0)
+        if (row > -1)
         {
-            this.player.displaySongs(this.player.getLibrary());
-        }
-        else if (row > 0)
-        {
-            SongListNode node = (SongListNode) path.getLastPathComponent();
-            this.player.displaySongs(node.heldlist);
+            TreePath path = this.ui.LibraryTree.getPathForLocation(x, y);
+            DefaultMutableTreeNode pickednode = (DefaultMutableTreeNode) path.getLastPathComponent();
+            switch(pickednode.getUserObject().toString())
+            {
+                case "Library" : 
+                    this.player.displaySongs(this.player.getLibrary());
+                    break;
+                case "Artists" : 
+                    this.player.displaySongs(this.player.getLibrary());
+                    break;
+                case "Playlists" : 
+                    this.player.displaySongs(this.player.getLibrary().getAllPlaylists());
+                    break;
+                default : 
+                    SongListNode node = (SongListNode) path.getLastPathComponent();
+                    this.player.displaySongs(node.heldlist);
+                    break;                
+            }
         }
     }
     

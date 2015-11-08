@@ -59,6 +59,11 @@ public class AudioPlayerUI extends javax.swing.JFrame
         setForeground(new java.awt.Color(0, 0, 0));
         setMinimumSize(new java.awt.Dimension(1366, 720));
         setPreferredSize(new java.awt.Dimension(1400, 720));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -89,6 +94,10 @@ public class AudioPlayerUI extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.controller.closing();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public ui.AudioControlUI AudioControlUI;

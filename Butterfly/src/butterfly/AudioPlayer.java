@@ -7,12 +7,24 @@ import audio.SongList;
 import java.awt.MouseInfo;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import ui.AudioPlayerUI;
+import ui.PlayListMenu;
 import ui.RightClickMenu;
 import ui.SongEditor;
 
@@ -30,6 +42,8 @@ public final class AudioPlayer
     private LibraryBrowser libbrowser;
     private Library library;
     private TwitterHelper twitterHelper;
+    
+    private final String libraryfile = "Library.bflib";
 
     public AudioPlayer() throws IOException
     {
@@ -62,7 +76,27 @@ public final class AudioPlayer
     
     public void initMain() throws InterruptedException, IOException
     {
+        // create the library object
         Thread getlibthread = new Thread(() -> {
+            try {
+                File f = new File(this.libraryfile);
+                FileInputStream in;
+                try{                
+                    in = new FileInputStream(f);
+                } catch (FileNotFoundException ex) {
+                    f.createNewFile();
+                    in = new FileInputStream(f);
+                }
+                
+                ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
+                this.library = (Library) oin.readObject();
+                oin.close();
+                ArrayList<Song> list = this.library.getList();
+                list.forEach(song -> song.load());
+            } catch (IOException | ClassNotFoundException | NullPointerException ex) {
+                this.library = null;
+            }
+                        
             this.manager = new LibraryManager();
             ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
 
@@ -74,25 +108,34 @@ public final class AudioPlayer
             //mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music"));
 
             ArrayList<Song> list = new ArrayList<>();
+            List<String> filepaths = this.library == null ? new ArrayList<>() : this.library.getList().stream().map(song -> song.getFilePath()).collect(Collectors.toList());
 
-            mp3s.stream().forEach(mp3 -> {
+            mp3s.forEach(mp3 -> {
                 try {
-                    list.add(new Song(mp3.getPath()));
+                    if (filepaths != null)
+                        if (!filepaths.contains(mp3.getPath()))
+                            list.add(new Song(mp3.getPath()));
+                    else
+                        list.add(new Song(mp3.getPath()));
                 } catch (IOException ex) {
                     System.out.println("Error reading " + mp3);
                 }
             });
             
-            this.library = new Library(list);
+            if (this.library == null)
+                this.library = new Library(list);
         });        
         getlibthread.start();
         
+        // initialize audioplayer ui
         this.ui = new AudioPlayerUI();
         this.ui.setComponents(this);
         this.ui.setVisible(true);
         
+        // wait for library to finish loading
         getlibthread.join();
 
+        // create the components that rely on library
         Thread acthread = new Thread(() -> {
             this.audiocontrol = new AudioControl(this);
             this.audiocontrol.setUI(this.ui.AudioControlUI);
@@ -115,7 +158,7 @@ public final class AudioPlayer
             this.libbrowser.update();
         });
         lbthread.start();
-
+        
         Thread twtthread = new Thread(() -> {
             try {
                 this.twitterHelper = new TwitterHelper(this);
@@ -125,15 +168,28 @@ public final class AudioPlayer
             this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
         });
         twtthread.start();
-        
-        
+                
         // wait for all threads
         acthread.join();
         sbthread.join();
         lbthread.join();
         twtthread.join();
-        
-        
+    }
+    
+    public void closing()
+    {
+        try {
+            // save library to file
+            FileOutputStream out = new FileOutputStream(this.libraryfile);
+            try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(out))) {
+                Serializable s = this.library;
+                oos.writeObject(s);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
     
     public void changeQueue(Song song, ISongList newList)
@@ -194,7 +250,6 @@ public final class AudioPlayer
                         Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                System.out.println("running");
             });
             t.start();
             editor.addWindowListener(new WindowAdapter()
@@ -216,9 +271,52 @@ public final class AudioPlayer
         }).start();
     }
     
+    public void addSongToPlayList(Song song)
+    {
+        new Thread(()-> {
+            PlayListMenu editor = new PlayListMenu(this, song);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
+            editor.setVisible(true);
+            Thread t = new Thread(()->{
+                while (editor.isVisible()){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            t.start();
+            editor.addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent we)
+                {
+                    editor.setVisible(false);
+                }
+            });
+            try {
+                t.join();
+                this.libbrowser.update();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+    
     public ISongList getCurrentQueue()
     {
         return this.audiocontrol.getCurrentQueue();
+    }
+    
+    public void addNewPlaylist(String name)
+    {
+        this.library.addPlaylist(name);
+    }
+    
+    public void addToPlayList(String name, Song song)
+    {
+        this.library.addSongToPlaylist(name, song);
     }
     
     public static void main(String[] args) throws IOException

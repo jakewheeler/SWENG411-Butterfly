@@ -35,6 +35,7 @@ public class RightClickMenu extends JPopupMenu
             map.put("Add To Queue", "addSongToQueue");
         map.put("Remove From Library", "removeSongFromLibrary");
         map.put("Edit Info", "editSongInfo");
+        map.put("Add to Playlist", "addSongToPlayList");
         
         map.entrySet().forEach(key -> {
             JMenuItem item = new JMenuItem(key.getKey());
@@ -47,10 +48,10 @@ public class RightClickMenu extends JPopupMenu
                 @Override
                 public void mousePressed(MouseEvent e) {
                     try {
-                    String methodName = map.get(item.getActionCommand());
-                    Method method = player.getClass().getMethod(methodName, Song.class);
-                    method.invoke(player, song);
-                    dispose();
+                        String methodName = map.get(item.getActionCommand());
+                        Method method = player.getClass().getMethod(methodName, Song.class);
+                        method.invoke(player, song);
+                        dispose();
                     } catch (Exception ex) {
                         Logger.getLogger(RightClickMenu.class.getName()).log(Level.SEVERE, null, ex);
                     }
