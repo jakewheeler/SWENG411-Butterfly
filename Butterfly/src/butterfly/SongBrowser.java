@@ -90,9 +90,7 @@ public class SongBrowser implements IAudioController
         t.start();
         try {
             t.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SongBrowser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {}
         search = st.getResult();
         this.displaySongList(search);
     }

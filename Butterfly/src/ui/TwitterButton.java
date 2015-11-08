@@ -57,27 +57,20 @@ public class TwitterButton extends javax.swing.JPanel
         
         try {
             // start Twitter
-            controller.startTwitter();
-            
-            } catch (TwitterException | IOException | URISyntaxException ex) {
-                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            controller.startTwitter();            
+        } catch (Exception ex) {}
         
         // choose the correct credential method
         try {
             controller.setCredentialMethod();
-        } catch (IOException | TwitterException | URISyntaxException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {}
         
         // if user has twitter.txt file with credentials, use that
         if (controller.hasCredentialsStatus())
         {
             try {
                 controller.useSavedCredentials();
-            } catch (IOException ex) {
-                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
             
             controller.createTweetTemplate();
         }
@@ -88,9 +81,7 @@ public class TwitterButton extends javax.swing.JPanel
             try {
                 // else get credentials
                 controller.getNewCredentials();
-            } catch (TwitterException | URISyntaxException | IOException ex) {
-                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
             
             controller.createPinEntryForm();
         }

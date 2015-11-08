@@ -218,9 +218,7 @@ public class AudioControl implements IAudioController
             {
                 try {
                     Thread.sleep(this.queue.getCurrentSong().getSongLength());
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(AudioControl.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (Exception ex) {}
                 this.ui.SongLocationSlider.setValue(this.ui.SongLocationSlider.getValue() + 1);
                 int secs = (int) this.mp.getCurrentTime().toSeconds();
                 this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));

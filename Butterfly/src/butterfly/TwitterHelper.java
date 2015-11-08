@@ -211,11 +211,7 @@ public class TwitterHelper implements IAudioController
                 defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.";
                 template.TweetTextArea.setText(defaultTweet);
             }
-        }
-        catch(Exception e)
-        {
-            // text area is empty
-        }
+        } catch (Exception ex) {}
        
         template.setVisible(true); 
     }
