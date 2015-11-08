@@ -143,7 +143,11 @@ public final class AudioPlayer
     public void addSongToQueue(Song song)
     {
         this.audiocontrol.addSongsToQueue(song);
-        this.ui.SongBrowserUI.LibraryTable.clearSelection();
+    }
+    
+    public void removeSongFromQueue(Song song)
+    {
+        this.audiocontrol.removesongFromQueue(song);
     }
     
     public void removeSongFromLibrary(Song song)
@@ -158,6 +162,11 @@ public final class AudioPlayer
     {
         System.out.println(song.getSongName());
         this.libbrowser.update();
+    }
+    
+    public ISongList getCurrentQueue()
+    {
+        return this.audiocontrol.getCurrentQueue();
     }
     
     public static void main(String[] args)

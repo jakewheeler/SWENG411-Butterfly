@@ -3,10 +3,6 @@ package ui;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.Method;
@@ -25,27 +21,24 @@ import javax.swing.JPopupMenu;
 public class RightClickMenu extends JPopupMenu
 {
     private final AudioPlayer player;
-    private final Song song;
     
     private final HashMap<String, String> map = new HashMap<>();
     
     public RightClickMenu(AudioPlayer player, Song song)
     {
         this.player = player;
-        this.song = song;
         
-        map.put("Add To Queue", "addSongToQueue");
+        
+        if (this.player.getCurrentQueue().getList().contains(song))
+            map.put("Remove From Queue", "removeSongFromQueue");
+        else
+            map.put("Add To Queue", "addSongToQueue");
         map.put("Remove From Library", "removeSongFromLibrary");
         map.put("Edit Info", "editSongInfo");
-        
-//        ActionListener menuListener = (ActionEvent e) -> {
-//            
-//        };
         
         map.entrySet().forEach(key -> {
             JMenuItem item = new JMenuItem(key.getKey());
             item.setOpaque(true);
-            //item.addActionListener(menuListener);
             item.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {

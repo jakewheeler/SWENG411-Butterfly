@@ -120,7 +120,8 @@ public class SongQueue implements ISongList {
     // removes a song
     @Override
     public void removeSong(Song song) {
-        this.index--;
+        if (this.index >= this.songList.indexOf(song))
+            this.index--;
         this.songList.remove(song);
     }
     

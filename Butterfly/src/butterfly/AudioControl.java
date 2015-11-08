@@ -222,4 +222,10 @@ public class AudioControl implements IAudioController
         int secs = (int) this.mp.getCurrentTime().toSeconds();
         this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
     }
+    
+    // returns a copy of the current queue, however changing it will not affect current queue
+    public ISongList getCurrentQueue()
+    {
+        return new SongList(this.queue.getList());
+    }
 }
