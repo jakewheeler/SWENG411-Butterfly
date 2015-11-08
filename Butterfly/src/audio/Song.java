@@ -15,18 +15,18 @@ import java.util.logging.Logger;
  * @author natec
  */
 public class Song {
-    private String  artist = "", 
-                    album = "", 
-                    songName = "", 
-                    filePath = "", 
-                    genre = "", 
-                    songLength = "";
     private int numberOnAlbum, year;
     private final Media audio;
     private final MP3 mp3;
     private final File songfile;
     private final JFXPanel jfxp; // required to initialize JavaFX library
     private final URL url;
+    private String  artist = "", 
+                    album = "", 
+                    songName = "", 
+                    filePath = "", 
+                    genre = "", 
+                    songLength = "";
     
     public Song(String filePath) throws IOException
     {                

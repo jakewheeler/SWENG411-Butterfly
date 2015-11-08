@@ -69,21 +69,9 @@ public class AudioControl implements IAudioController
     }
     
     // set song label
-    public String getCurrentSong()
+    public Song getCurrentSong()
     {
-       return this.queue.getCurrentSong().getSongName();
-    }
-    
-    // set artist label
-    public String getCurrentArtist()
-    {
-      return this.queue.getCurrentSong().getArtist();
-    }
-    
-    // set album label
-    public String getCurrentAlbum()
-    {
-      return this.queue.getCurrentSong().getAlbum();
+       return this.queue.getCurrentSong();
     }
     
     // skips to next song
@@ -126,6 +114,15 @@ public class AudioControl implements IAudioController
     public void addSongsToQueue(ISongList songs)
     {
         this.queue.addSongs(songs.getList());
+    }
+    
+    public void removesongFromQueue(Song song)
+    {
+        if (this.queue.getCurrentSong() == song)
+        {
+            this.next();
+        }
+        this.queue.removeSong(song);
     }
     
     // clears the queue and plays the selected song
@@ -212,5 +209,11 @@ public class AudioControl implements IAudioController
         this.mp.seek(new Duration(newDuration));
         int secs = (int) this.mp.getCurrentTime().toSeconds();
         this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
+    }
+    
+    // returns a copy of the current queue, however changing it will not affect current queue
+    public ISongList getCurrentQueue()
+    {
+        return new SongList(this.queue.getList());
     }
 }

@@ -1,10 +1,12 @@
 package butterfly;
 
-import audio.INamedSongList;
 import audio.ISongList;
 import audio.Library;
 import audio.Song;
 import audio.SongList;
+import java.awt.MouseInfo;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ui.AudioPlayerUI;
 import ui.RightClickMenu;
+import ui.SongEditor;
 
 /**
  *
@@ -150,9 +153,72 @@ public final class AudioPlayer
     
     public void songRightClicked(Song song, int x, int y)
     {
-        RightClickMenu menu = new RightClickMenu(this.ui, true);
-        menu.setLocation(x, y);
-        menu.setVisible(true);
+        new Thread(()->{
+            RightClickMenu menu = new RightClickMenu(this, song);
+            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+            menu.setVisible(true);
+        }).start();
+    }
+    
+    public void addSongToQueue(Song song)
+    {
+        this.audiocontrol.addSongsToQueue(song);
+    }
+    
+    public void removeSongFromQueue(Song song)
+    {
+        this.audiocontrol.removesongFromQueue(song);
+    }
+    
+    public void removeSongFromLibrary(Song song)
+    {
+        this.library.removeSong(song);
+        this.songbrowser.removeSong(song);
+        this.audiocontrol.removesongFromQueue(song);
+        this.libbrowser.update();
+    }
+    
+    public void editSongInfo(Song song)
+    {
+        if (this.audiocontrol.getCurrentSong() == song) return;
+        
+        new Thread(()-> {
+            this.library.removeSong(song);
+            SongEditor editor = new SongEditor(song);
+            editor.setVisible(true);
+            Thread t = new Thread(()->{
+                while (editor.isVisible()){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                System.out.println("running");
+            });
+            t.start();
+            editor.addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent we)
+                {
+                    editor.setVisible(false);
+                }
+            });
+            try {
+                t.join();
+                this.library.addSong(song);
+                this.libbrowser.update();
+                this.songbrowser.refresh();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+    
+    public ISongList getCurrentQueue()
+    {
+        return this.audiocontrol.getCurrentQueue();
     }
     
     public static void main(String[] args) throws IOException

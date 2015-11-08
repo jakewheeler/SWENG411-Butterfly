@@ -120,6 +120,8 @@ public class SongQueue implements ISongList {
     // removes a song
     @Override
     public void removeSong(Song song) {
+        if (this.index >= this.songList.indexOf(song))
+            this.index--;
         this.songList.remove(song);
     }
     
@@ -127,7 +129,7 @@ public class SongQueue implements ISongList {
     @Override
     public void removeSongs(ArrayList<Song> songs)
     {
-        this.songList.removeAll(songs);
+        songs.forEach(song -> this.removeSong(song));
     }
 
     // returns the length of the songlist

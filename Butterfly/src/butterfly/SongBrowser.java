@@ -98,9 +98,22 @@ public class SongBrowser implements IAudioController
     
     public void rightClick(Point p)
     {
-        int row = this.ui.LibraryTable.rowAtPoint(p);
-        this.ui.LibraryTable.setRowSelectionInterval(row, row);
-        this.player.songRightClicked(this.currentList.getList().get(row), p.x, p.y);
+        new Thread(() -> {
+            int row = this.ui.LibraryTable.rowAtPoint(p);
+            this.ui.LibraryTable.setRowSelectionInterval(row, row);
+            this.player.songRightClicked(this.currentList.getList().get(row), p.x, p.y);
+        }).start();
+    }
+    
+    public void removeSong(Song song)
+    {
+        this.currentList.removeSong(song);
+        this.refresh();
+    }
+    
+    public void refresh()
+    {
+        this.displaySongList(this.currentList);
     }
 
     private class SearchThread implements Runnable

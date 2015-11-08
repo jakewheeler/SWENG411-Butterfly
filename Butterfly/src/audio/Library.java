@@ -43,7 +43,10 @@ public class Library implements ISongList
     @Override
     public void removeSong(Song song)
     {
-        this.artists.get(song.getArtist()).removeSong(song);
+        ArtistSongList artist = this.artists.get(song.getArtist());
+        artist.removeSong(song);
+        if (artist.getList().isEmpty())
+            this.artists.remove(artist.getName());
     }
     
     private void organize(ArrayList<Song> songList)

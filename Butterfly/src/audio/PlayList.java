@@ -48,7 +48,7 @@ public class PlayList implements INamedSongList
 
     @Override
     public void addSongs(ArrayList<Song> songs) {
-        this.songList.addAll(songs);
+        songs.forEach(song -> this.removeSong(song));
     }
 
     @Override
