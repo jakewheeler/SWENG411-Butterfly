@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import ui.AudioControlUI;
 import ui.IAudioUI;
 
@@ -23,9 +25,18 @@ public class AudioControl implements IAudioController
     private AudioControlUI ui;
     private double volume = 1;
     private final AudioPlayer player;
+    private Icon pauseIMG;
+    private Icon playIMG;
+    
     
     public AudioControl(AudioPlayer player)
     {
+        try
+        {
+          pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
+          playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG")); 
+        }catch(Exception e){}
+        
         this.player = player;
         this.queue = new SongQueue(this.player.getLibrary().getList());
         changeSong();
@@ -42,7 +53,7 @@ public class AudioControl implements IAudioController
     {
         mp.play();
         playFlag = true;
-        this.ui.PlayPauseButton.setText("Pause");
+        this.ui.PlayPauseButton.setIcon(pauseIMG); 
         updateUI();
     }
     
@@ -56,7 +67,7 @@ public class AudioControl implements IAudioController
     public void pause()
     {
         mp.pause();
-        this.ui.PlayPauseButton.setText("Play");
+        this.ui.PlayPauseButton.setIcon(playIMG);
         playFlag = false;
     }
     
@@ -64,7 +75,7 @@ public class AudioControl implements IAudioController
     public void stop()
     {
         playFlag = false;
-        this.ui.PlayPauseButton.setText("Play");
+        this.ui.PlayPauseButton.setIcon(playIMG);
         this.mp.stop();
     }
     
