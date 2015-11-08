@@ -3,6 +3,7 @@ package ui;
 import butterfly.IAudioController;
 import butterfly.LibraryBrowser;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -55,7 +56,12 @@ public class LibraryBrowserUI extends javax.swing.JPanel implements IAudioUI
     }// </editor-fold>//GEN-END:initComponents
 
     private void LibraryTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LibraryTreeMousePressed
-        this.controller.displaySelection(evt.getX(), evt.getY());
+        if (SwingUtilities.isLeftMouseButton(evt) && evt.getClickCount() == 1)
+            this.controller.displaySelection(evt.getX(), evt.getY());
+        else if (SwingUtilities.isRightMouseButton(evt))
+        {
+            this.controller.rightClick(evt.getX(), evt.getY());
+        }
     }//GEN-LAST:event_LibraryTreeMousePressed
 
     public JTree getTree()

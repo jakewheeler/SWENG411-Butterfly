@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.ArtistSongList;
 import audio.ISongList;
 import audio.Library;
 import audio.Song;
@@ -26,6 +27,7 @@ import ui.PlayListMenu;
 import ui.RightClickMenu;
 import ui.SongEditor;
 import java.lang.instrument.Instrumentation;
+import ui.ArtistEditor;
 
 /**
  *
@@ -248,6 +250,25 @@ public final class AudioPlayer
         }).start();
     }
     
+    public void artistRightClicked(String artist, int x, int y)
+    {
+        new Thread(() -> {
+            RightClickMenu menu = new RightClickMenu(this, this.library.getArtist(artist));
+            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+            menu.setVisible(true);
+        }).start();
+    }
+    
+    public void playlistRightClicked(String playlist, int x, int y)
+    {
+        System.out.println(playlist);
+    }
+    
+    public void albumRightClicked(String album, int x, int y)
+    {
+        System.out.println(album);
+    }
+    
     public void addSongToQueue(Song song)
     {
         this.audiocontrol.addSongsToQueue(song);
@@ -255,14 +276,14 @@ public final class AudioPlayer
     
     public void removeSongFromQueue(Song song)
     {
-        this.audiocontrol.removesongFromQueue(song);
+        this.audiocontrol.removeSongFromQueue(song);
     }
     
     public void removeSongFromLibrary(Song song)
     {
         this.library.removeSong(song);
         this.songbrowser.removeSong(song);
-        this.audiocontrol.removesongFromQueue(song);
+        this.audiocontrol.removeSongFromQueue(song);
         this.libbrowser.update();
     }
     
@@ -336,6 +357,85 @@ public final class AudioPlayer
         }).start();
     }
     
+    public void addArtistToPlaylist(ArtistSongList artist)
+    {
+        new Thread(()-> {
+            PlayListMenu editor = new PlayListMenu(this, artist);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
+            editor.setVisible(true);
+            Thread t = new Thread(()->{
+                while (editor.isVisible()){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            t.start();
+            editor.addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent we)
+                {
+                    editor.setVisible(false);
+                }
+            });
+            try {
+                t.join();
+                this.libbrowser.update();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+    
+    public void removeArtistFromLibrary(ArtistSongList artist)
+    {
+        this.songbrowser.removeSongs(artist.getList());
+        this.audiocontrol.removeSongsFromQueue(artist.getList());
+        this.library.removeSongs(artist.getList());
+        this.libbrowser.update();
+    }
+    
+    public void editArtistInfo(ArtistSongList artist)
+    {
+        new Thread(()-> {
+            ArtistEditor editor = new ArtistEditor(this, artist);
+            editor.setVisible(true);
+            Thread t = new Thread(()->{
+                while (editor.isVisible()){
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            t.start();
+            editor.addWindowListener(new WindowAdapter()
+            {
+                @Override
+                public void windowClosing(WindowEvent we)
+                {
+                    editor.setVisible(false);
+                }
+            });
+            try {
+                t.join();
+                this.libbrowser.update();
+                this.songbrowser.refresh();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
+    }
+    
+    public void addArtistToQueue(ArtistSongList artist)
+    {
+        this.audiocontrol.addSongsToQueue(artist);
+    }
+    
     public ISongList getCurrentQueue()
     {
         return this.audiocontrol.getCurrentQueue();
@@ -349,6 +449,11 @@ public final class AudioPlayer
     public void addToPlayList(String name, Song song)
     {
         this.library.addSongToPlaylist(name, song);
+    }
+    
+    public void addToPlayList(String name, ISongList list)
+    {
+        this.library.addListToPlayList(name, list);
     }
     
     public static void premain(String args, Instrumentation ins)

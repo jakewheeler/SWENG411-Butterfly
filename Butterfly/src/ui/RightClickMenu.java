@@ -1,5 +1,7 @@
 package ui;
 
+import audio.Album;
+import audio.ArtistSongList;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.awt.Color;
@@ -26,16 +28,124 @@ public class RightClickMenu extends JPopupMenu
     
     public RightClickMenu(AudioPlayer player, Song song)
     {
+        this.player = player;        
+        init(song);
+        setMouseEvents();
+    }
+    
+    public RightClickMenu(AudioPlayer player, ArtistSongList artist)
+    {
         this.player = player;
+        init(artist);
+        setMouseEvents();
+    }
+    
+    public RightClickMenu(AudioPlayer player, Album album)
+    {
+        this.player = player;
+        init(album);
+        setMouseEvents();
+    }
+    
+    private void init(ArtistSongList artist)
+    {
+        map.put("Add Songs To Queue", "addArtistToQueue");
+        map.put("Remove Artist From Library", "removeArtistFromLibrary");
+        map.put("Edit Artist Info", "editArtistInfo");
+        map.put("Add Songs To Playlist", "addArtistToPlaylist");
         
+        map.entrySet().forEach(key -> {
+            JMenuItem item = new JMenuItem(key.getKey());
+            item.setOpaque(true);
+            item.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    try {
+                        String methodName = map.get(item.getActionCommand());
+                        Method method = player.getClass().getMethod(methodName, ArtistSongList.class);
+                        method.invoke(player, artist);
+                        dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(RightClickMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    item.setBackground(Color.lightGray);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    item.setBackground(getBackground());
+                }
+            });
+            this.add(item);
+        });
+    }
+    
+    private void init(Album album)
+    {
+        map.put("Add Album To Queue", "addAlbumToQueue");
+        map.put("Remove Album From Library", "removeAlbumFromLibrary");
+        map.put("Edit Album Info", "editAlbumInfo");
+        map.put("Add Album To Playlist", "addAlbumToPlayList");
         
+        map.entrySet().forEach(key -> {
+            JMenuItem item = new JMenuItem(key.getKey());
+            item.setOpaque(true);
+            item.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    try {
+                        String methodName = map.get(item.getActionCommand());
+                        Method method = player.getClass().getMethod(methodName, Album.class);
+                        method.invoke(player, album);
+                        dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(RightClickMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    item.setBackground(Color.lightGray);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    item.setBackground(getBackground());
+                }
+            });
+            this.add(item);
+        });
+    }
+    
+    private void init(Song song)
+    {                
         if (this.player.getCurrentQueue().getList().contains(song))
-            map.put("Remove From Queue", "removeSongFromQueue");
+            map.put("Remove Song From Queue", "removeSongFromQueue");
         else
-            map.put("Add To Queue", "addSongToQueue");
-        map.put("Remove From Library", "removeSongFromLibrary");
-        map.put("Edit Info", "editSongInfo");
-        map.put("Add to Playlist", "addSongToPlayList");
+            map.put("Add Song To Queue", "addSongToQueue");
+        map.put("Remove Song From Library", "removeSongFromLibrary");
+        map.put("Edit Song Info", "editSongInfo");
+        map.put("Add Song To Playlist", "addSongToPlayList");
         
         map.entrySet().forEach(key -> {
             JMenuItem item = new JMenuItem(key.getKey());
@@ -73,7 +183,10 @@ public class RightClickMenu extends JPopupMenu
             });
             this.add(item);
         });
-        
+    }
+    
+    private void setMouseEvents()
+    {
         this.addMouseListener(new MouseListener() {
 
             Runnable run = () -> {

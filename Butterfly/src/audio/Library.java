@@ -102,6 +102,13 @@ public class Library implements ISongList
         songs.forEach(song -> this.removeSong(song));
     }
     
+    public void updateArtistName(ArtistSongList artist, String newName)
+    {
+        ArtistSongList value = this.artists.remove(artist.getName());
+        value.setName(newName);
+        this.artists.put(newName, value);
+    }
+    
     public void addPlaylist(String name)
     {
         if (!this.playlists.containsKey(name))
@@ -125,6 +132,11 @@ public class Library implements ISongList
         PlayList list = this.playlists.get(name);
         if (!list.songList.contains(song))
             list.addSong(song);
+    }
+    
+    public void addListToPlayList(String name, ISongList list)
+    {
+        list.getList().forEach(song -> this.addSongToPlaylist(name, song));
     }
     
     public ISongList getAllPlaylists()

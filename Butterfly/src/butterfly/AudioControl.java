@@ -4,6 +4,7 @@ import audio.ISongList;
 import audio.Song;
 import audio.SongList;
 import audio.SongQueue;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.media.MediaPlayer;
@@ -139,13 +140,18 @@ public class AudioControl implements IAudioController
         this.queue.addSongs(songs.getList());
     }
     
-    public void removesongFromQueue(Song song)
+    public void removeSongFromQueue(Song song)
     {
         if (this.queue.getCurrentSong() == song)
         {
             this.next();
         }
         this.queue.removeSong(song);
+    }
+    
+    public void removeSongsFromQueue(ArrayList<Song> songs)
+    {
+        songs.forEach(song -> this.removeSongFromQueue(song));
     }
     
     // clears the queue and plays the selected song

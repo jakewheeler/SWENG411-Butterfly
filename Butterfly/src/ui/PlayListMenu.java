@@ -1,5 +1,7 @@
 package ui;
 
+import audio.ArtistSongList;
+import audio.ISongList;
 import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
@@ -13,11 +15,24 @@ import javax.swing.DefaultComboBoxModel;
 public class PlayListMenu extends javax.swing.JFrame
 {
     private final AudioPlayer player;
-    private final Song song;
+    private Song song;
+    private ISongList list;
     
     public PlayListMenu(AudioPlayer player, Song song) {
         this.player = player;
         this.song = song;
+        start();
+    }
+    
+    public PlayListMenu(AudioPlayer player, ArtistSongList artist)
+    {
+        this.player = player;
+        this.list = artist;
+        start();
+    }
+    
+    private void start()
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -41,7 +56,7 @@ public class PlayListMenu extends javax.swing.JFrame
         }
         //</editor-fold>
         initComponents();
-        updateBox();
+        updateBox();        
     }
     
     @SuppressWarnings("unchecked")
@@ -92,7 +107,7 @@ public class PlayListMenu extends javax.swing.JFrame
 
         PlayListBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 
-        AddSongButton.setText("Add Song");
+        AddSongButton.setText("Add To List");
         AddSongButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddSongButtonActionPerformed(evt);
@@ -125,7 +140,7 @@ public class PlayListMenu extends javax.swing.JFrame
                         .addComponent(AddSongButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(CancelButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +162,10 @@ public class PlayListMenu extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddSongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddSongButtonActionPerformed
-        this.player.addToPlayList((String) this.PlayListBox.getSelectedItem(), song);
+        if (song != null)
+            this.player.addToPlayList((String) this.PlayListBox.getSelectedItem(), song);
+        else
+            this.player.addToPlayList((String) this.PlayListBox.getSelectedItem(), list);
         this.dispose();
     }//GEN-LAST:event_AddSongButtonActionPerformed
 

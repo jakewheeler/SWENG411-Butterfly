@@ -72,6 +72,13 @@ public class Song implements Serializable
     
     public void setArtist(String artist)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.artist = artist;
         this.mp3.setBand(artist);
         try {
@@ -88,6 +95,13 @@ public class Song implements Serializable
     
     public void setAlbum(String album)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.album = album;  
         this.mp3.setAlbum(album);
         try {
@@ -104,6 +118,13 @@ public class Song implements Serializable
     
     public void setSongName(String songName)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.songName = songName;        
         this.mp3.setTitle(songName);
         try {
@@ -120,6 +141,13 @@ public class Song implements Serializable
     
     public void setGenre(String genre)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.genre = genre;     
         this.mp3.setMusicType(genre);
         try {
@@ -136,6 +164,13 @@ public class Song implements Serializable
     
     public void setNumberOnAlbum(int num)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.numberOnAlbum = num;   
         this.mp3.setTrack(num);
         try {
@@ -179,6 +214,13 @@ public class Song implements Serializable
     
     public void setYear(int year)
     {
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.year = year;
         this.mp3.setYear(year);
         try {

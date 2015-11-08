@@ -91,6 +91,32 @@ public class LibraryBrowser implements IAudioController
         }
     }
     
+    public void rightClick(int x, int y)
+    {
+        int row = this.ui.LibraryTree.getRowForLocation(x, y);
+        if (row > -1)
+        {
+            new Thread(() -> {
+                TreePath path = this.ui.LibraryTree.getPathForLocation(x, y);
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+                String object = node.getUserObject().toString();
+                if (object.equals("Artists") || object.equals("Playlists") || object.equals("Library")) return;
+                
+                switch (node.getParent().toString()) {
+                    case "Artists":
+                        this.player.artistRightClicked(object, x, y);
+                        break;
+                    case "Playlists":
+                        this.player.playlistRightClicked(object, x, y);
+                        break;
+                    default:
+                        this.player.albumRightClicked(object, x, y);
+                        break;
+                }
+            }).start();
+        }
+    }
+    
     private class SongListNode extends DefaultMutableTreeNode
     {
         ISongList heldlist;

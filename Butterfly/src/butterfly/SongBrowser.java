@@ -4,6 +4,7 @@ import audio.ISongList;
 import audio.Song;
 import audio.SongList;
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -107,7 +108,14 @@ public class SongBrowser implements IAudioController
     
     public void removeSong(Song song)
     {
+        int i = this.currentList.getList().indexOf(song);
         this.currentList.removeSong(song);
+        this.refresh();
+    }
+    
+    public void removeSongs(ArrayList<Song> songs)
+    {
+        songs.forEach(song -> this.removeSong(song));
         this.refresh();
     }
     
