@@ -18,6 +18,7 @@ public class SongQueue implements ISongList {
         this.songList = new ArrayList<>();
         this.addSong(song);
         this.currentSong = this.songList.get(0);
+        this.currentSong.load();
         this.index = 0;
     }
     
@@ -26,6 +27,7 @@ public class SongQueue implements ISongList {
         this.songList = new ArrayList<>();
         this.addSongs(songs);
         this.currentSong = this.songList.get(0);
+        this.currentSong.load();
         this.index = 0;
     }
         
@@ -39,7 +41,10 @@ public class SongQueue implements ISongList {
     // or sets the queue position to that song if it's in it
     public void setCurrentSong(Song song)
     {
+        if (this.currentSong != null)
+            this.currentSong.unload();
         this.currentSong = song;
+        this.currentSong.load();
         if (!this.songList.contains(song))
             this.addSong(song);
         this.index = this.songList.indexOf(song);
@@ -48,9 +53,12 @@ public class SongQueue implements ISongList {
     // adds a songlist to the current queue and starts it from beginning
     public void setCurrentQueue(ArrayList<Song> songList)
     {
+        if (this.currentSong != null)
+            this.currentSong.unload();
         this.songList.addAll(songList);
         this.index = 0;
         this.currentSong = this.songList.get(index);
+        this.currentSong.load();
     }
     
     // skips to the next song in the list
@@ -63,8 +71,10 @@ public class SongQueue implements ISongList {
             {
                 this.index = 0;
             }
-
+            if (this.currentSong != null)
+                this.currentSong.unload();
             this.currentSong = this.songList.get(this.index);
+            this.currentSong.load();
         }
     }
     
@@ -78,14 +88,18 @@ public class SongQueue implements ISongList {
             {
                 this.index = this.songList.size()-1;
             }
-
+            if (this.currentSong != null)
+                this.currentSong.unload();
             this.currentSong = this.songList.get(this.index);
+            this.currentSong.load();
         }
     }
     
     // clears the entire songlist
     public void clear()
     {
+        if (this.currentSong != null)
+            this.currentSong.unload();
         this.songList.clear();
         this.currentSong = null;
         this.index = 0;

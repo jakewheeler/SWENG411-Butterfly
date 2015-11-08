@@ -20,7 +20,7 @@ public class Song implements Serializable
     private int numberOnAlbum, year;
     private transient Media audio;
     private transient MP3 mp3;
-    private File songfile;
+    private transient File songfile;
     private transient JFXPanel jfxp; // required to initialize JavaFX library
     private URL url;
     private String  artist = "", 
@@ -31,13 +31,7 @@ public class Song implements Serializable
                     songLength = "";
     
     public Song(String filePath) throws IOException
-    {                
-        //Media Player stuff initialization
-        this.songfile = new File(filePath);
-        this.url = songfile.toURI().toURL();
-        this.jfxp = new JFXPanel();
-        this.audio = new Media(url.toString()); 
-        
+    {
         this.filePath = filePath;
         this.mp3 = new MP3(filePath);
         
@@ -56,10 +50,19 @@ public class Song implements Serializable
             this.url = songfile.toURI().toURL();
             this.jfxp = new JFXPanel();
             this.audio = new Media(url.toString());
-            this.mp3 = new MP3(filePath);
+            if (this.mp3 == null)
+                this.mp3 = new MP3(filePath);
         } catch (IOException ex) {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void unload()
+    {
+        this.songfile = null;
+        this.url = null;
+        this.jfxp = null;
+        this.audio = null;
     }
     
     public String getArtist()

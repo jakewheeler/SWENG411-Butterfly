@@ -17,15 +17,15 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import ui.AudioPlayerUI;
 import ui.PlayListMenu;
 import ui.RightClickMenu;
 import ui.SongEditor;
+import java.lang.instrument.Instrumentation;
 
 /**
  *
@@ -43,6 +43,8 @@ public final class AudioPlayer
     private TwitterHelper twitterHelper;
     
     private final String libraryfile = "Library.bflib";
+    
+    private static Instrumentation ins;
 
     public AudioPlayer() throws IOException
     {
@@ -95,34 +97,63 @@ public final class AudioPlayer
             } catch (IOException | ClassNotFoundException | NullPointerException ex) {
                 this.library = null;
             }
-                        
+            
+            ArrayList<String> filepaths = new ArrayList<>();
+            if (this.library != null)
+                this.library.getList().forEach(song -> filepaths.add(song.getFilePath()));
+            
             this.manager = new LibraryManager();
-            ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs");
+            ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs", filepaths);
 
             /*
              *  add your own music directory 
              *  watch the magic happen
              *  still throws a ton of exceptions but we'll cross that bridge when we get to it
              */
-            //mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music"));
+            mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
 
             ArrayList<Song> list = new ArrayList<>();
-            List<String> filepaths = this.library == null ? new ArrayList<>() : this.library.getList().stream().map(song -> song.getFilePath()).collect(Collectors.toList());
-
-            mp3s.forEach(mp3 -> {
+            
+            for (File mp3 : mp3s)
+            {
                 try {
                     if (filepaths != null)
                         if (!filepaths.contains(mp3.getPath()))
+                        {
                             list.add(new Song(mp3.getPath()));
+                        }
+                        else
+                        {
+                            
+                        }
                     else
+                    {
                         list.add(new Song(mp3.getPath()));
-                } catch (IOException ex) {
-                    System.out.println("Error reading " + mp3);
+                    }
+                    
+                    mp3 = null;
                 }
-            });
+                catch (IOException ex){
+                    System.out.println(ex);
+                }
+            }
+
+//            mp3s.forEach(mp3 -> {
+//                try {
+//                    if (filepaths != null)
+//                        if (!filepaths.contains(mp3.getPath()))
+//                            list.add(new Song(mp3.getPath()));
+//                    else
+//                        list.add(new Song(mp3.getPath()));
+//                } catch (IOException ex) {
+//                    System.out.println("Error reading " + mp3);
+//                }
+//            });
             
             if (this.library == null)
                 this.library = new Library(list);
+            else
+                this.library.addSongs(list);
         });        
         getlibthread.start();
         
@@ -178,8 +209,12 @@ public final class AudioPlayer
     public void closing()
     {
         try {
+            // Remove file before saving
+            File f = new File(this.libraryfile);
+            Files.deleteIfExists(f.toPath());
             // save library to file
-            FileOutputStream out = new FileOutputStream(this.libraryfile);
+            
+            FileOutputStream out = new FileOutputStream(f);
             try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(out))) {
                 Serializable s = this.library;
                 oos.writeObject(s);
@@ -316,6 +351,11 @@ public final class AudioPlayer
     public void addToPlayList(String name, Song song)
     {
         this.library.addSongToPlaylist(name, song);
+    }
+    
+    public static void premain(String args, Instrumentation ins)
+    {
+        AudioPlayer.ins = ins;
     }
     
     public static void main(String[] args) throws IOException
