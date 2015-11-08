@@ -31,7 +31,10 @@ public class TwitterButton extends javax.swing.JPanel
 
         TwitterButton = new javax.swing.JButton();
 
-        TwitterButton.setIcon(new javax.swing.ImageIcon("E:\\Users\\Pierced\\Documents\\SWENG 411 Projects\\Butterfly_repo\\Butterfly\\resources\\images\\twitterIconSmall.png")); // NOI18N
+        setBackground(new java.awt.Color(0, 0, 0));
+
+        TwitterButton.setBackground(new java.awt.Color(51, 51, 51));
+        TwitterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/twitterIconSmall.png"))); // NOI18N
         TwitterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TwitterButtonActionPerformed(evt);

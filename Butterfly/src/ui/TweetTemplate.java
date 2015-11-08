@@ -54,15 +54,23 @@ public class TweetTemplate extends javax.swing.JDialog
         SendTweetButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setMaximumSize(new java.awt.Dimension(518, 353));
+        setMinimumSize(new java.awt.Dimension(518, 353));
+        setResizable(false);
 
         EnterMessageLabel.setText("Share what you're currently listening to on Twitter");
 
+        TweetTextArea.setBackground(new java.awt.Color(51, 51, 51));
         TweetTextArea.setColumns(20);
+        TweetTextArea.setForeground(new java.awt.Color(255, 255, 255));
         TweetTextArea.setLineWrap(true);
         TweetTextArea.setRows(5);
         TweetTextArea.setWrapStyleWord(true);
         TweetScrollPane.setViewportView(TweetTextArea);
 
+        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
+        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +78,8 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
+        SendTweetButton.setBackground(new java.awt.Color(51, 51, 51));
+        SendTweetButton.setForeground(new java.awt.Color(255, 255, 255));
         SendTweetButton.setText("Post Tweet");
         SendTweetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
