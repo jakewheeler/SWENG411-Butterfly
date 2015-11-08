@@ -60,6 +60,7 @@ public class TweetTemplate extends javax.swing.JDialog
         TweetTextArea.setColumns(20);
         TweetTextArea.setLineWrap(true);
         TweetTextArea.setRows(5);
+        TweetTextArea.setWrapStyleWord(true);
         TweetScrollPane.setViewportView(TweetTextArea);
 
         CancelButton.setText("Cancel");
