@@ -97,23 +97,23 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
      // grab saved access token from the file if it exists already
     private String getSavedAccessToken() throws FileNotFoundException
     {
-        ArrayList temp = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
         Scanner s = new Scanner(file);
         while (s.hasNext())
             temp.add(s.nextLine());
         
-        return temp.get(0).toString(); 
+        return temp.get(0); 
     }
     
     // grab saved secret access token from the file if it exists already
     private String getSavedAccessTokenSecret() throws FileNotFoundException, IOException
     {
-        ArrayList temp = new ArrayList<>();
+        ArrayList<String> temp = new ArrayList<>();
         Scanner s = new Scanner(file);
         while (s.hasNext())
             temp.add(s.nextLine());
 
-        return temp.get(1).toString();  
+        return temp.get(1);  
     }
     
     // method to prepare twitter use with saved credentials

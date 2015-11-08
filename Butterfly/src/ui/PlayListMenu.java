@@ -4,6 +4,7 @@ import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.util.TreeMap;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -44,6 +45,7 @@ public class PlayListMenu extends javax.swing.JFrame
         updateBox();
     }
     
+    @SuppressWarnings("unchecked")
     private void updateBox()
     {
         TreeMap<String, PlayList> playlists = player.getLibrary().getPlayListMap();
