@@ -1,5 +1,6 @@
 package butterfly;
 
+import audio.Song;
 import java.awt.Desktop;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -66,24 +67,24 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
     // starts the twitter process (gives Butterfly's credentials to Twitter)
     public void startTwitter() throws TwitterException, IOException, URISyntaxException
     {
-      twitter = new TwitterFactory().getInstance();
-      twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET_KEY);
+        twitter = new TwitterFactory().getInstance();
+        twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET_KEY);
     }
     
     // checks whether credentials have already been saved before or not (skips authentication if unneeded)
     public void setCredentialMethod() throws FileNotFoundException, IOException, TwitterException, URISyntaxException
     {
-       BufferedReader br1 = new BufferedReader(new FileReader(file));
-      if (file.exists() && br1.readLine() != null)
-      {
-        // use saved credentials
-        hasCredentials = true;
-      }
-      else
-      {
-        // get new credentials
-         hasCredentials = false;
-      } 
+        BufferedReader br1 = new BufferedReader(new FileReader(file));
+        if (file.exists() && br1.readLine() != null)
+        {
+            // use saved credentials
+            hasCredentials = true;
+        }
+        else
+        {
+            // get new credentials
+            hasCredentials = false;
+        } 
     }
     
     // opens authentication in default browser to make it easy for the user to get pin
@@ -101,7 +102,7 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
         while (s.hasNext())
             temp.add(s.nextLine());
         
-       return temp.get(0).toString(); 
+        return temp.get(0).toString(); 
     }
     
     // grab saved secret access token from the file if it exists already
@@ -127,13 +128,13 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
     // method to prepare twitter use with new credentials
     public void getNewCredentials() throws FileNotFoundException, TwitterException, URISyntaxException, IOException
     {
-         writer = new PrintWriter(file);
+        writer = new PrintWriter(file);
          
-         requestToken = twitter.getOAuthRequestToken();
-         authenticationURL = requestToken.getAuthenticationURL();
-         openAuthenticationURL();
+        requestToken = twitter.getOAuthRequestToken();
+        authenticationURL = requestToken.getAuthenticationURL();
+        openAuthenticationURL();
       
-         accessToken = null;
+        accessToken = null;
     }
     
     // gets the pin from the user
@@ -151,8 +152,8 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
 
             } catch(TwitterException te)
             {
-               JOptionPane.showMessageDialog(frame, PINErrorMessage, "Incorrect PIN", JOptionPane.ERROR_MESSAGE);
-               pinIsCorrect = false;
+                JOptionPane.showMessageDialog(frame, PINErrorMessage, "Incorrect PIN", JOptionPane.ERROR_MESSAGE);
+                pinIsCorrect = false;
             }
         } 
     }
@@ -179,14 +180,14 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
         
         if (message.length() < TWITTER_MESSAGE_MAX_LEN)
         {
-           twitter.updateStatus(message); // tweet message
-           JOptionPane.showMessageDialog(frame, "Your status has been successfully updated."); // let user know
-           temp.dispatchEvent(new WindowEvent(temp, WindowEvent.WINDOW_CLOSING)); // close the form
+            twitter.updateStatus(message); // tweet message
+            JOptionPane.showMessageDialog(frame, "Your status has been successfully updated."); // let user know
+            temp.dispatchEvent(new WindowEvent(temp, WindowEvent.WINDOW_CLOSING)); // close the form
         }
         else
         {
             // let user know there was an issue. Form stays open until success.
-           JOptionPane.showMessageDialog(frame, tooManyCharsInTweetError, "Tweet length error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, tooManyCharsInTweetError, "Tweet length error", JOptionPane.ERROR_MESSAGE);
         }
             
     }
@@ -194,31 +195,29 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
     // creates and displays the tweet template form
     public void createTweetTemplate()
     {
-       JFrame frame = new JFrame();
-       TweetTemplate template = new TweetTemplate(this, frame, true);
+        JFrame frame = new JFrame();
+        TweetTemplate template = new TweetTemplate(this, frame, true);
+        Song song = audioPlayer.getAudioControl().getCurrentSong();
        
-       try
-       {
-           defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getPlayingSong() + "' by " 
-                + audioPlayer.getAudioControl().getPlayingArtist() + " using Butterfly Music Player.\n" + butterflyURL;
-           if (defaultTweet.length() < TWITTER_MESSAGE_MAX_LEN)
-           {
-              template.TweetTextArea.setText(defaultTweet); 
-           }
-           else
-           {
-               defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getPlayingSong() + "' by " 
-                + audioPlayer.getAudioControl().getPlayingArtist() + " using Butterfly Music Player.";
-               template.TweetTextArea.setText(defaultTweet); 
-                       
-           }
-       }
-       catch(Exception e)
-       {
-           // text area is empty
-       }
+        try
+        {
+            defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.\n" + butterflyURL;
+            if (defaultTweet.length() < TWITTER_MESSAGE_MAX_LEN)
+            {
+                template.TweetTextArea.setText(defaultTweet); 
+            }
+            else
+            {
+                defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.";
+                template.TweetTextArea.setText(defaultTweet);
+            }
+        }
+        catch(Exception e)
+        {
+            // text area is empty
+        }
        
-       template.setVisible(true); 
+        template.setVisible(true); 
     }
     
     // creates and displays the pin entry form

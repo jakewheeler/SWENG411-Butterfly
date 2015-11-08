@@ -27,19 +27,19 @@ public class AudioControl implements IAudioController
     private final AudioPlayer player;
     private Icon pauseIMG;
     private Icon playIMG;
-    
-    
+        
     public AudioControl(AudioPlayer player)
     {
         try
         {
-          pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
-          playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG")); 
-        }catch(Exception e){}
+            this.pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
+            this.playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG")); 
+        } 
+        catch(Exception e){}
         
         this.player = player;
         this.queue = new SongQueue(this.player.getLibrary().getList());
-        changeSong();
+        this.changeSong();
     }
     
     @Override
@@ -51,30 +51,30 @@ public class AudioControl implements IAudioController
     // starts playing from the beginning
     public void play()
     {
-        mp.play();
-        playFlag = true;
+        this.mp.play();
+        this.playFlag = true;
         this.ui.PlayPauseButton.setIcon(pauseIMG); 
-        updateUI();
+        this.updateUI();
     }
     
     // flag to check if song is playing or paused/stopped
     public boolean isPlaying()
     {
-        return playFlag;
+        return this.playFlag;
     }
     
     // pauses current song
     public void pause()
     {
-        mp.pause();
+        this.mp.pause();
         this.ui.PlayPauseButton.setIcon(playIMG);
-        playFlag = false;
+        this.playFlag = false;
     }
     
     // stops current song
     public void stop()
     {
-        playFlag = false;
+        this.playFlag = false;
         this.ui.PlayPauseButton.setIcon(playIMG);
         this.mp.stop();
     }
@@ -87,7 +87,7 @@ public class AudioControl implements IAudioController
     
     public String getPlayingSong()
     {
-      Song song = this.queue.getCurrentSong();
+        Song song = this.queue.getCurrentSong();
         return song.getSongName();  
     }
     

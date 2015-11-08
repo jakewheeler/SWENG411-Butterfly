@@ -59,22 +59,14 @@ public class TwitterButton extends javax.swing.JPanel
             // start Twitter
             controller.startTwitter();
             
-            } catch (TwitterException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            } catch (TwitterException | IOException | URISyntaxException ex) {
+                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         // choose the correct credential method
         try {
             controller.setCredentialMethod();
-        } catch (IOException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TwitterException ex) {
-            Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
+        } catch (IOException | TwitterException | URISyntaxException ex) {
             Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -96,11 +88,7 @@ public class TwitterButton extends javax.swing.JPanel
             try {
                 // else get credentials
                 controller.getNewCredentials();
-            } catch (TwitterException ex) {
-                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            } catch (TwitterException | URISyntaxException | IOException ex) {
                 Logger.getLogger(TwitterButton.class.getName()).log(Level.SEVERE, null, ex);
             }
             

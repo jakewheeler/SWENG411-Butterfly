@@ -2,7 +2,6 @@ package ui;
 
 import butterfly.AudioControl;
 import butterfly.IAudioController;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -25,12 +24,12 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         AlbumLabel.setText(" ");
         try
         {
-          pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
-          playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG"));
-        }catch(Exception e){}
-        
+            pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
+            playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG"));
+        }
+        catch(Exception e){}        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -193,12 +192,12 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(repeatButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(repeatButton)))
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(1, 1, 1))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -218,17 +217,18 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         this.controller.previous();
         try
         {
-           PlayPauseButton.setIcon(pauseIMG); 
-        }catch(Exception e){}
-        
+            PlayPauseButton.setIcon(pauseIMG); 
+        }
+        catch(Exception e){}        
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         this.controller.next();
         try
         {
-           PlayPauseButton.setIcon(pauseIMG);  
-        }catch(Exception e){}
+            PlayPauseButton.setIcon(pauseIMG);  
+        }
+        catch(Exception e){}
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed

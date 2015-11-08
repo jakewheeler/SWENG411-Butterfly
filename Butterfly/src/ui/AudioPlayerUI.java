@@ -2,9 +2,6 @@ package ui;
 
 import butterfly.AudioPlayer;
 import java.awt.Color;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
