@@ -1,5 +1,6 @@
 package ui;
 
+import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -58,19 +59,25 @@ public class TwitterButton extends javax.swing.JPanel
         try {
             // start Twitter
             controller.startTwitter();            
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         
         // choose the correct credential method
         try {
             controller.setCredentialMethod();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         
         // if user has twitter.txt file with credentials, use that
         if (controller.hasCredentialsStatus())
         {
             try {
                 controller.useSavedCredentials();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
             
             controller.createTweetTemplate();
         }
@@ -81,7 +88,9 @@ public class TwitterButton extends javax.swing.JPanel
             try {
                 // else get credentials
                 controller.getNewCredentials();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
             
             controller.createPinEntryForm();
         }

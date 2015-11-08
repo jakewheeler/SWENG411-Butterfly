@@ -1,5 +1,6 @@
 package ui;
 
+import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -17,11 +18,6 @@ public class TweetTemplate extends javax.swing.JDialog
     public TweetTemplate(TwitterHelper twitterHelper, java.awt.Frame parent, boolean modal) 
     {
         super(parent, modal);
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -29,8 +25,9 @@ public class TweetTemplate extends javax.swing.JDialog
                     break;
                 }
             }
-        } catch (Exception ex) {}
-        //</editor-fold>
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         initComponents();
         this.twitterHelper = twitterHelper;
     }
@@ -123,7 +120,7 @@ public class TweetTemplate extends javax.swing.JDialog
         try {
             twitterHelper.sendTweet(this);
         } catch (TwitterException ex) {
-            Logger.getLogger(TweetTemplate.class.getName()).log(Level.SEVERE, null, ex);
+            AudioPlayer.HandleException(ex);
         }
 
     }//GEN-LAST:event_SendTweetButtonActionPerformed

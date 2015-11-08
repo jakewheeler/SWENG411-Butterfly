@@ -1,5 +1,6 @@
 package audio;
 
+import butterfly.AudioPlayer;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +52,9 @@ public class Song implements Serializable
             this.url = songfile.toURI().toURL();
             this.jfxp = new JFXPanel();
             this.audio = new Media(url.toString());
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
     }
     
     public void unload()
@@ -74,7 +77,9 @@ public class Song implements Serializable
         this.mp3.setBand(artist);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -90,7 +95,9 @@ public class Song implements Serializable
         this.mp3.setAlbum(album);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -106,7 +113,9 @@ public class Song implements Serializable
         this.mp3.setTitle(songName);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -122,7 +131,9 @@ public class Song implements Serializable
         this.mp3.setMusicType(genre);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -138,7 +149,9 @@ public class Song implements Serializable
         this.mp3.setTrack(num);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -156,7 +169,9 @@ public class Song implements Serializable
     {    
         try {
             Thread.sleep(5);
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         int secs = (int) this.audio.getDuration().toSeconds();
         this.songLength = String.format("%02d:%02d", secs / 60, secs % 60);
         return this.songLength;
@@ -179,7 +194,9 @@ public class Song implements Serializable
         this.mp3.setYear(year);
         try {
             this.mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -201,7 +218,9 @@ public class Song implements Serializable
         this.mp3.setYear(this.year);
         try {
             mp3.save();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         this.mp3 = null;
     }
     
@@ -210,7 +229,9 @@ public class Song implements Serializable
         if (this.mp3 == null)
             try {
                 this.mp3 = new MP3(this.filePath);
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
     }
     
     private String getTag(String tag)

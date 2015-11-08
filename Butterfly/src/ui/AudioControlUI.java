@@ -1,6 +1,7 @@
 package ui;
 
 import butterfly.AudioControl;
+import butterfly.AudioPlayer;
 import butterfly.IAudioController;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,7 +28,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
             playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG"));
         }
-        catch(Exception e){}        
+        catch(Exception ex){
+            AudioPlayer.HandleException(ex);
+        }        
     }
     
     @SuppressWarnings("unchecked")
@@ -219,7 +222,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         {
             PlayPauseButton.setIcon(pauseIMG); 
         }
-        catch(Exception e){}        
+        catch(Exception ex){
+            AudioPlayer.HandleException(ex);
+        }        
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
@@ -228,7 +233,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         {
             PlayPauseButton.setIcon(pauseIMG);  
         }
-        catch(Exception e){}
+        catch(Exception ex){
+            AudioPlayer.HandleException(ex);
+        }
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed

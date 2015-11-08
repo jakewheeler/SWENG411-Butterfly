@@ -90,7 +90,9 @@ public class SongBrowser implements IAudioController
         t.start();
         try {
             t.join();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
         search = st.getResult();
         this.displaySongList(search);
     }

@@ -54,7 +54,9 @@ public final class AudioPlayer
     {
         try {
             initMain();
-        } catch (Exception ex) {}
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }
     }
     
     public void setSearchHelper(SearchHelper helper)
@@ -119,7 +121,9 @@ public final class AudioPlayer
             mp3s.stream().forEach((mp3) -> {
                 try {
                     list.add(new Song(mp3.getPath()));
-                } catch (Exception ex) {}
+                } catch (Exception ex) {
+                    AudioPlayer.HandleException(ex);
+                }
             });
             
             if (this.library == null)
@@ -164,7 +168,9 @@ public final class AudioPlayer
         Thread twtthread = new Thread(() -> {
             try {
                 this.twitterHelper = new TwitterHelper(this);
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
             this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
         });
         twtthread.start();
@@ -189,7 +195,9 @@ public final class AudioPlayer
                 Serializable s = this.library;
                 oos.writeObject(s);
             }
-        } catch (Exception ex) {}      
+        } catch (Exception ex) {
+            AudioPlayer.HandleException(ex);
+        }      
     }
     
     public void changeQueue(Song song, ISongList newList)
@@ -269,7 +277,9 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
             });
             t.start();
@@ -286,7 +296,9 @@ public final class AudioPlayer
                 this.library.addSong(song);
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
         }).start();
     }
     
@@ -300,7 +312,9 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
             });
             t.start();
@@ -315,7 +329,9 @@ public final class AudioPlayer
             try {
                 t.join();
                 this.libbrowser.update();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
         }).start();
     }
     
@@ -329,7 +345,9 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
             });
             t.start();
@@ -344,7 +362,9 @@ public final class AudioPlayer
             try {
                 t.join();
                 this.libbrowser.update();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
         }).start();
     }
     
@@ -365,7 +385,9 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
             });
             t.start();
@@ -381,7 +403,9 @@ public final class AudioPlayer
                 t.join();
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
         }).start();
     }
     
@@ -410,7 +434,9 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
             });
             t.start();
@@ -426,7 +452,9 @@ public final class AudioPlayer
                 t.join();
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
         }).start();
     }
     
@@ -458,5 +486,10 @@ public final class AudioPlayer
     public static void main(String[] args) throws IOException
     {
         AudioPlayer player = new AudioPlayer();
+    }
+    
+    public static void HandleException(Exception ex)
+    {
+        System.out.println(ex);
     }
 }

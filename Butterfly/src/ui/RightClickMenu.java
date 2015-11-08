@@ -77,7 +77,9 @@ public class RightClickMenu extends JPopupMenu
                         Method method = player.getClass().getMethod(methodName, ArtistSongList.class);
                         method.invoke(player, artist);
                         dispose();
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
 
                 @Override
@@ -120,7 +122,9 @@ public class RightClickMenu extends JPopupMenu
                         Method method = player.getClass().getMethod(methodName, Album.class);
                         method.invoke(player, album);
                         dispose();
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
 
                 @Override
@@ -162,7 +166,9 @@ public class RightClickMenu extends JPopupMenu
                         Method method = player.getClass().getMethod(methodName, PlayList.class);
                         method.invoke(player, list);
                         dispose();
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
 
                 @Override
@@ -208,7 +214,9 @@ public class RightClickMenu extends JPopupMenu
                         Method method = player.getClass().getMethod(methodName, Song.class);
                         method.invoke(player, song);
                         dispose();
-                    } catch (Exception ex) {}
+                    } catch (Exception ex) {
+                        AudioPlayer.HandleException(ex);
+                    }
                 }
 
                 @Override

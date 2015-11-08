@@ -36,7 +36,9 @@ public class AudioControl implements IAudioController
             this.pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
             this.playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG")); 
         } 
-        catch(Exception e){}
+        catch(Exception ex){
+            AudioPlayer.HandleException(ex);
+        }
         
         this.player = player;
         this.queue = new SongQueue(this.player.getLibrary().getList());
@@ -218,7 +220,9 @@ public class AudioControl implements IAudioController
             {
                 try {
                     Thread.sleep(this.queue.getCurrentSong().getSongLength());
-                } catch (Exception ex) {}
+                } catch (Exception ex) {
+                    AudioPlayer.HandleException(ex);
+                }
                 this.ui.SongLocationSlider.setValue(this.ui.SongLocationSlider.getValue() + 1);
                 int secs = (int) this.mp.getCurrentTime().toSeconds();
                 this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
