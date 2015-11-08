@@ -2,6 +2,7 @@ package ui;
 
 import audio.Album;
 import audio.ArtistSongList;
+import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.awt.Color;
@@ -44,6 +45,13 @@ public class RightClickMenu extends JPopupMenu
     {
         this.player = player;
         init(album);
+        setMouseEvents();
+    }
+    
+    public RightClickMenu(AudioPlayer player, PlayList playlist)
+    {
+        this.player = player;
+        init(playlist);
         setMouseEvents();
     }
     
@@ -113,6 +121,50 @@ public class RightClickMenu extends JPopupMenu
                         String methodName = map.get(item.getActionCommand());
                         Method method = player.getClass().getMethod(methodName, Album.class);
                         method.invoke(player, album);
+                        dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(RightClickMenu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    item.setBackground(Color.lightGray);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    item.setBackground(getBackground());
+                }
+            });
+            this.add(item);
+        });
+    }      
+    
+    private void init(PlayList list)
+    {
+        map.put("Add Playlist To Queue", "addPlaylistToQueue");
+        map.put("Remove Playlist From Library", "removePlaylistFromLibrary");
+        map.put("Edit Playlist Info", "editPlaylistInfo");
+        
+        map.entrySet().forEach(key -> {
+            JMenuItem item = new JMenuItem(key.getKey());
+            item.setOpaque(true);
+            item.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    try {
+                        String methodName = map.get(item.getActionCommand());
+                        Method method = player.getClass().getMethod(methodName, PlayList.class);
+                        method.invoke(player, list);
                         dispose();
                     } catch (Exception ex) {
                         Logger.getLogger(RightClickMenu.class.getName()).log(Level.SEVERE, null, ex);

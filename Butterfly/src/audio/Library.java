@@ -85,6 +85,11 @@ public class Library implements ISongList
         i = this.artists.entrySet().stream().map((artist) -> artist.getValue().getLength()).reduce(i, Integer::sum);
         return i;
     }
+    
+    public PlayList getPlayList(String name)
+    {
+        return this.playlists.get(name);
+    }
 
     @Override
     public ArrayList<Song> getList() {
@@ -107,6 +112,13 @@ public class Library implements ISongList
         ArtistSongList value = this.artists.remove(artist.getName());
         value.setName(newName);
         this.artists.put(newName, value);
+    }
+    
+    public void updatePlaylistName(PlayList list, String newName)
+    {
+        PlayList value = this.playlists.remove(list.getName());
+        value.setName(newName);
+        this.playlists.put(newName, value);
     }
     
     public void addPlaylist(String name)
@@ -147,6 +159,16 @@ public class Library implements ISongList
         });
         
         return new SongList(list);
+    }
+    
+    public void removePlayList(PlayList list)
+    {
+        this.playlists.remove(list.getName());
+    }
+    
+    public void removePlayList(String name)
+    {
+        this.playlists.remove(name);
     }
     
     public TreeMap<String, ArtistSongList> getArtistMap()
