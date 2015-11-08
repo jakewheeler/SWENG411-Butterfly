@@ -4,7 +4,6 @@ import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.util.TreeMap;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 /**

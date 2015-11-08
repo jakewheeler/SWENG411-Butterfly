@@ -28,7 +28,7 @@ import ui.TwitterHelperUI;
  *
  * Jake
  */
-public class TwitterHelper implements IAudioPlayerComponent, IAudioController
+public class TwitterHelper implements IAudioController
 {    
     private final AudioPlayer audioPlayer;
     private TwitterHelperUI ui;
@@ -41,7 +41,7 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
     private boolean pinIsCorrect;
     private PrintWriter writer;
     private final File file;
-    private final String twitterFileName = "twitter.txt"; // file where credentials are stored
+    private final String twitterFileName = "twitter.bdf"; // file where credentials are stored
     private String authenticationURL;
     private boolean hasCredentials;
     private final int TWITTER_MESSAGE_MAX_LEN = 140; // max tweet length

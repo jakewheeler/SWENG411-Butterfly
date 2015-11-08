@@ -14,6 +14,5 @@ Butterfly/nbproject/private/
 !beaglebuddy_mp3.jar
 !twitter4j-core-4.0.4.jar
 
-# Other #
-twitter.txt
-Library.bflib
+# Butterfly Data Files #
+*.bdf

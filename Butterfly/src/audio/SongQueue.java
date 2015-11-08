@@ -11,7 +11,7 @@ public class SongQueue implements ISongList {
     private Song currentSong;
     private boolean isRepeat;
     private int index;
-    private ArrayList<Song> songList;
+    private final ArrayList<Song> songList;
     
     public SongQueue(Song song)
     {
