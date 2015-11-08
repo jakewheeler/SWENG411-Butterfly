@@ -41,6 +41,7 @@ public class Song implements Serializable
         this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack(); 
         this.year = mp3.getYear();
+        this.mp3 = null;
     }
     
     public void load()
@@ -50,9 +51,7 @@ public class Song implements Serializable
             this.url = songfile.toURI().toURL();
             this.jfxp = new JFXPanel();
             this.audio = new Media(url.toString());
-            if (this.mp3 == null)
-                this.mp3 = new MP3(filePath);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -72,13 +71,7 @@ public class Song implements Serializable
     
     public void setArtist(String artist)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.artist = artist;
         this.mp3.setBand(artist);
         try {
@@ -86,6 +79,7 @@ public class Song implements Serializable
         } catch (IOException | IllegalStateException ex) {
             System.out.println(ex);
         }
+        this.mp3 = null;
     }
     
     public String getAlbum()
@@ -95,13 +89,7 @@ public class Song implements Serializable
     
     public void setAlbum(String album)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.album = album;  
         this.mp3.setAlbum(album);
         try {
@@ -109,6 +97,7 @@ public class Song implements Serializable
         } catch (IOException | IllegalStateException ex) {
             System.out.println(ex);
         }
+        this.mp3 = null;
     }
     
     public String getSongName()
@@ -118,13 +107,7 @@ public class Song implements Serializable
     
     public void setSongName(String songName)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.songName = songName;        
         this.mp3.setTitle(songName);
         try {
@@ -132,6 +115,7 @@ public class Song implements Serializable
         } catch (IOException | IllegalStateException ex) {
             System.out.println(ex);
         }
+        this.mp3 = null;
     }
     
     public String getGenre()
@@ -141,13 +125,7 @@ public class Song implements Serializable
     
     public void setGenre(String genre)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.genre = genre;     
         this.mp3.setMusicType(genre);
         try {
@@ -155,6 +133,7 @@ public class Song implements Serializable
         } catch (IOException | IllegalStateException ex) {
             System.out.println(ex);
         }
+        this.mp3 = null;
     }
     
     public int getNumberOnAlbum()
@@ -164,13 +143,7 @@ public class Song implements Serializable
     
     public void setNumberOnAlbum(int num)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.numberOnAlbum = num;   
         this.mp3.setTrack(num);
         try {
@@ -178,6 +151,7 @@ public class Song implements Serializable
         } catch (IOException | IllegalStateException ex) {
             System.out.println(ex);
         }
+        this.mp3 = null;
     }
     
     public Media getAudio()
@@ -214,18 +188,47 @@ public class Song implements Serializable
     
     public void setYear(int year)
     {
-        if (this.mp3 == null)
-            try {
-                this.mp3 = new MP3(this.filePath);
-        } catch (IOException ex) {
-            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        initMp3();
         this.year = year;
         this.mp3.setYear(year);
         try {
             this.mp3.save();
         } catch (IOException | IllegalStateException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.mp3 = null;
+    }
+    
+    public void updateSong(String name, String artist, String album, String genre, int year, int number)
+    {
+        initMp3();
+        this.year = year;
+        this.numberOnAlbum = number;
+        this.genre = genre;
+        this.album = album;
+        this.artist = artist;
+        this.songName = name;
+        
+        this.mp3.setTrack(this.numberOnAlbum);
+        this.mp3.setAlbum(this.album);
+        this.mp3.setBand(this.artist);
+        this.mp3.setMusicType(this.genre);
+        this.mp3.setTitle(this.songName);
+        this.mp3.setYear(this.year);
+        try {
+            mp3.save();
+        } catch (IOException | IllegalStateException ex) {
+            Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.mp3 = null;
+    }
+    
+    private void initMp3()
+    {        
+        if (this.mp3 == null)
+            try {
+                this.mp3 = new MP3(this.filePath);
+        } catch (IOException ex) {
             Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

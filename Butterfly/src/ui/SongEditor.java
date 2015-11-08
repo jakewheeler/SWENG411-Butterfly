@@ -180,12 +180,14 @@ public class SongEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.song.setAlbum(this.AlbumField.getText());
-        this.song.setArtist(this.ArtistField.getText());
-        this.song.setGenre(this.GenreField.getText());
-        this.song.setNumberOnAlbum(Integer.parseInt(this.NumberField.getText().replace(",", "").replace(".", "")));
-        this.song.setYear(Integer.parseInt(this.YearField.getText().replace(",", "").replace(".", "")));
-        this.song.setSongName(this.SongField.getText());
+        this.song.updateSong(
+            this.SongField.getText(),
+            this.ArtistField.getText(),
+            this.AlbumField.getText(),
+            this.GenreField.getText(),            
+            Integer.parseInt(this.YearField.getText().replace(",", "").replace(".", "")),
+            Integer.parseInt(this.NumberField.getText().replace(",", "").replace(".", ""))
+        );
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
