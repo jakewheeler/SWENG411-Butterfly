@@ -2,6 +2,9 @@ package ui;
 
 import butterfly.AudioControl;
 import butterfly.IAudioController;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -10,14 +13,22 @@ import butterfly.IAudioController;
 public class AudioControlUI extends javax.swing.JPanel implements IAudioUI 
 {
     private AudioControl controller;
+    private Icon pauseIMG;
+    private Icon playIMG;
     
-    public AudioControlUI() 
+    public AudioControlUI()
     {        
         initComponents();
         
         SongLabel.setText(" ");
         ArtistLabel.setText(" ");
         AlbumLabel.setText(" ");
+        try
+        {
+          pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
+          playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG"));
+        }catch(Exception e){}
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +52,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         setPreferredSize(new java.awt.Dimension(1366, 100));
 
         PlayPauseButton.setBackground(new java.awt.Color(51, 51, 51));
-        PlayPauseButton.setText("Play");
+        PlayPauseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/play.PNG"))); // NOI18N
+        PlayPauseButton.setMaximumSize(new java.awt.Dimension(58, 33));
+        PlayPauseButton.setMinimumSize(new java.awt.Dimension(58, 33));
+        PlayPauseButton.setPreferredSize(new java.awt.Dimension(58, 33));
         PlayPauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlayPauseButtonActionPerformed(evt);
@@ -64,7 +78,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         AlbumLabel.setText("album");
 
         NextButton.setBackground(new java.awt.Color(51, 51, 51));
-        NextButton.setText("Next");
+        NextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/right.PNG"))); // NOI18N
+        NextButton.setMaximumSize(new java.awt.Dimension(58, 33));
+        NextButton.setMinimumSize(new java.awt.Dimension(58, 33));
+        NextButton.setPreferredSize(new java.awt.Dimension(58, 33));
         NextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NextButtonActionPerformed(evt);
@@ -72,7 +89,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         });
 
         BackButton.setBackground(new java.awt.Color(51, 51, 51));
-        BackButton.setText("Back");
+        BackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left.png"))); // NOI18N
+        BackButton.setMaximumSize(new java.awt.Dimension(58, 33));
+        BackButton.setMinimumSize(new java.awt.Dimension(58, 33));
+        BackButton.setPreferredSize(new java.awt.Dimension(58, 33));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackButtonActionPerformed(evt);
@@ -80,7 +100,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         });
 
         ShuffleButton.setBackground(new java.awt.Color(51, 51, 51));
-        ShuffleButton.setText("Shuffle");
+        ShuffleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shuffle.PNG"))); // NOI18N
+        ShuffleButton.setMaximumSize(new java.awt.Dimension(58, 33));
+        ShuffleButton.setMinimumSize(new java.awt.Dimension(58, 33));
+        ShuffleButton.setPreferredSize(new java.awt.Dimension(58, 33));
         ShuffleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShuffleButtonActionPerformed(evt);
@@ -104,7 +127,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         });
 
         repeatButton.setBackground(new java.awt.Color(51, 51, 51));
-        repeatButton.setText("Repeat");
+        repeatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/repeat.PNG"))); // NOI18N
         repeatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repeatButtonActionPerformed(evt);
@@ -139,7 +162,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(SongEndLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 474, Short.MAX_VALUE)
+                        .addGap(0, 478, Short.MAX_VALUE)
                         .addComponent(repeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +174,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 392, Short.MAX_VALUE)))
+                        .addGap(0, 396, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,12 +194,12 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(NextButton)
-                        .addComponent(ShuffleButton)
-                        .addComponent(PlayPauseButton)
-                        .addComponent(BackButton)
+                        .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(repeatButton)))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,12 +216,19 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         this.controller.previous();
-        PlayPauseButton.setText("Pause");
+        try
+        {
+           PlayPauseButton.setIcon(pauseIMG); 
+        }catch(Exception e){}
+        
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         this.controller.next();
-        PlayPauseButton.setText("Pause");
+        try
+        {
+           PlayPauseButton.setIcon(pauseIMG);  
+        }catch(Exception e){}
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed
