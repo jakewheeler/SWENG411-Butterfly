@@ -69,21 +69,9 @@ public class AudioControl implements IAudioController
     }
     
     // set song label
-    public String getCurrentSong()
+    public Song getCurrentSong()
     {
-       return this.queue.getCurrentSong().getSongName();
-    }
-    
-    // set artist label
-    public String getCurrentArtist()
-    {
-      return this.queue.getCurrentSong().getArtist();
-    }
-    
-    // set album label
-    public String getCurrentAlbum()
-    {
-      return this.queue.getCurrentSong().getAlbum();
+       return this.queue.getCurrentSong();
     }
     
     // skips to next song

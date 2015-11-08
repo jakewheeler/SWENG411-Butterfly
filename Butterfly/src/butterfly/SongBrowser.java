@@ -108,6 +108,11 @@ public class SongBrowser implements IAudioController
     public void removeSong(Song song)
     {
         this.currentList.removeSong(song);
+        this.refresh();
+    }
+    
+    public void refresh()
+    {
         this.displaySongList(this.currentList);
     }
 
