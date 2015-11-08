@@ -92,8 +92,6 @@ public final class AudioPlayer
                 ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
                 this.library = (Library) oin.readObject();
                 oin.close();
-                ArrayList<Song> list = this.library.getList();
-                list.forEach(song -> song.load());
             } catch (IOException | ClassNotFoundException | NullPointerException ex) {
                 this.library = null;
             }
