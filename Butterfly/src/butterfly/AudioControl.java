@@ -128,6 +128,15 @@ public class AudioControl implements IAudioController
         this.queue.addSongs(songs.getList());
     }
     
+    public void removesongFromQueue(Song song)
+    {
+        if (this.queue.getCurrentSong() == song)
+        {
+            this.next();
+        }
+        this.queue.removeSong(song);
+    }
+    
     // clears the queue and plays the selected song
     public void playSong(Song song)
     {

@@ -4,6 +4,7 @@ import butterfly.IAudioController;
 import butterfly.SongBrowser;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -53,6 +54,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             }
         });
         LibraryTableScrollPane.setViewportView(LibraryTable);
+        LibraryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         SearchLibraryLabel.setBackground(new java.awt.Color(255, 255, 255));
         SearchLibraryLabel.setForeground(new java.awt.Color(255, 255, 255));

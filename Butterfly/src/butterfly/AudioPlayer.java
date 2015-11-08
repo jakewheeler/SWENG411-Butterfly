@@ -5,11 +5,14 @@ import audio.ISongList;
 import audio.Library;
 import audio.Song;
 import audio.SongList;
+import java.awt.MouseInfo;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import ui.AudioPlayerUI;
 import ui.RightClickMenu;
 
@@ -130,9 +133,31 @@ public final class AudioPlayer
     
     public void songRightClicked(Song song, int x, int y)
     {
-        RightClickMenu menu = new RightClickMenu(this.ui, true);
-        menu.setLocation(x, y);
-        menu.setVisible(true);
+        new Thread(()->{
+            RightClickMenu menu = new RightClickMenu(this, song);
+            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+            menu.setVisible(true);
+        }).start();
+    }
+    
+    public void addSongToQueue(Song song)
+    {
+        this.audiocontrol.addSongsToQueue(song);
+        this.ui.SongBrowserUI.LibraryTable.clearSelection();
+    }
+    
+    public void removeSongFromLibrary(Song song)
+    {
+        this.library.removeSong(song);
+        this.songbrowser.removeSong(song);
+        this.audiocontrol.removesongFromQueue(song);
+        this.libbrowser.update();
+    }
+    
+    public void editSongInfo(Song song)
+    {
+        System.out.println(song.getSongName());
+        this.libbrowser.update();
     }
     
     public static void main(String[] args)
