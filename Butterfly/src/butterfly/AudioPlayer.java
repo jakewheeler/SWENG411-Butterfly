@@ -54,9 +54,7 @@ public final class AudioPlayer
     {
         try {
             initMain();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {}
     }
     
     public void setSearchHelper(SearchHelper helper)
@@ -96,7 +94,7 @@ public final class AudioPlayer
                 ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
                 this.library = (Library) oin.readObject();
                 oin.close();
-            } catch (IOException | ClassNotFoundException | NullPointerException ex) {
+            } catch (Exception ex) {
                 this.library = null;
             }
             
@@ -121,10 +119,7 @@ public final class AudioPlayer
             mp3s.stream().forEach((mp3) -> {
                 try {
                     list.add(new Song(mp3.getPath()));
-                }
-                catch (Exception ex){
-                    System.out.println(ex);
-                }
+                } catch (Exception ex) {}
             });
             
             if (this.library == null)
@@ -169,9 +164,7 @@ public final class AudioPlayer
         Thread twtthread = new Thread(() -> {
             try {
                 this.twitterHelper = new TwitterHelper(this);
-            } catch (IOException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
             this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
         });
         twtthread.start();
@@ -196,11 +189,7 @@ public final class AudioPlayer
                 Serializable s = this.library;
                 oos.writeObject(s);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        } catch (Exception ex) {}      
     }
     
     public void changeQueue(Song song, ISongList newList)
@@ -280,9 +269,7 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (Exception ex) {}
                 }
             });
             t.start();
@@ -299,9 +286,7 @@ public final class AudioPlayer
                 this.library.addSong(song);
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
         }).start();
     }
     
@@ -315,9 +300,7 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (Exception ex) {}
                 }
             });
             t.start();
@@ -332,9 +315,7 @@ public final class AudioPlayer
             try {
                 t.join();
                 this.libbrowser.update();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
         }).start();
     }
     
@@ -348,9 +329,7 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (Exception ex) {}
                 }
             });
             t.start();
@@ -365,9 +344,7 @@ public final class AudioPlayer
             try {
                 t.join();
                 this.libbrowser.update();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
         }).start();
     }
     
@@ -388,9 +365,7 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (Exception ex) {}
                 }
             });
             t.start();
@@ -406,9 +381,7 @@ public final class AudioPlayer
                 t.join();
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
         }).start();
     }
     
@@ -437,9 +410,7 @@ public final class AudioPlayer
                 while (editor.isVisible()){
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (Exception ex) {}
                 }
             });
             t.start();
@@ -455,9 +426,7 @@ public final class AudioPlayer
                 t.join();
                 this.libbrowser.update();
                 this.songbrowser.refresh();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {}
         }).start();
     }
     
