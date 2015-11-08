@@ -74,6 +74,18 @@ public class AudioControl implements IAudioController
        return this.queue.getCurrentSong();
     }
     
+    public String getPlayingSong()
+    {
+      Song song = this.queue.getCurrentSong();
+        return song.getSongName();  
+    }
+    
+    public String getPlayingArtist()
+    {
+        Song song = this.queue.getCurrentSong();
+        return song.getArtist();
+    }
+    
     // skips to next song
     public void next()
     {

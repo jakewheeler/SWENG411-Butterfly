@@ -199,16 +199,16 @@ public class TwitterHelper implements IAudioPlayerComponent, IAudioController
        
        try
        {
-           defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getCurrentSong() + "' by " 
-                + audioPlayer.getAudioControl().getCurrentArtist() + " using Butterfly Music Player.\n" + butterflyURL;
+           defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getPlayingSong() + "' by " 
+                + audioPlayer.getAudioControl().getPlayingArtist() + " using Butterfly Music Player.\n" + butterflyURL;
            if (defaultTweet.length() < TWITTER_MESSAGE_MAX_LEN)
            {
               template.TweetTextArea.setText(defaultTweet); 
            }
            else
            {
-               defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getCurrentSong() + "' by " 
-                + audioPlayer.getAudioControl().getCurrentArtist() + " using Butterfly Music Player.";
+               defaultTweet = "I'm currently listening to '" + audioPlayer.getAudioControl().getPlayingSong() + "' by " 
+                + audioPlayer.getAudioControl().getPlayingArtist() + " using Butterfly Music Player.";
                template.TweetTextArea.setText(defaultTweet); 
                        
            }
