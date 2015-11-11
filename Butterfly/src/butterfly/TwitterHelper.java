@@ -52,6 +52,7 @@ public class TwitterHelper implements IAudioController
     private final String butterflyURL = "goo.gl/sgtVjx"; // Butterfly's github URL using google's url shorten tool
     private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and try again.";
     private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Submit a shorter message.";
+    private final String reauthenticationSuccess = "Press the Twitter button to complete reauthentication.";
 
     public TwitterHelper(AudioPlayer audioPlayer, AudioPlayerUI parentUI) throws IOException
     {
@@ -254,5 +255,23 @@ public class TwitterHelper implements IAudioController
             tweetTemplate.TweetLengthLabel.setForeground(Color.black);
         else
             tweetTemplate.TweetLengthLabel.setForeground(Color.red);
+    }
+    
+    // makes the twitter file empty (for reauthentication purposes)
+    public void clearTwitterBdfFile()
+    {
+        if (file.exists())
+        {
+          try
+          {
+            PrintWriter w = new PrintWriter(file);
+            w.close();
+            JOptionPane.showMessageDialog(this.parentUI, reauthenticationSuccess);  
+          }catch(Exception ex)
+          {
+              AudioPlayer.HandleException(ex);
+          }
+          
+        }
     }
 }

@@ -207,6 +207,11 @@ public final class AudioPlayer
         return this.library;
     }
     
+    public TwitterHelper getTwitterHelper()
+    {
+        return this.twitterHelper;
+    }
+    
     public AudioControl getAudioControl()
     {
         return this.audiocontrol;

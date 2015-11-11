@@ -41,6 +41,8 @@ public class AudioPlayerUI extends javax.swing.JFrame
         SongBrowserUI = new ui.SongBrowserUI();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        ReauthTwitterItem = new javax.swing.JMenuItem();
+        ExitItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +68,23 @@ public class AudioPlayerUI extends javax.swing.JFrame
         jSplitPane1.setRightComponent(SongBrowserUI);
 
         jMenu1.setText("File");
+
+        ReauthTwitterItem.setText("Reauthenticate Twitter");
+        ReauthTwitterItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ReauthTwitterItemMousePressed(evt);
+            }
+        });
+        jMenu1.add(ReauthTwitterItem);
+
+        ExitItem.setText("Exit");
+        ExitItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ExitItemMousePressed(evt);
+            }
+        });
+        jMenu1.add(ExitItem);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -95,9 +114,19 @@ public class AudioPlayerUI extends javax.swing.JFrame
         this.controller.closing();
     }//GEN-LAST:event_formWindowClosing
 
+    private void ReauthTwitterItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReauthTwitterItemMousePressed
+        this.controller.getTwitterHelper().clearTwitterBdfFile();
+    }//GEN-LAST:event_ReauthTwitterItemMousePressed
+
+    private void ExitItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitItemMousePressed
+        System.exit(0);
+    }//GEN-LAST:event_ExitItemMousePressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public ui.AudioControlUI AudioControlUI;
+    private javax.swing.JMenuItem ExitItem;
     public ui.LibraryBrowserUI LibraryBrowserUI;
+    private javax.swing.JMenuItem ReauthTwitterItem;
     public ui.SongBrowserUI SongBrowserUI;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
