@@ -164,7 +164,7 @@ public final class AudioPlayer
         
         Thread twtthread = new Thread(() -> {
             try {
-                this.twitterHelper = new TwitterHelper(this);
+                this.twitterHelper = new TwitterHelper(this, this.ui);
             } catch (Exception ex) {
                 AudioPlayer.HandleException(ex);
             }

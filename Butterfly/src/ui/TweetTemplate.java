@@ -3,8 +3,6 @@ package ui;
 import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
 import java.awt.event.WindowEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import twitter4j.TwitterException;
 
 /**

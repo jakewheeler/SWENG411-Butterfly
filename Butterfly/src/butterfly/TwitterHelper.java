@@ -20,6 +20,7 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
+import ui.AudioPlayerUI;
 import ui.IAudioUI;
 import ui.TweetTemplate;
 import ui.TwitterHelperUI;
@@ -31,6 +32,7 @@ import ui.TwitterHelperUI;
 public class TwitterHelper implements IAudioController
 {    
     private final AudioPlayer audioPlayer;
+    private final AudioPlayerUI parentUI; // needed to center dialogs
     private TwitterHelperUI ui;
     private final static String CONSUMER_KEY = "On1jnpdNyZoeCxSkF9SMSn6ya" ; // Butterfly consumer key
     private final static String CONSUMER_SECRET_KEY = "wxSEmY02AH5KWPufvFsD8xyBzsnmLHtxDBhSAbxaJUcDCr5r21"; // Butterfly consumer secret key
@@ -50,12 +52,13 @@ public class TwitterHelper implements IAudioController
     private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and type it again carefully.";
     private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Try again and submit a shorter message.";
 
-    public TwitterHelper(AudioPlayer audioPlayer) throws IOException
+    public TwitterHelper(AudioPlayer audioPlayer, AudioPlayerUI parentUI) throws IOException
     {
         file = new File(twitterFileName);
         file.createNewFile();
         pinIsCorrect = true;
         this.audioPlayer = audioPlayer;
+        this.parentUI = parentUI;
     }
     
     @Override
@@ -197,6 +200,7 @@ public class TwitterHelper implements IAudioController
     {
         JFrame frame = new JFrame();
         TweetTemplate template = new TweetTemplate(this, frame, true);
+        template.setLocationRelativeTo(parentUI); // center in AudioPlayerUI
         Song song = audioPlayer.getAudioControl().getCurrentSong();
        
         try
@@ -223,6 +227,7 @@ public class TwitterHelper implements IAudioController
     {
         JFrame frame = new JFrame();
         TwitterHelperUI twitterHelperUI = new TwitterHelperUI(frame, true);
+        twitterHelperUI.setLocationRelativeTo(parentUI); // center in AudioPlayerUI
         twitterHelperUI.setController(this);
         twitterHelperUI.setVisible(true);
     }
