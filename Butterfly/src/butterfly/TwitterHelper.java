@@ -1,6 +1,7 @@
 package butterfly;
 
 import audio.Song;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -143,7 +144,6 @@ public class TwitterHelper implements IAudioController
     // gets the pin from the user
     public void getPinFromUser()
     {
-        JFrame frame = new JFrame();
         if (accessToken == null)
         {
             try
@@ -155,7 +155,7 @@ public class TwitterHelper implements IAudioController
 
             } catch(TwitterException te)
             {
-                JOptionPane.showMessageDialog(frame, PINErrorMessage, "Incorrect PIN", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this.parentUI, PINErrorMessage, "Incorrect PIN", JOptionPane.ERROR_MESSAGE);
                 pinIsCorrect = false;
             }
         } 
@@ -178,13 +178,12 @@ public class TwitterHelper implements IAudioController
     // method used to tweet user's message
     public void sendTweet(TweetTemplate temp) throws TwitterException
     {
-        JFrame frame = new JFrame(); // just using for JOPtion panes
         String message = temp.TweetTextArea.getText(); // user message
         
         if (message.length() < TWITTER_MESSAGE_MAX_LEN)
         {
             twitter.updateStatus(message); // tweet message
-            JOptionPane.showMessageDialog(frame, "Your status has been successfully updated."); // let user know
+            JOptionPane.showMessageDialog(this.parentUI, "Your status has been successfully updated."); // let user know
             temp.dispatchEvent(new WindowEvent(temp, WindowEvent.WINDOW_CLOSING)); // close the form
         }
         else
@@ -205,17 +204,19 @@ public class TwitterHelper implements IAudioController
        
         try
         {
-            defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.\n" + butterflyURL;
+            defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player. " + butterflyURL;
             if (defaultTweet.length() < TWITTER_MESSAGE_MAX_LEN)
             {
                 template.TweetTextArea.setText(defaultTweet);
-                template.TweetLengthLabel.setText(Integer.toString(template.TweetTextArea.getText().length()));
+                template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
+                setLabelColor(template, template.TweetTextArea.getText().length());
             }
             else
             {
                 defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.";
                 template.TweetTextArea.setText(defaultTweet);
-                template.TweetLengthLabel.setText(Integer.toString(template.TweetTextArea.getText().length()));
+                template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
+                setLabelColor(template, template.TweetTextArea.getText().length());
             }
         } catch (Exception ex) {
             AudioPlayer.HandleException(ex);
@@ -238,5 +239,20 @@ public class TwitterHelper implements IAudioController
     public boolean getPinStatus()
     {
         return pinIsCorrect;
+    }
+    
+    // gets the twitter message max length
+    public int getTwitterMessageMaxLength()
+    {
+        return TWITTER_MESSAGE_MAX_LEN;
+    }
+    
+    // changes the label to black/red depending on the amount of characters in the tweet template
+    public void setLabelColor(TweetTemplate tweetTemplate, int text)
+    {
+        if (TWITTER_MESSAGE_MAX_LEN - text > 0)
+            tweetTemplate.TweetLengthLabel.setForeground(Color.black);
+        else
+            tweetTemplate.TweetLengthLabel.setForeground(Color.red);
     }
 }

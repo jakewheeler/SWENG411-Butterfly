@@ -140,7 +140,11 @@ public class TweetTemplate extends javax.swing.JDialog
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void TweetTextAreaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TweetTextAreaKeyPressed
-        this.TweetLengthLabel.setText(Integer.toString(TweetTextArea.getText().length()));
+        int maxTweetLen = this.twitterHelper.getTwitterMessageMaxLength();
+        int userTextLen = TweetTextArea.getText().length();
+        
+        this.TweetLengthLabel.setText(Integer.toString(maxTweetLen - userTextLen));
+        this.twitterHelper.setLabelColor(this, userTextLen);
     }//GEN-LAST:event_TweetTextAreaKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
