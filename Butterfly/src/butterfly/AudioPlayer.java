@@ -168,7 +168,7 @@ public final class AudioPlayer
             } catch (Exception ex) {
                 AudioPlayer.HandleException(ex);
             }
-            this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
+            this.ui.AudioControlUI.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
         });
         twtthread.start();
                 

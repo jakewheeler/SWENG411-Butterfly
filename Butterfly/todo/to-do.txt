@@ -1,4 +1,13 @@
 Custom JTable (need to be able to highlight currently playing song, store Song object in the row, change border color,
 	       double click won't edit strings)
-Scalable UI (adjust to any resolution to fit screen)
 File menu (which should include directory)
+Ability to set custom folders to load from, as well as saving that list to a bfd file
+Logout from twitter
+Change colors of jtree using custom treenode
+exit program
+show songlength on table
+update song time when dragging bar
+when clearing queue, handle nullpointerexception
+potentially have themes
+QA the shit out of it
+change artist does not change artist for song?

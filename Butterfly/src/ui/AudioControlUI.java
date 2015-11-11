@@ -3,6 +3,7 @@ package ui;
 import butterfly.AudioControl;
 import butterfly.AudioPlayer;
 import butterfly.IAudioController;
+import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -50,6 +51,8 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         SongStartLabel = new javax.swing.JLabel();
         SongEndLabel = new javax.swing.JLabel();
         ClearQueueButton = new javax.swing.JButton();
+        TwitterButtonControl = new ui.TwitterButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1366, 100));
@@ -58,7 +61,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         PlayPauseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/play.PNG"))); // NOI18N
         PlayPauseButton.setMaximumSize(new java.awt.Dimension(58, 33));
         PlayPauseButton.setMinimumSize(new java.awt.Dimension(58, 33));
-        PlayPauseButton.setPreferredSize(new java.awt.Dimension(58, 33));
+        PlayPauseButton.setPreferredSize(new java.awt.Dimension(75, 35));
         PlayPauseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlayPauseButtonActionPerformed(evt);
@@ -84,7 +87,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         NextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/right.PNG"))); // NOI18N
         NextButton.setMaximumSize(new java.awt.Dimension(58, 33));
         NextButton.setMinimumSize(new java.awt.Dimension(58, 33));
-        NextButton.setPreferredSize(new java.awt.Dimension(58, 33));
+        NextButton.setPreferredSize(new java.awt.Dimension(75, 35));
         NextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NextButtonActionPerformed(evt);
@@ -95,7 +98,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         BackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left.png"))); // NOI18N
         BackButton.setMaximumSize(new java.awt.Dimension(58, 33));
         BackButton.setMinimumSize(new java.awt.Dimension(58, 33));
-        BackButton.setPreferredSize(new java.awt.Dimension(58, 33));
+        BackButton.setPreferredSize(new java.awt.Dimension(75, 35));
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackButtonActionPerformed(evt);
@@ -106,7 +109,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         ShuffleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shuffle.PNG"))); // NOI18N
         ShuffleButton.setMaximumSize(new java.awt.Dimension(58, 33));
         ShuffleButton.setMinimumSize(new java.awt.Dimension(58, 33));
-        ShuffleButton.setPreferredSize(new java.awt.Dimension(58, 33));
+        ShuffleButton.setPreferredSize(new java.awt.Dimension(75, 35));
         ShuffleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShuffleButtonActionPerformed(evt);
@@ -123,6 +126,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         });
 
         VolumeSlider.setValue(100);
+        VolumeSlider.setPreferredSize(new java.awt.Dimension(75, 35));
         VolumeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 VolumeSliderStateChanged(evt);
@@ -131,6 +135,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
 
         repeatButton.setBackground(new java.awt.Color(51, 51, 51));
         repeatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/repeat.PNG"))); // NOI18N
+        repeatButton.setPreferredSize(new java.awt.Dimension(75, 35));
         repeatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repeatButtonActionPerformed(evt);
@@ -148,12 +153,18 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         ClearQueueButton.setBackground(new java.awt.Color(51, 51, 51));
         ClearQueueButton.setForeground(new java.awt.Color(255, 255, 255));
         ClearQueueButton.setText("Clear Queue");
-        ClearQueueButton.setPreferredSize(new java.awt.Dimension(58, 33));
+        ClearQueueButton.setPreferredSize(new java.awt.Dimension(75, 35));
         ClearQueueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClearQueueButtonActionPerformed(evt);
             }
         });
+
+        TwitterButtonControl.setPreferredSize(new java.awt.Dimension(75, 35));
+
+        jButton1.setPreferredSize(new java.awt.Dimension(75, 35));
+        jButton1.setBackground(Color.black);
+        jButton1.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -175,7 +186,10 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(SongEndLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 483, Short.MAX_VALUE)
+                        .addComponent(TwitterButtonControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(repeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +201,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(ShuffleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(VolumeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(283, 283, 283)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                         .addComponent(ClearQueueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -204,16 +218,19 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                     .addComponent(SongLocationSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SongEndLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SongStartLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(TwitterButtonControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BackButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(repeatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(PlayPauseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(repeatButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ShuffleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VolumeSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ClearQueueButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ShuffleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VolumeSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ClearQueueButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -300,7 +317,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     public javax.swing.JLabel SongLabel;
     public javax.swing.JSlider SongLocationSlider;
     private javax.swing.JLabel SongStartLabel;
+    public ui.TwitterButton TwitterButtonControl;
     private javax.swing.JSlider VolumeSlider;
+    private javax.swing.JButton jButton1;
     private javax.swing.JToggleButton repeatButton;
     // End of variables declaration//GEN-END:variables
 }
