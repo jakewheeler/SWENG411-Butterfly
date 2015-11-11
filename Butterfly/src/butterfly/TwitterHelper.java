@@ -49,8 +49,8 @@ public class TwitterHelper implements IAudioController
     private final int TWITTER_MESSAGE_MAX_LEN = 140; // max tweet length
     private String defaultTweet;
     private final String butterflyURL = "https://github.com/jakewheeler/SWENG411-Butterfly";
-    private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and type it again carefully.";
-    private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Try again and submit a shorter message.";
+    private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and try again.";
+    private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Submit a shorter message.";
 
     public TwitterHelper(AudioPlayer audioPlayer, AudioPlayerUI parentUI) throws IOException
     {
@@ -190,7 +190,7 @@ public class TwitterHelper implements IAudioController
         else
         {
             // let user know there was an issue. Form stays open until success.
-            JOptionPane.showMessageDialog(frame, tooManyCharsInTweetError, "Tweet length error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.parentUI, tooManyCharsInTweetError, "Tweet length error", JOptionPane.ERROR_MESSAGE);
         }
             
     }
@@ -208,12 +208,14 @@ public class TwitterHelper implements IAudioController
             defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.\n" + butterflyURL;
             if (defaultTweet.length() < TWITTER_MESSAGE_MAX_LEN)
             {
-                template.TweetTextArea.setText(defaultTweet); 
+                template.TweetTextArea.setText(defaultTweet);
+                template.TweetLengthLabel.setText(Integer.toString(template.TweetTextArea.getText().length()));
             }
             else
             {
                 defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.";
                 template.TweetTextArea.setText(defaultTweet);
+                template.TweetLengthLabel.setText(Integer.toString(template.TweetTextArea.getText().length()));
             }
         } catch (Exception ex) {
             AudioPlayer.HandleException(ex);
@@ -237,6 +239,4 @@ public class TwitterHelper implements IAudioController
     {
         return pinIsCorrect;
     }
-    
-    
 }

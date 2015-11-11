@@ -111,7 +111,7 @@ public final class AudioPlayer
              *  watch the magic happen
              *  still throws a ton of exceptions but we'll cross that bridge when we get to it
              */
-            mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
+            //mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
 
             ArrayList<Song> list = new ArrayList<>();
             
