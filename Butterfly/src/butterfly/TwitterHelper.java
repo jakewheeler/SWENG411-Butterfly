@@ -209,14 +209,14 @@ public class TwitterHelper implements IAudioController
             {
                 template.TweetTextArea.setText(defaultTweet);
                 template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
-                setLabelColor(template, template.TweetTextArea.getText().length());
+                counterLabelColorController(template, template.TweetTextArea.getText().length());
             }
             else
             {
                 defaultTweet = "I'm currently listening to '" + song.getSongName() + "' by " + song.getArtist() + " using Butterfly Music Player.";
                 template.TweetTextArea.setText(defaultTweet);
                 template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
-                setLabelColor(template, template.TweetTextArea.getText().length());
+                counterLabelColorController(template, template.TweetTextArea.getText().length());
             }
         } catch (Exception ex) {
             AudioPlayer.HandleException(ex);
@@ -248,7 +248,7 @@ public class TwitterHelper implements IAudioController
     }
     
     // changes the label to black/red depending on the amount of characters in the tweet template
-    public void setLabelColor(TweetTemplate tweetTemplate, int text)
+    public void counterLabelColorController(TweetTemplate tweetTemplate, int text)
     {
         if (TWITTER_MESSAGE_MAX_LEN - text > 0)
             tweetTemplate.TweetLengthLabel.setForeground(Color.black);

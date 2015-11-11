@@ -92,9 +92,9 @@ public class TweetTemplate extends javax.swing.JDialog
                         .addContainerGap()
                         .addComponent(TweetScrollPane))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(TweetLengthLabel)
-                        .addGap(59, 59, 59)
+                        .addGap(42, 42, 42)
+                        .addComponent(TweetLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
                         .addComponent(SendTweetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,7 +144,7 @@ public class TweetTemplate extends javax.swing.JDialog
         int userTextLen = TweetTextArea.getText().length();
         
         this.TweetLengthLabel.setText(Integer.toString(maxTweetLen - userTextLen));
-        this.twitterHelper.setLabelColor(this, userTextLen);
+        this.twitterHelper.counterLabelColorController(this, userTextLen);
     }//GEN-LAST:event_TweetTextAreaKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
