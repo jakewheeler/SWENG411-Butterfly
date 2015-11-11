@@ -2,11 +2,6 @@ package ui;
 
 import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import twitter4j.TwitterException;
 
 /**
  *
@@ -70,7 +65,7 @@ public class TwitterButton extends javax.swing.JPanel
             AudioPlayer.HandleException(ex);
         }
         
-        // if user has twitter.txt file with credentials, use that
+        // if user has twitter file with credentials, use that
         if (controller.hasCredentialsStatus())
         {
             try {
