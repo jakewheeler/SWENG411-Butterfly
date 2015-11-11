@@ -48,7 +48,7 @@ public class TwitterHelper implements IAudioController
     private boolean hasCredentials;
     private final int TWITTER_MESSAGE_MAX_LEN = 140; // max tweet length
     private String defaultTweet;
-    private final String butterflyURL = "https://github.com/jakewheeler/SWENG411-Butterfly";
+    private final String butterflyURL = "goo.gl/sgtVjx"; // Butterfly's github URL using google's url shorten tool
     private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and try again.";
     private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Submit a shorter message.";
 
