@@ -34,13 +34,14 @@ public class AudioPlayerUI extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         AudioControlUI = new ui.AudioControlUI();
         jSplitPane1 = new javax.swing.JSplitPane();
         LibraryBrowserUI = new ui.LibraryBrowserUI();
         SongBrowserUI = new ui.SongBrowserUI();
-        TwitterButtonControl = new ui.TwitterButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Butterfly");
@@ -53,18 +54,10 @@ public class AudioPlayerUI extends javax.swing.JFrame
                 formWindowClosing(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 0));
+        AudioControlUI.setMaximumSize(new java.awt.Dimension(32767, 100));
+        AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 100));
         AudioControlUI.setPreferredSize(new java.awt.Dimension(1280, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 1345;
-        gridBagConstraints.ipady = 133;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 0);
-        getContentPane().add(AudioControlUI, gridBagConstraints);
 
         jSplitPane1.setPreferredSize(new java.awt.Dimension(720, 400));
 
@@ -72,14 +65,28 @@ public class AudioPlayerUI extends javax.swing.JFrame
         jSplitPane1.setLeftComponent(LibraryBrowserUI);
         jSplitPane1.setRightComponent(SongBrowserUI);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 995;
-        gridBagConstraints.ipady = 334;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        getContentPane().add(jSplitPane1, gridBagConstraints);
-        getContentPane().add(TwitterButtonControl, new java.awt.GridBagConstraints());
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AudioControlUI, javax.swing.GroupLayout.DEFAULT_SIZE, 1433, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AudioControlUI, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,7 +99,9 @@ public class AudioPlayerUI extends javax.swing.JFrame
     public ui.AudioControlUI AudioControlUI;
     public ui.LibraryBrowserUI LibraryBrowserUI;
     public ui.SongBrowserUI SongBrowserUI;
-    public ui.TwitterButton TwitterButtonControl;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

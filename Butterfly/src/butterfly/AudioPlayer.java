@@ -111,7 +111,7 @@ public final class AudioPlayer
              *  watch the magic happen
              *  still throws a ton of exceptions but we'll cross that bridge when we get to it
              */
-            mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
+            //mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
 
             ArrayList<Song> list = new ArrayList<>();
             
@@ -168,7 +168,7 @@ public final class AudioPlayer
             } catch (Exception ex) {
                 AudioPlayer.HandleException(ex);
             }
-            this.ui.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
+            this.ui.AudioControlUI.TwitterButtonControl.setTwitterHelper(this.twitterHelper);
         });
         twtthread.start();
                 

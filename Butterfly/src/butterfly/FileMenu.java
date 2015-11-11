@@ -1,24 +1,14 @@
 package butterfly;
 
-import ui.FileMenuUI;
-import ui.IAudioUI;
-
 /**
  *
  * @author natec
  */
-public class FileMenu implements IAudioController
+public class FileMenu implements IAudioPlayerComponent
 {
-    private FileMenuUI ui;
     
     public FileMenu()
     {
         
-    }
-    
-    @Override
-    public void setUI(IAudioUI ui)
-    {
-        this.ui = (FileMenuUI) ui;
     }
 }
