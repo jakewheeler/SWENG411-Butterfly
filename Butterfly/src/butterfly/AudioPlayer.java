@@ -248,6 +248,8 @@ public final class AudioPlayer
         
         ArrayList<File> newSongs = this.manager.getSongsInDirectory(musicFolderPath, filepaths);
         
+        if (newSongs.isEmpty()) return;
+        
         ArrayList<Song> list = new ArrayList<>();
             
         newSongs.stream().forEach((mp3) -> {

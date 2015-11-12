@@ -72,6 +72,8 @@ public class SongQueue implements ISongList {
     // skips to the next song in the list
     public void next()
     {
+        if (!canSkip()) return;
+        
         if (!this.isRepeat)
         {
             this.index++;
@@ -89,6 +91,8 @@ public class SongQueue implements ISongList {
     // skips to the previous song in the list
     public void previous()
     {
+        if (!canSkip()) return;
+        
         if (!this.isRepeat)
         {
             this.index--;
@@ -101,6 +105,11 @@ public class SongQueue implements ISongList {
             this.currentSong = this.songList.get(this.index);
             this.currentSong.load();
         }
+    }
+    
+    private boolean canSkip()
+    {
+        return !(this.songList == null || this.songList.isEmpty());
     }
     
     // clears the entire songlist

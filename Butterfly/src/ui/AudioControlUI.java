@@ -251,25 +251,11 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     }//GEN-LAST:event_PlayPauseButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        this.controller.previous();
-        try
-        {
-            PlayPauseButton.setIcon(pauseIMG); 
-        }
-        catch(Exception ex){
-            AudioPlayer.HandleException(ex);
-        }        
+        this.controller.previous();     
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         this.controller.next();
-        try
-        {
-            PlayPauseButton.setIcon(pauseIMG);  
-        }
-        catch(Exception ex){
-            AudioPlayer.HandleException(ex);
-        }
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void ShuffleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShuffleButtonActionPerformed
