@@ -52,7 +52,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         SongEndLabel = new javax.swing.JLabel();
         ClearQueueButton = new javax.swing.JButton();
         TwitterButtonControl = new ui.TwitterButton();
-        jButton1 = new javax.swing.JButton();
+        TheGreatBigInvisibleButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1366, 100));
@@ -162,9 +162,13 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
 
         TwitterButtonControl.setPreferredSize(new java.awt.Dimension(75, 35));
 
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 35));
-        jButton1.setBackground(Color.black);
-        jButton1.setEnabled(false);
+        TheGreatBigInvisibleButton.setPreferredSize(new java.awt.Dimension(75, 35));
+        TheGreatBigInvisibleButton.setBackground(Color.black);
+        TheGreatBigInvisibleButton.setEnabled(false);
+        TheGreatBigInvisibleButton.setForeground(Color.black);
+        TheGreatBigInvisibleButton.setOpaque(false);
+        TheGreatBigInvisibleButton.setContentAreaFilled(false);
+        TheGreatBigInvisibleButton.setBorderPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -188,7 +192,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(TwitterButtonControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TheGreatBigInvisibleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(repeatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,7 +234,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
                         .addComponent(ShuffleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(VolumeSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(ClearQueueButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TheGreatBigInvisibleButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -317,9 +321,9 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     public javax.swing.JLabel SongLabel;
     public javax.swing.JSlider SongLocationSlider;
     private javax.swing.JLabel SongStartLabel;
+    private javax.swing.JButton TheGreatBigInvisibleButton;
     public ui.TwitterButton TwitterButtonControl;
     private javax.swing.JSlider VolumeSlider;
-    private javax.swing.JButton jButton1;
     private javax.swing.JToggleButton repeatButton;
     // End of variables declaration//GEN-END:variables
 }

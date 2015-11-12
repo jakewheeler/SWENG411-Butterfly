@@ -36,14 +36,13 @@ public class AudioPlayerUI extends javax.swing.JFrame
     private void initComponents() {
 
         AudioControlUI = new ui.AudioControlUI();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        LibrarySplitter = new javax.swing.JSplitPane();
         LibraryBrowserUI = new ui.LibraryBrowserUI();
         SongBrowserUI = new ui.SongBrowserUI();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        FileMenuBar = new javax.swing.JMenuBar();
+        FileMenu = new javax.swing.JMenu();
         ReauthTwitterItem = new javax.swing.JMenuItem();
         ExitItem = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Butterfly");
@@ -61,13 +60,13 @@ public class AudioPlayerUI extends javax.swing.JFrame
         AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 100));
         AudioControlUI.setPreferredSize(new java.awt.Dimension(1280, 100));
 
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(720, 400));
+        LibrarySplitter.setPreferredSize(new java.awt.Dimension(720, 400));
 
         LibraryBrowserUI.setMinimumSize(new java.awt.Dimension(50, 23));
-        jSplitPane1.setLeftComponent(LibraryBrowserUI);
-        jSplitPane1.setRightComponent(SongBrowserUI);
+        LibrarySplitter.setLeftComponent(LibraryBrowserUI);
+        LibrarySplitter.setRightComponent(SongBrowserUI);
 
-        jMenu1.setText("File");
+        FileMenu.setText("File");
 
         ReauthTwitterItem.setText("Reauthenticate Twitter");
         ReauthTwitterItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -75,7 +74,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
                 ReauthTwitterItemMousePressed(evt);
             }
         });
-        jMenu1.add(ReauthTwitterItem);
+        FileMenu.add(ReauthTwitterItem);
 
         ExitItem.setText("Exit");
         ExitItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,26 +82,23 @@ public class AudioPlayerUI extends javax.swing.JFrame
                 ExitItemMousePressed(evt);
             }
         });
-        jMenu1.add(ExitItem);
+        FileMenu.add(ExitItem);
 
-        jMenuBar1.add(jMenu1);
+        FileMenuBar.add(FileMenu);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(FileMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(LibrarySplitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(AudioControlUI, javax.swing.GroupLayout.DEFAULT_SIZE, 1433, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                .addComponent(LibrarySplitter, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AudioControlUI, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -125,12 +121,11 @@ public class AudioPlayerUI extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public ui.AudioControlUI AudioControlUI;
     private javax.swing.JMenuItem ExitItem;
+    private javax.swing.JMenu FileMenu;
+    private javax.swing.JMenuBar FileMenuBar;
     public ui.LibraryBrowserUI LibraryBrowserUI;
+    private javax.swing.JSplitPane LibrarySplitter;
     private javax.swing.JMenuItem ReauthTwitterItem;
     public ui.SongBrowserUI SongBrowserUI;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }

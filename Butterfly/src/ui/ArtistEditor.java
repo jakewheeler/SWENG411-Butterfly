@@ -41,14 +41,14 @@ public class ArtistEditor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        ArtistNameLabel = new javax.swing.JLabel();
         OkButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         ArtistField = new javax.swing.JFormattedTextField();
 
         setResizable(false);
 
-        jLabel2.setText("Artist Name:");
+        ArtistNameLabel.setText("Artist Name:");
 
         OkButton.setText("Ok");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
@@ -75,7 +75,7 @@ public class ArtistEditor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(ArtistNameLabel)
                         .addGap(46, 46, 46)
                         .addComponent(ArtistField, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -89,7 +89,7 @@ public class ArtistEditor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(ArtistNameLabel)
                     .addComponent(ArtistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -113,8 +113,8 @@ public class ArtistEditor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField ArtistField;
+    private javax.swing.JLabel ArtistNameLabel;
     private javax.swing.JButton CancelButton;
     private javax.swing.JButton OkButton;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

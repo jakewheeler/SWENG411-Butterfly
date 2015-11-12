@@ -44,10 +44,10 @@ public class AlbumEditor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        AlbumNameLabel = new javax.swing.JLabel();
+        ArtistLabel = new javax.swing.JLabel();
+        GenreLabel = new javax.swing.JLabel();
+        YearLabel = new javax.swing.JLabel();
         OkButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         NameField = new javax.swing.JFormattedTextField();
@@ -57,13 +57,13 @@ public class AlbumEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
-        jLabel1.setText("Album Name:");
+        AlbumNameLabel.setText("Album Name:");
 
-        jLabel2.setText("Artist:");
+        ArtistLabel.setText("Artist:");
 
-        jLabel4.setText("Genre:");
+        GenreLabel.setText("Genre:");
 
-        jLabel5.setText("Year:");
+        YearLabel.setText("Year:");
 
         OkButton.setText("Ok");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
@@ -101,10 +101,10 @@ public class AlbumEditor extends javax.swing.JFrame {
                         .addComponent(CancelButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1))
+                            .addComponent(ArtistLabel)
+                            .addComponent(GenreLabel)
+                            .addComponent(YearLabel)
+                            .addComponent(AlbumNameLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NameField)
@@ -118,19 +118,19 @@ public class AlbumEditor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(AlbumNameLabel)
                     .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(ArtistLabel)
                     .addComponent(ArtistField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(GenreLabel)
                     .addComponent(GenreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(YearLabel)
                     .addComponent(YearField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -159,15 +159,15 @@ public class AlbumEditor extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AlbumNameLabel;
     private javax.swing.JFormattedTextField ArtistField;
+    private javax.swing.JLabel ArtistLabel;
     private javax.swing.JButton CancelButton;
     private javax.swing.JFormattedTextField GenreField;
+    private javax.swing.JLabel GenreLabel;
     private javax.swing.JFormattedTextField NameField;
     private javax.swing.JButton OkButton;
     private javax.swing.JFormattedTextField YearField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel YearLabel;
     // End of variables declaration//GEN-END:variables
 }

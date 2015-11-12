@@ -68,7 +68,7 @@ public class PlayListMenu extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        AddPlaylistLabel = new javax.swing.JLabel();
         PlayListField = new javax.swing.JTextField();
         NewPlayListButton = new javax.swing.JButton();
         PlayListBox = new javax.swing.JComboBox();
@@ -78,7 +78,7 @@ public class PlayListMenu extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Add PlayList:");
+        AddPlaylistLabel.setText("Add PlayList:");
 
         PlayListField.setText("Enter Name Here");
         PlayListField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +118,7 @@ public class PlayListMenu extends javax.swing.JFrame
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(AddPlaylistLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PlayListField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,7 +136,7 @@ public class PlayListMenu extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(AddPlaylistLabel)
                     .addComponent(PlayListField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NewPlayListButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,11 +172,11 @@ public class PlayListMenu extends javax.swing.JFrame
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel AddPlaylistLabel;
     private javax.swing.JButton AddSongButton;
     private javax.swing.JButton CancelButton;
     private javax.swing.JButton NewPlayListButton;
     private javax.swing.JComboBox PlayListBox;
     private javax.swing.JTextField PlayListField;
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
