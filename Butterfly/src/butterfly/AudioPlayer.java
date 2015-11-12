@@ -19,9 +19,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import ui.AlbumEditor;
 import ui.AudioPlayerUI;
 import ui.PlayListMenu;
@@ -44,14 +46,19 @@ public final class AudioPlayer
     private LibraryBrowser libbrowser;
     private Library library;
     private TwitterHelper twitterHelper;
+    private ArrayList<String> musicpaths;
     
     private final String libraryfile = "Library.bdf";
+    private final String locationfile = "LibraryLocation.bdf";
 
     public AudioPlayer() throws IOException
     {
-        try {
+        try 
+        {
             initMain();
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) 
+        {
             AudioPlayer.HandleException(ex);
         }
     }
@@ -80,38 +87,33 @@ public final class AudioPlayer
     {
         // create the library object
         Thread getlibthread = new Thread(() -> {
-            try {
-                File f = new File(this.libraryfile);
-                FileInputStream in;
-                try{                
-                    in = new FileInputStream(f);
-                } catch (FileNotFoundException ex) {
-                    f.createNewFile();
-                    in = new FileInputStream(f);
-                }
-                
-                ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
-                this.library = (Library) oin.readObject();
-                oin.close();
-            } catch (Exception ex) {
+            this.manager = new LibraryManager();   
+            
+            try 
+            {
+                this.library = (Library) this.readFromFile(new File(this.libraryfile));
+            } 
+            catch (Exception ex) 
+            {
                 this.library = null;
             }
             
-            // this is a list of every file path currently in library
-            // it helps a ton with optimization by not adding any new songs that are already there
             ArrayList<String> filepaths = new ArrayList<>();
             if (this.library != null)
-                this.library.getList().forEach(song -> filepaths.add(song.getFilePath()));
+                this.library.getList().forEach(song -> filepaths.add(song.getFilePath()));      
             
-            this.manager = new LibraryManager();
-            ArrayList<File> mp3s = this.manager.getSongsInDirectory("testingsongs", filepaths);
-
-            /*
-             *  add your own music directory 
-             *  watch the magic happen
-             *  still throws a ton of exceptions but we'll cross that bridge when we get to it
-             */
-            //mp3s.addAll(this.manager.getSongsInDirectory("F:\\Music", filepaths));
+            try
+            {
+                this.musicpaths = (ArrayList<String>) this.readFromFile(new File(this.locationfile));
+            } 
+            catch (Exception ex)
+            {
+                this.musicpaths = null;
+            }
+            ArrayList<File> mp3s = new ArrayList<>();
+            
+            if (this.musicpaths != null)
+                this.musicpaths.forEach(path -> mp3s.addAll(this.manager.getSongsInDirectory(path, filepaths)));
 
             ArrayList<Song> list = new ArrayList<>();
             
@@ -179,22 +181,40 @@ public final class AudioPlayer
         twtthread.join();
     }
     
+    private Object readFromFile(File f) throws Exception
+    {
+        FileInputStream in;
+        try
+        {                
+            in = new FileInputStream(f);
+        } 
+        catch (FileNotFoundException ex) 
+        {
+            f.createNewFile();
+            in = new FileInputStream(f);
+        }
+
+        ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
+        return oin.readObject();
+    }
+    
     public void closing()
     {
         try {
-            // Remove file before saving
-            File f = new File(this.libraryfile);
-            Files.deleteIfExists(f.toPath());
-            // save library to file
-            
-            FileOutputStream out = new FileOutputStream(f);
-            try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(out))) {
-                Serializable s = this.library;
-                oos.writeObject(s);
-            }
+            this.writeToFile(new File(this.libraryfile), this.library);
+            this.writeToFile(new File(this.locationfile), this.musicpaths);
         } catch (Exception ex) {
             AudioPlayer.HandleException(ex);
         }      
+    }
+    
+    private void writeToFile(File f, Object objectToWrite) throws IOException
+    {
+        Files.deleteIfExists(f.toPath());
+        FileOutputStream out = new FileOutputStream(f);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(out))) {
+            oos.writeObject(objectToWrite);
+        }
     }
     
     public void changeQueue(Song song, ISongList newList)
@@ -215,6 +235,24 @@ public final class AudioPlayer
     public AudioControl getAudioControl()
     {
         return this.audiocontrol;
+    }
+    
+    public void addMusicFolder()
+    {
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        if (chooser.showOpenDialog(this.ui) == JFileChooser.APPROVE_OPTION)
+        {
+            try 
+            {
+                String canonicalPath = chooser.getSelectedFile().getCanonicalPath();
+                if (this.musicpaths.contains(canonicalPath.toLowerCase()));
+                    this.musicpaths.add(canonicalPath);
+            } 
+            catch (IOException ex) {
+                AudioPlayer.HandleException(ex);
+            }
+        }
     }
     
     public void songRightClicked(Song song, int x, int y)

@@ -110,6 +110,8 @@ public class Library implements ISongList
     public void updateArtistName(ArtistSongList artist, String newName)
     {
         ArtistSongList value = this.artists.remove(artist.getName());
+        value.albums.entrySet().forEach(album -> album.getValue().setArtist(newName));
+        
         if (this.artists.get(newName) != null)
         {
             this.artists.get(newName).addSongs(value.getList());
@@ -123,7 +125,9 @@ public class Library implements ISongList
     
     public void updateAlbumArtist(Album album, String name, String newArtist, String genre, int year)
     {
-        this.artists.get(album.getArtist()).removeAlbum(album.getName());
+        ArtistSongList old = this.artists.get(album.getArtist());
+        if (old != null)
+            old.removeAlbum(album.getName());
         album.updateAlbum(name, newArtist, genre, year);
         if (this.artists.get(album.getArtist()) == null)
         {

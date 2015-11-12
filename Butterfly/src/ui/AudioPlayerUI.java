@@ -41,6 +41,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         SongBrowserUI = new ui.SongBrowserUI();
         FileMenuBar = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
+        AddFilePathItem = new javax.swing.JMenuItem();
         ReauthTwitterItem = new javax.swing.JMenuItem();
         ExitItem = new javax.swing.JMenuItem();
 
@@ -67,6 +68,14 @@ public class AudioPlayerUI extends javax.swing.JFrame
         LibrarySplitter.setRightComponent(SongBrowserUI);
 
         FileMenu.setText("File");
+
+        AddFilePathItem.setText("Add Music Folder");
+        AddFilePathItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddFilePathItemActionPerformed(evt);
+            }
+        });
+        FileMenu.add(AddFilePathItem);
 
         ReauthTwitterItem.setText("Reauthenticate Twitter");
         ReauthTwitterItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,7 +127,12 @@ public class AudioPlayerUI extends javax.swing.JFrame
         System.exit(0);
     }//GEN-LAST:event_ExitItemMousePressed
 
+    private void AddFilePathItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFilePathItemActionPerformed
+        this.controller.addMusicFolder();
+    }//GEN-LAST:event_AddFilePathItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AddFilePathItem;
     public ui.AudioControlUI AudioControlUI;
     private javax.swing.JMenuItem ExitItem;
     private javax.swing.JMenu FileMenu;

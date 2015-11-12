@@ -9,6 +9,14 @@
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="AddFilePathItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add Music Folder"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddFilePathItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ReauthTwitterItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reauthenticate Twitter"/>
