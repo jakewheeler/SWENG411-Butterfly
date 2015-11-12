@@ -39,8 +39,13 @@ public class AudioControl implements IAudioController
         }
         
         this.player = player;
-        this.queue = new SongQueue(this.player.getLibrary().getList());
-        this.changeSong();
+        if (this.player.getLibrary() != null)
+        {
+            this.queue = new SongQueue(this.player.getLibrary().getList());
+            this.changeSong();
+        }
+        else
+            this.queue = new SongQueue();
     }
     
     @Override
@@ -62,6 +67,7 @@ public class AudioControl implements IAudioController
         else
         {
             this.changeSong();
+            if (this.mp == null) return;
             this.mp.play();
             this.ui.PlayPauseButton.setIcon(pauseIMG);
             this.updateUI();
@@ -233,6 +239,7 @@ public class AudioControl implements IAudioController
     public void setVolume(double volume)
     {
         this.volume = volume;
+        if (this.mp == null) return;
         this.mp.setVolume(this.volume);
     }
     

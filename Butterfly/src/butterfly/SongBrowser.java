@@ -25,8 +25,10 @@ public class SongBrowser implements IAudioController
     public SongBrowser(AudioPlayer player)
     {
         this.player = player;
-        this.currentList = new SongList(this.player.getLibrary().getList());
         this.searcher = new SearchHelper(this.player);
+        
+        if (this.player.getLibrary() == null) return;
+        this.currentList = new SongList(this.player.getLibrary().getList());
     }
         
     @Override
@@ -72,6 +74,11 @@ public class SongBrowser implements IAudioController
             });  
         }
         this.currentList = list;
+    }
+    
+    public ISongList getCurrentList()
+    {
+        return this.currentList;
     }
     
     public void playList()
