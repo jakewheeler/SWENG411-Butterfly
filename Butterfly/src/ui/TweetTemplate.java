@@ -2,6 +2,7 @@ package ui;
 
 import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import twitter4j.TwitterException;
 
@@ -28,6 +29,7 @@ public class TweetTemplate extends javax.swing.JDialog
         }
         initComponents();
         this.twitterHelper = twitterHelper;
+        this.getContentPane().setBackground(Color.black);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,6 +83,7 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
+        TweetLengthLabel.setForeground(new java.awt.Color(255, 255, 255));
         TweetLengthLabel.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,17 +91,16 @@ public class TweetTemplate extends javax.swing.JDialog
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TweetScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TweetScrollPane))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(TweetLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)
+                        .addGap(16, 16, 16)
+                        .addComponent(TweetLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
                         .addComponent(SendTweetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
