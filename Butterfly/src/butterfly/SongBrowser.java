@@ -3,11 +3,15 @@ package butterfly;
 import audio.ISongList;
 import audio.Song;
 import audio.SongList;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Point;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
+import ui.SongModel;
 
 /**
  *
@@ -33,12 +37,14 @@ public class SongBrowser implements IAudioController
     public void setUI(IAudioUI ui)
     {
         this.ui = (SongBrowserUI) ui;
+        this.ui.LibraryTable.setDefaultRenderer(Object.class, new CustomRenderer());
+        this.ui.LibraryTable.setModel(new SongModel());
     }
     
     // simply adds all songs in the SongList to the SongBrowserUI table
     public void displaySongList()
     {
-        DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
+        SongModel model = new SongModel();
         
         for (int i = 0; i < this.player.getLibrary().getLength(); i++)
         {
@@ -51,13 +57,15 @@ public class SongBrowser implements IAudioController
                 song.getGenre(),
                 song.getYear(),
                 song.getFormattedLength()
-            });  
-        }        
+            });
+        }
+        
+        this.ui.LibraryTable.setModel(model);
     }
     
     public void displaySongList(ISongList list)
     {        
-        DefaultTableModel model = (DefaultTableModel) this.ui.LibraryTable.getModel();
+        SongModel model = new SongModel();
         model.setRowCount(0);
         
         for (int i = 0; i < list.getLength(); i++)
@@ -74,6 +82,8 @@ public class SongBrowser implements IAudioController
             });  
         }
         this.currentList = list;
+        
+        this.ui.LibraryTable.setModel(model);
     }
     
     public ISongList getCurrentList()
@@ -129,6 +139,12 @@ public class SongBrowser implements IAudioController
     {
         this.displaySongList(this.currentList);
     }
+    
+    public void highlight(Point p)
+    {
+        int row = this.ui.LibraryTable.rowAtPoint(p);
+        this.ui.LibraryTable.setRowSelectionInterval(row, row);
+    }
 
     private class SearchThread implements Runnable
     {
@@ -151,5 +167,25 @@ public class SongBrowser implements IAudioController
         {
             return this.result;
         }
+    }
+    
+    private class CustomRenderer extends DefaultTableCellRenderer
+    {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component field = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (isSelected)
+            {
+                field.setBackground(new Color(0x1ED760));
+                field.setForeground(Color.black);
+            }
+            else
+            {
+                field.setBackground((row % 2) == 0 ? new Color(51, 51, 51) : new Color(71, 71, 71));
+                field.setForeground(Color.white);
+            }
+            return field;
+        }        
     }
 }

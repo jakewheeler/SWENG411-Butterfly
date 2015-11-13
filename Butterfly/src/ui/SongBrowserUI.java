@@ -39,14 +39,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTable.setAutoCreateRowSorter(true);
         LibraryTable.setBackground(new java.awt.Color(51, 51, 51));
         LibraryTable.setForeground(new java.awt.Color(255, 255, 255));
-        LibraryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Song", "Artist", "Album", "Genre", "Year", "Length"
-            }
-        ));
+        LibraryTable.setModel(new SongModel());
         LibraryTable.setFocusable(false);
         LibraryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -104,6 +97,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         }
         else if (evt.getClickCount() == 2)
         {
+            this.controller.highlight(evt.getPoint());
             this.controller.playList();
         }
     }//GEN-LAST:event_LibraryTableMousePressed
