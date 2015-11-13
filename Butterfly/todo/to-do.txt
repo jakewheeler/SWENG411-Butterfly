@@ -6,4 +6,8 @@ potentially have themes
 QA the shit out of it
 
 Bugs:
-Setting year to "0" in song info editor throws an exception
+-Setting year to "0" in song info editor throws an exception
+-Editing song moves it to the bottom of the album
+-removing song from library keeps it in the playlist
+-twitter character counter doesn't update perfectly
+-twitter background colors don't set correctly yet
