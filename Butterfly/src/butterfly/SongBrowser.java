@@ -56,7 +56,8 @@ public class SongBrowser implements IAudioController
                 song.getAlbum(),
                 song.getGenre(),
                 song.getYear(),
-                song.getFormattedLength()
+                song.getFormattedLength(),
+                song.getNumberOnAlbum()
             });
         }
         
@@ -78,7 +79,8 @@ public class SongBrowser implements IAudioController
                 song.getAlbum(),
                 song.getGenre(),
                 song.getYear(),
-                song.getFormattedLength()
+                song.getFormattedLength(),
+                song.getNumberOnAlbum()
             });  
         }
         this.currentList = list;

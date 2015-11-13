@@ -16,7 +16,7 @@ public class SongModel extends DefaultTableModel
         super(
             new Object [][] {},
             new String [] {
-                "Song", "Artist", "Album", "Genre", "Year", "Length"
+                "Song", "Artist", "Album", "Genre", "Year", "Length", "Track #"
             });
     }
 

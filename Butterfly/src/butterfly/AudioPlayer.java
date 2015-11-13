@@ -336,6 +336,7 @@ public final class AudioPlayer
         new Thread(()-> {
             this.library.removeSong(song);
             SongEditor editor = new SongEditor(song);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
             editor.setVisible(true);
             Thread t = new Thread(()->{
                 while (editor.isVisible()){
@@ -403,6 +404,7 @@ public final class AudioPlayer
     {
         new Thread(()-> {
             ArtistEditor editor = new ArtistEditor(this, (ArtistSongList) artist);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
             editor.setVisible(true);
             Thread t = new Thread(()->{
                 while (editor.isVisible()){
@@ -442,6 +444,7 @@ public final class AudioPlayer
     {
         new Thread(()-> {
             PlaylistEditor editor = new PlaylistEditor(this, (PlayList) list);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
             editor.setVisible(true);
             Thread t = new Thread(()->{
                 while (editor.isVisible()){
@@ -488,6 +491,7 @@ public final class AudioPlayer
     {
         new Thread(()-> {
             AlbumEditor editor = new AlbumEditor(this, (Album) album);
+            editor.setLocation(MouseInfo.getPointerInfo().getLocation());
             editor.setVisible(true);
             Thread t = new Thread(()->{
                 while (editor.isVisible()){

@@ -77,7 +77,8 @@ public class Album implements INamedSongList
 
     @Override
     public void addSong(Song song) {
-        this.songList.add(song);
+        this.songList.add(0, song);
+        this.songList.sort((Song song1, Song song2) -> song1.getNumberOnAlbum() - song2.getNumberOnAlbum());
     }
 
     @Override

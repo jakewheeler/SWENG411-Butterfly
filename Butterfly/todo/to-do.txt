@@ -4,9 +4,9 @@ Change colors of jtree using custom treenode
 update song time when dragging bar
 potentially have themes
 QA the shit out of it
+Change colors of the editor panels
 
 Bugs:
--Editing song moves it to the bottom of the album
 -twitter character counter doesn't update perfectly
 -twitter background colors don't set correctly yet
 -right click song, song removed, option window stays up, remove again = null pointer exception
