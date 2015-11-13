@@ -52,6 +52,9 @@ public class SongQueue implements ISongList {
         if (this.currentSong != null)
             this.currentSong.unload();
         this.currentSong = song;
+        
+        if (this.currentSong == null) return;
+        
         this.currentSong.load();
         if (!this.songList.contains(song))
             this.addSong(song);

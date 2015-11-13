@@ -67,7 +67,11 @@ public class AudioControl implements IAudioController
         else
         {
             this.changeSong();
-            if (this.mp == null) return;
+            if (this.mp == null) 
+            {
+                this.updateUI();
+                return;
+            }
             
             this.mp.play();
             this.ui.PlayPauseButton.setIcon(pauseIMG);
@@ -114,6 +118,8 @@ public class AudioControl implements IAudioController
         
         this.stop();
         this.queue.next();
+        if (this.queue.getLength() <= 1)
+            this.queue.setCurrentSong(null);
         changeSong();
         this.play();
     }
@@ -269,6 +275,8 @@ public class AudioControl implements IAudioController
             });
             this.mp.setVolume(this.volume);
         }
+        else
+            this.mp = null;
     }
     
     // percentage is an int from 0 to 1000
