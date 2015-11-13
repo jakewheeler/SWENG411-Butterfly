@@ -7,7 +7,6 @@ QA the shit out of it
 
 Bugs:
 -Editing song moves it to the bottom of the album
--removing song from library keeps it in the playlist
 -twitter character counter doesn't update perfectly
 -twitter background colors don't set correctly yet
 -right click song, song removed, option window stays up, remove again = null pointer exception

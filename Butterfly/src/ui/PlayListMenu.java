@@ -165,6 +165,7 @@ public class PlayListMenu extends javax.swing.JFrame
     private void NewPlayListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewPlayListButtonActionPerformed
         this.player.addNewPlaylist(this.PlayListField.getText());
         this.updateBox();
+        this.PlayListBox.setSelectedItem(this.PlayListField.getText());
     }//GEN-LAST:event_NewPlayListButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed

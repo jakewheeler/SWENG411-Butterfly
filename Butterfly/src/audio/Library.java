@@ -54,6 +54,10 @@ public class Library implements ISongList
         artist.removeSong(song);
         if (artist.getList().isEmpty())
             this.artists.remove(artist.getName());
+        
+        this.playlists.entrySet().forEach(list -> {
+            list.getValue().removeSong(song);
+        });
     }
     
     private void organize(ArrayList<Song> songList)
