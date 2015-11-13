@@ -1,4 +1,4 @@
-package ui;
+package tools;
 
 import audio.ArtistSongList;
 import audio.ISongList;

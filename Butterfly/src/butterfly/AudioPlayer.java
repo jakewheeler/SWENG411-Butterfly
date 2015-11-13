@@ -24,13 +24,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import ui.AlbumEditor;
+import tools.AlbumEditor;
 import ui.AudioPlayerUI;
-import ui.PlayListMenu;
-import ui.RightClickMenu;
-import ui.SongEditor;
-import ui.ArtistEditor;
-import ui.PlaylistEditor;
+import tools.PlayListMenu;
+import tools.RightClickMenu;
+import tools.SongEditor;
+import tools.ArtistEditor;
+import tools.PlaylistEditor;
 
 /**
  *
@@ -83,6 +83,7 @@ public final class AudioPlayer
         this.songbrowser.displaySongList(list);
     }
     
+    @SuppressWarnings("unchecked")
     public void initMain() throws InterruptedException, IOException
     {
         // create the library object

@@ -319,7 +319,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClearQueueButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="ui.TwitterButton" name="TwitterButtonControl">
+    <Component class="tools.TwitterButton" name="TwitterButtonControl">
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[75, 35]"/>

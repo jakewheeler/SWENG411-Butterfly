@@ -51,7 +51,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         SongStartLabel = new javax.swing.JLabel();
         SongEndLabel = new javax.swing.JLabel();
         ClearQueueButton = new javax.swing.JButton();
-        TwitterButtonControl = new ui.TwitterButton();
+        TwitterButtonControl = new tools.TwitterButton();
         TheGreatBigInvisibleButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 0));
@@ -308,7 +308,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
     public javax.swing.JSlider SongLocationSlider;
     private javax.swing.JLabel SongStartLabel;
     private javax.swing.JButton TheGreatBigInvisibleButton;
-    public ui.TwitterButton TwitterButtonControl;
+    public tools.TwitterButton TwitterButtonControl;
     private javax.swing.JSlider VolumeSlider;
     private javax.swing.JToggleButton repeatButton;
     // End of variables declaration//GEN-END:variables

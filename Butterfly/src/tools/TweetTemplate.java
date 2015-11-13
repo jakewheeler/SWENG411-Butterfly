@@ -1,4 +1,4 @@
-package ui;
+package tools;
 
 import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
@@ -46,7 +46,6 @@ public class TweetTemplate extends javax.swing.JDialog
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tweet Editor");
         setBackground(new java.awt.Color(0, 0, 0));
-        setMaximumSize(new java.awt.Dimension(518, 353));
         setMinimumSize(new java.awt.Dimension(518, 353));
         setResizable(false);
 

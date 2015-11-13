@@ -1,4 +1,4 @@
-package ui;
+package tools;
 
 import audio.Song;
 import javax.swing.table.DefaultTableModel;

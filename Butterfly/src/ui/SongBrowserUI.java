@@ -1,5 +1,6 @@
 package ui;
 
+import tools.SongModel;
 import butterfly.IAudioController;
 import butterfly.SongBrowser;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package ui;
+package tools;
 
 import audio.Album;
 import butterfly.AudioPlayer;

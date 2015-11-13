@@ -1,4 +1,4 @@
-package ui;
+package tools;
 
 import audio.Album;
 import audio.ArtistSongList;
@@ -25,8 +25,9 @@ import javax.swing.JPopupMenu;
 public class RightClickMenu extends JPopupMenu
 {
     private final AudioPlayer player;
-    
     private final HashMap<String, String> map = new HashMap<>();
+    
+    private final int delay = 100;
     
     public RightClickMenu(AudioPlayer player, Song song)
     {
@@ -244,7 +245,6 @@ public class RightClickMenu extends JPopupMenu
 
             Runnable run = () -> {
                 Timer time = new Timer();
-                int delay = 350;
                 try {
                     time.schedule(new TimerTask() {
                         @Override

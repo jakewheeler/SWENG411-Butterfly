@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
-import ui.SongModel;
+import tools.SongModel;
 
 /**
  *

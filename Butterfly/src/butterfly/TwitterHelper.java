@@ -23,7 +23,7 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import ui.AudioPlayerUI;
 import ui.IAudioUI;
-import ui.TweetTemplate;
+import tools.TweetTemplate;
 import ui.TwitterHelperUI;
 
 /**
