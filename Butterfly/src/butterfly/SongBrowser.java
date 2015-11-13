@@ -5,8 +5,6 @@ import audio.Song;
 import audio.SongList;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
@@ -51,7 +49,8 @@ public class SongBrowser implements IAudioController
                 song.getArtist(), 
                 song.getAlbum(),
                 song.getGenre(),
-                song.getYear()
+                song.getYear(),
+                song.getFormattedLength()
             });  
         }        
     }
@@ -70,7 +69,8 @@ public class SongBrowser implements IAudioController
                 song.getArtist(), 
                 song.getAlbum(),
                 song.getGenre(),
-                song.getYear()
+                song.getYear(),
+                song.getFormattedLength()
             });  
         }
         this.currentList = list;
@@ -115,7 +115,6 @@ public class SongBrowser implements IAudioController
     
     public void removeSong(Song song)
     {
-        int i = this.currentList.getList().indexOf(song);
         this.currentList.removeSong(song);
         this.refresh();
     }

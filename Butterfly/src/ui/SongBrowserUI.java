@@ -44,7 +44,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
 
             },
             new String [] {
-                "Song", "Artist", "Album", "Genre", "Year"
+                "Song", "Artist", "Album", "Genre", "Year", "Length"
             }
         ));
         LibraryTable.setFocusable(false);

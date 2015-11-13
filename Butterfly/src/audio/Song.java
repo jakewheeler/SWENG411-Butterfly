@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 public class Song implements Serializable
 {
-    private int numberOnAlbum, year;
+    private int numberOnAlbum, year, songSeconds;
     private transient Media audio;
     private transient MP3 mp3;
     private transient File songfile;
@@ -40,6 +40,10 @@ public class Song implements Serializable
         this.genre = getTag(mp3.getMusicType());
         this.numberOnAlbum = mp3.getTrack(); 
         this.year = mp3.getYear();
+        if (this.mp3.getAudioDuration() == 0)
+            this.mp3.setAudioDuration();
+        this.songLength = String.format("%02d:%02d", this.mp3.getAudioDuration() / 60, this.mp3.getAudioDuration() % 60);
+        this.songSeconds = this.mp3.getAudioDuration();
         this.mp3 = null;
     }
     
@@ -164,20 +168,13 @@ public class Song implements Serializable
     }
     
     public String getFormattedLength()
-    {    
-        try {
-            Thread.sleep(5);
-        } catch (Exception ex) {
-            AudioPlayer.HandleException(ex);
-        }
-        int secs = (int) this.audio.getDuration().toSeconds();
-        this.songLength = String.format("%02d:%02d", secs / 60, secs % 60);
+    {
         return this.songLength;
     }
     
     public int getSongLength()
     {
-        return (int) this.audio.getDuration().toSeconds();
+        return this.songSeconds;
     }
     
     public int getYear()
