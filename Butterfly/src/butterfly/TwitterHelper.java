@@ -252,7 +252,7 @@ public class TwitterHelper implements IAudioController
         return TWITTER_MESSAGE_MAX_LEN;
     }
     
-    // changes the label to black/red depending on the amount of characters in the tweet template
+    // changes the label to white/red depending on the amount of characters in the tweet template
     public void counterLabelColorController(TweetTemplate tweetTemplate, int text)
     {
         if (TWITTER_MESSAGE_MAX_LEN - text > 0)
@@ -262,7 +262,7 @@ public class TwitterHelper implements IAudioController
     }
     
     // makes the twitter file empty (for reauthentication purposes)
-    public void clearTwitterBdfFile()
+    public void clearTwitterFile()
     {
         if (file.exists())
         {

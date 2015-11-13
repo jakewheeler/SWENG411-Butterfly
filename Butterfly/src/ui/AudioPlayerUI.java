@@ -120,7 +120,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
     }//GEN-LAST:event_formWindowClosing
 
     private void ReauthTwitterItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReauthTwitterItemMousePressed
-        this.controller.getTwitterHelper().clearTwitterBdfFile();
+        this.controller.getTwitterHelper().clearTwitterFile();
     }//GEN-LAST:event_ReauthTwitterItemMousePressed
 
     private void ExitItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitItemMousePressed
