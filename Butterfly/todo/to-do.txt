@@ -4,3 +4,6 @@ Change colors of jtree using custom treenode
 update song time when dragging bar
 potentially have themes
 QA the shit out of it
+
+Bugs:
+Setting year to "0" in song info editor throws an exception

@@ -32,7 +32,7 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
 
-        EnterPinLabel.setForeground(new java.awt.Color(255, 255, 255));
+        EnterPinLabel.setBackground(new java.awt.Color(0, 0, 0));
         EnterPinLabel.setText("Enter PIN:");
 
         PINEntryTextField.setBackground(new java.awt.Color(51, 51, 51));
@@ -43,8 +43,7 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
             }
         });
 
-        OKButton.setBackground(new java.awt.Color(51, 51, 51));
-        OKButton.setForeground(new java.awt.Color(255, 255, 255));
+        OKButton.setBackground(new java.awt.Color(255, 255, 255));
         OKButton.setText("OK");
         OKButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,7 +51,7 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
             }
         });
 
-        InstructionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        InstructionLabel.setBackground(new java.awt.Color(0, 0, 0));
         InstructionLabel.setText("Enter the PIN given to you by Twitter and hit the OK button to continue.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

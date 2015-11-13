@@ -42,6 +42,7 @@ public class TweetTemplate extends javax.swing.JDialog
         TweetLengthLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tweet Editor");
         setBackground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(518, 353));
         setMinimumSize(new java.awt.Dimension(518, 353));
