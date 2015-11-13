@@ -53,6 +53,7 @@ public class TwitterHelper implements IAudioController
     private final String PINErrorMessage = "Your PIN appears to be incorrect. Exit this window and try again.";
     private final String tooManyCharsInTweetError = "There are too many characters in your tweet. Submit a shorter message.";
     private final String reauthenticationSuccess = "Press the Twitter button to complete reauthentication.";
+    private final String noSongDataError = "No song data found. Please beginning playing a song and try again.";
 
     public TwitterHelper(AudioPlayer audioPlayer, AudioPlayerUI parentUI) throws IOException
     {
@@ -219,8 +220,11 @@ public class TwitterHelper implements IAudioController
                 template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
                 counterLabelColorController(template, template.TweetTextArea.getText().length());
             }
-        } catch (Exception ex) {
-            AudioPlayer.HandleException(ex);
+        } catch (Exception ex) 
+        {
+            template.TweetTextArea.setText(noSongDataError);
+            template.TweetLengthLabel.setText(Integer.toString(TWITTER_MESSAGE_MAX_LEN - template.TweetTextArea.getText().length()));
+            // no reason to change label color here
         }
        
         template.setVisible(true); 
