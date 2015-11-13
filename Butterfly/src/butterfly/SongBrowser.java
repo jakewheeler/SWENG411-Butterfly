@@ -5,8 +5,6 @@ import audio.Song;
 import audio.SongList;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
