@@ -3,6 +3,7 @@ package ui;
 import audio.Song;
 import butterfly.AudioPlayer;
 import java.text.NumberFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -170,15 +171,23 @@ public class SongEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
-        this.song.updateSong(
-            this.SongField.getText(),
-            this.ArtistField.getText(),
-            this.AlbumField.getText(),
-            this.GenreField.getText(),            
-            Integer.parseInt(this.YearField.getText().replace(",", "").replace(".", "")),
-            Integer.parseInt(this.NumberField.getText().replace(",", "").replace(".", ""))
-        );
-        this.dispose();
+        int year = Integer.parseInt(this.YearField.getText().replace(",", "").replace(".", ""));
+        int track = Integer.parseInt(this.NumberField.getText().replace(",", "").replace(".", ""));
+        
+        if (year > 0 && track > 0)
+        {
+            this.song.updateSong(
+                this.SongField.getText(),
+                this.ArtistField.getText(),
+                this.AlbumField.getText(),
+                this.GenreField.getText(),
+                year,
+                track
+            );
+            this.dispose();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Error, year and track must be greater than 0", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_OkButtonActionPerformed
 
 

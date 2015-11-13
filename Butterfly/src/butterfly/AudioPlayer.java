@@ -21,6 +21,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import ui.AlbumEditor;
 import ui.AudioPlayerUI;
@@ -89,7 +91,7 @@ public final class AudioPlayer
             
             try 
             {
-                this.library = (Library) this.readFromFile(new File(this.libraryfile));
+                this.library = (Library) this.readFromFile(this.libraryfile);
             } 
             catch (Exception ex) 
             {
@@ -98,7 +100,7 @@ public final class AudioPlayer
             
             try
             {
-                this.musicpaths = (ArrayList<String>) this.readFromFile(new File(this.locationfile));
+                this.musicpaths = (ArrayList<String>) this.readFromFile(this.locationfile);
             } 
             catch (Exception ex)
             {
@@ -160,9 +162,10 @@ public final class AudioPlayer
         twtthread.join();
     }
     
-    private Object readFromFile(File f) throws Exception
+    private Object readFromFile(String path) throws Exception
     {
         FileInputStream in;
+        File f = new File(path);
         try
         {                
             in = new FileInputStream(f);
@@ -174,21 +177,24 @@ public final class AudioPlayer
         }
 
         ObjectInputStream oin = new ObjectInputStream(new BufferedInputStream(in));
-        return oin.readObject();
+        Object readObject = oin.readObject();
+        oin.close();
+        return readObject;
     }
     
     public void closing()
     {
         try {
-            this.writeToFile(new File(this.libraryfile), this.library);
-            this.writeToFile(new File(this.locationfile), this.musicpaths);
+            this.writeToFile(this.libraryfile, this.library);
+            this.writeToFile(this.locationfile, this.musicpaths);
         } catch (Exception ex) {
             AudioPlayer.HandleException(ex);
         }      
     }
     
-    private void writeToFile(File f, Object objectToWrite) throws IOException
+    private void writeToFile(String path, Object objectToWrite) throws IOException
     {
+        File f = new File(path);
         Files.deleteIfExists(f.toPath());
         FileOutputStream out = new FileOutputStream(f);
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(out))) {
@@ -571,6 +577,6 @@ public final class AudioPlayer
     
     public static void HandleException(Exception ex)
     {
-        System.out.println(ex);
+        Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
