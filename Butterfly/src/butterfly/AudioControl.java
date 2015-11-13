@@ -39,8 +39,13 @@ public class AudioControl implements IAudioController
         }
         
         this.player = player;
-        this.queue = new SongQueue(this.player.getLibrary().getList());
-        this.changeSong();
+        if (this.player.getLibrary() != null)
+        {
+            this.queue = new SongQueue(this.player.getLibrary().getList());
+            this.changeSong();
+        }
+        else
+            this.queue = new SongQueue();
     }
     
     @Override
@@ -62,6 +67,8 @@ public class AudioControl implements IAudioController
         else
         {
             this.changeSong();
+            if (this.mp == null) return;
+            
             this.mp.play();
             this.ui.PlayPauseButton.setIcon(pauseIMG);
             this.updateUI();
@@ -77,23 +84,21 @@ public class AudioControl implements IAudioController
     // pauses current song
     public void pause()
     {
-        if (this.mp != null)
-        {
-            this.mp.pause();
-            this.ui.PlayPauseButton.setIcon(playIMG);
-            this.playFlag = false;
-        }
+        if (this.mp == null) return;
+        
+        this.mp.pause();
+        this.ui.PlayPauseButton.setIcon(playIMG);
+        this.playFlag = false;
     }
     
     // stops current song
     public void stop()
     {
-        if (this.mp != null)
-        {
-            this.playFlag = false;
-            this.ui.PlayPauseButton.setIcon(playIMG);
-            this.mp.stop();
-        }
+        if (this.mp == null) return;
+        
+        this.playFlag = false;
+        this.ui.PlayPauseButton.setIcon(playIMG);
+        this.mp.stop();
     }
     
     // set song label
@@ -102,21 +107,11 @@ public class AudioControl implements IAudioController
        return this.queue.getCurrentSong();
     }
     
-    public String getPlayingSong()
-    {
-        Song song = this.queue.getCurrentSong();
-        return song.getSongName();  
-    }
-    
-    public String getPlayingArtist()
-    {
-        Song song = this.queue.getCurrentSong();
-        return song.getArtist();
-    }
-    
     // skips to next song
     public void next()
     {
+        if (!canSkip()) return;
+        
         this.stop();
         this.queue.next();
         changeSong();
@@ -126,10 +121,17 @@ public class AudioControl implements IAudioController
     // skip to previous song
     public void previous()
     {
+        if (!canSkip()) return;
+        
         this.stop();
         this.queue.previous();
         changeSong();
         this.play();
+    }
+    
+    private boolean canSkip()
+    {
+        return !(this.queue == null || this.queue.getList() == null || this.queue.getList().isEmpty() || this.mp == null);
     }
     
     // toggle queue to repeat song
@@ -153,7 +155,7 @@ public class AudioControl implements IAudioController
     // adds a list of songs to the current queue
     public void addSongsToQueue(ISongList songs)
     {
-        this.queue.addSongs(songs.getList());
+        songs.getList().forEach(song -> this.addSongsToQueue(song));
     }
     
     public void removeSongFromQueue(Song song)
@@ -233,6 +235,7 @@ public class AudioControl implements IAudioController
     public void setVolume(double volume)
     {
         this.volume = volume;
+        if (this.mp == null) return;
         this.mp.setVolume(this.volume);
     }
     
@@ -247,16 +250,19 @@ public class AudioControl implements IAudioController
                     this.ui.setSongEndLabel(this.queue.getCurrentSong().getFormattedLength());
                     while ((int) this.mp.getCurrentTime().toSeconds() < (int) this.mp.getTotalDuration().toSeconds() && this.isPlaying())
                     {
-                        try {
-                            Thread.sleep(this.queue.getCurrentSong().getSongLength());
-                        } catch (Exception ex) {
-                            AudioPlayer.HandleException(ex);
-                        }
+                        Thread.sleep(this.queue.getCurrentSong().getSongLength());
                         this.ui.SongLocationSlider.setValue(this.ui.SongLocationSlider.getValue() + 1);
                         int secs = (int) this.mp.getCurrentTime().toSeconds();
                         this.ui.setSongStartLabel(String.format("%02d:%02d", secs / 60, secs % 60));
                     }
-                } catch (Exception ex)
+                }
+                catch (NullPointerException ex)
+                {
+                    if (this.mp != null)
+                        this.mp.setOnPlaying(null);
+                    this.ui.SongLocationSlider.setValue(0);
+                }
+                catch (Exception ex)
                 {
                     AudioPlayer.HandleException(ex);
                 }
@@ -269,6 +275,11 @@ public class AudioControl implements IAudioController
     public void setDuration(int percentage)
     {
         Song song = this.queue.getCurrentSong();
+        if (song == null)
+        {
+            this.ui.SongLocationSlider.setValue(0);
+            return;
+        }
         double millsec = song.getSongLength() * 1000;
         double newDuration = ((double) (millsec * percentage)) / 1000;
         this.mp.seek(new Duration(newDuration));

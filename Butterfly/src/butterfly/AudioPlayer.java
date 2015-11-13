@@ -94,11 +94,7 @@ public final class AudioPlayer
             catch (Exception ex) 
             {
                 this.library = null;
-            }
-            
-            ArrayList<String> filepaths = new ArrayList<>();
-            if (this.library != null)
-                this.library.getList().forEach(song -> filepaths.add(song.getFilePath()));      
+            }           
             
             try
             {
@@ -108,25 +104,9 @@ public final class AudioPlayer
             {
                 this.musicpaths = null;
             }
-            ArrayList<File> mp3s = new ArrayList<>();
             
             if (this.musicpaths != null)
-                this.musicpaths.forEach(path -> mp3s.addAll(this.manager.getSongsInDirectory(path, filepaths)));
-
-            ArrayList<Song> list = new ArrayList<>();
-            
-            mp3s.stream().forEach((mp3) -> {
-                try {
-                    list.add(new Song(mp3.getPath()));
-                } catch (Exception ex) {
-                    AudioPlayer.HandleException(ex);
-                }
-            });
-            
-            if (this.library == null)
-                this.library = new Library(list);
-            else
-                this.library.addSongs(list);
+                this.musicpaths.forEach(path -> this.addSongsToLibrary(path));
         });        
         getlibthread.start();
         
@@ -150,7 +130,8 @@ public final class AudioPlayer
             this.songbrowser = new SongBrowser(this);
             this.ui.SongBrowserUI.setController(this.songbrowser);
             this.songbrowser.setUI(this.ui.SongBrowserUI);
-            this.songbrowser.displaySongList();
+            if (this.songbrowser.getCurrentList() != null)
+                this.songbrowser.displaySongList();
         });
         sbthread.start();
         
@@ -244,13 +225,48 @@ public final class AudioPlayer
             try 
             {
                 String canonicalPath = chooser.getSelectedFile().getCanonicalPath();
-                if (this.musicpaths.contains(canonicalPath.toLowerCase()));
+                if (this.musicpaths == null)
+                    this.musicpaths = new ArrayList<>();
+                
+                if (!this.musicpaths.contains(canonicalPath.toLowerCase()));
+                {
+                    this.addSongsToLibrary(canonicalPath);
                     this.musicpaths.add(canonicalPath);
+                }
             } 
             catch (IOException ex) {
                 AudioPlayer.HandleException(ex);
             }
-        }
+        }        
+    }
+    
+    private void addSongsToLibrary(String musicFolderPath)
+    {
+        ArrayList<String> filepaths = new ArrayList<>();
+        if (this.library != null)
+            this.library.getList().forEach(song -> filepaths.add(song.getFilePath()));
+        
+        ArrayList<File> newSongs = this.manager.getSongsInDirectory(musicFolderPath, filepaths);
+        
+        if (newSongs.isEmpty()) return;
+        
+        ArrayList<Song> list = new ArrayList<>();
+            
+        newSongs.stream().forEach((mp3) -> {
+            try {
+                list.add(new Song(mp3.getPath()));
+            } catch (Exception ex) {
+                AudioPlayer.HandleException(ex);
+            }
+        });
+
+        if (this.library == null)
+            this.library = new Library(list);
+        else
+            this.library.addSongs(list);
+        
+        if (this.libbrowser == null) return;
+        this.libbrowser.update();
     }
     
     public void songRightClicked(Song song, int x, int y)

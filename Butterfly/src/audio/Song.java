@@ -8,8 +8,6 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import com.beaglebuddy.mp3.MP3;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**

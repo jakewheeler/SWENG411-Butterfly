@@ -27,6 +27,8 @@ public class LibraryBrowser implements IAudioController
     
     public void update()
     {
+        if (this.player.getLibrary() == null) return;
+        
         TreeMap<String, ArtistSongList> map = this.player.getLibrary().getArtistMap();
         DefaultTreeModel model = (DefaultTreeModel)this.ui.LibraryTree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode)model.getRoot();
@@ -75,7 +77,8 @@ public class LibraryBrowser implements IAudioController
             switch(pickednode.getUserObject().toString())
             {
                 case "Library" : 
-                    this.player.displaySongs(this.player.getLibrary());
+                    if (this.player.getLibrary() != null)
+                        this.player.displaySongs(this.player.getLibrary());
                     break;
                 case "Artists" : 
                     this.player.displaySongs(this.player.getLibrary());

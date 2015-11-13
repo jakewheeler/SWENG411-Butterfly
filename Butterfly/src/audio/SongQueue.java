@@ -13,6 +13,12 @@ public class SongQueue implements ISongList {
     private int index;
     private final ArrayList<Song> songList;
     
+    public SongQueue()
+    {
+        this.currentSong = null;
+        this.songList = new ArrayList<>();
+    }
+    
     public SongQueue(Song song)
     {
         this.songList = new ArrayList<>();
@@ -26,6 +32,8 @@ public class SongQueue implements ISongList {
     {
         this.songList = new ArrayList<>();
         this.addSongs(songs);
+        
+        if (this.songList.isEmpty()) return;
         this.currentSong = this.songList.get(0);
         this.currentSong.load();
         this.index = 0;
@@ -64,6 +72,8 @@ public class SongQueue implements ISongList {
     // skips to the next song in the list
     public void next()
     {
+        if (!canSkip()) return;
+        
         if (!this.isRepeat)
         {
             this.index++;
@@ -81,6 +91,8 @@ public class SongQueue implements ISongList {
     // skips to the previous song in the list
     public void previous()
     {
+        if (!canSkip()) return;
+        
         if (!this.isRepeat)
         {
             this.index--;
@@ -93,6 +105,11 @@ public class SongQueue implements ISongList {
             this.currentSong = this.songList.get(this.index);
             this.currentSong.load();
         }
+    }
+    
+    private boolean canSkip()
+    {
+        return !(this.songList == null || this.songList.isEmpty());
     }
     
     // clears the entire songlist
@@ -129,6 +146,8 @@ public class SongQueue implements ISongList {
     @Override
     public void addSongs(ArrayList<Song> songs) {
         boolean b = this.songList.isEmpty();
+        if (songs == null) return;
+        if (songs.isEmpty()) return;
         songs.forEach(song -> this.addSong(song));
         if (b)
             this.setCurrentSong(songs.get(0));
