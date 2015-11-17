@@ -1,11 +1,19 @@
 package butterfly;
 
+import audio.Album;
 import audio.ArtistSongList;
 import audio.ISongList;
 import audio.PlayList;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import ui.IAudioUI;
@@ -19,10 +27,12 @@ public class LibraryBrowser implements IAudioController
 {
     private final AudioPlayer player;
     private LibraryBrowserUI ui;
+    private SongTreeCellRenderer renderer;
     
     public LibraryBrowser(AudioPlayer player)
     {
         this.player = player;
+        this.renderer = new SongTreeCellRenderer();
     }
     
     public void update()
@@ -65,6 +75,7 @@ public class LibraryBrowser implements IAudioController
     @Override
     public void setUI(IAudioUI ui) {
         this.ui = (LibraryBrowserUI) ui;
+        this.ui.LibraryTree.setCellRenderer(this.renderer);
     }
     
     public void displaySelection(int x, int y)
@@ -127,6 +138,42 @@ public class LibraryBrowser implements IAudioController
         private SongListNode(Map.Entry data) {
             super(data.getKey());
             this.heldlist = (ISongList) data.getValue();
+        }
+    }
+    
+    private class SongTreeCellRenderer extends DefaultTreeCellRenderer
+    {
+        @Override
+        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus)
+        {
+            JLabel cell = (JLabel) super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
+            cell.setForeground(Color.white);
+            if (value.getClass() == SongListNode.class)
+            {
+                ImageIcon icon;
+                if (((SongListNode) value).heldlist.getClass() == ArtistSongList.class)
+                {
+                    icon = new ImageIcon(getClass().getResource("/resources/artist.png"));
+                }
+                else if (((SongListNode) value).heldlist.getClass() == Album.class)
+                {
+                    icon = new ImageIcon(getClass().getResource("/resources/album.png"));
+                }
+                else if (((SongListNode) value).heldlist.getClass() == PlayList.class)
+                {
+                    icon = new ImageIcon(getClass().getResource("/resources/playlist.png"));
+                }
+                else
+                {
+                    icon = new ImageIcon(getClass().getResource("/resources/music.png"));
+                }
+                cell.setIcon(icon);
+            }
+            else
+            {
+                
+            }
+            return cell;
         }
     }
 }

@@ -2,6 +2,8 @@ package ui;
 
 import butterfly.AudioPlayer;
 import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.plaf.basic.BasicSplitPaneDivider;
 
 /**
  *
@@ -61,6 +63,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
         AudioControlUI.setMinimumSize(new java.awt.Dimension(0, 100));
         AudioControlUI.setPreferredSize(new java.awt.Dimension(1280, 100));
 
+        LibrarySplitter.setBackground(new java.awt.Color(0, 0, 0));
         LibrarySplitter.setPreferredSize(new java.awt.Dimension(720, 400));
 
         LibraryBrowserUI.setMinimumSize(new java.awt.Dimension(50, 23));

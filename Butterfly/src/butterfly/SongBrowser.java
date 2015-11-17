@@ -173,7 +173,6 @@ public class SongBrowser implements IAudioController
     
     private class CustomRenderer extends DefaultTableCellRenderer
     {
-
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             Component field = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);

@@ -36,6 +36,8 @@ public class LibraryBrowserUI extends javax.swing.JPanel implements IAudioUI
         TreeScollPane = new javax.swing.JScrollPane();
         LibraryTree = new javax.swing.JTree();
 
+        LibraryTree.setBackground(new java.awt.Color(51, 51, 51));
+        LibraryTree.setForeground(new java.awt.Color(255, 255, 255));
         LibraryTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 LibraryTreeMousePressed(evt);
