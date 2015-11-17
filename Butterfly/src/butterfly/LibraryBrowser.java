@@ -148,9 +148,9 @@ public class LibraryBrowser implements IAudioController
         {
             JLabel cell = (JLabel) super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
             cell.setForeground(Color.white);
+            ImageIcon icon;
             if (value.getClass() == SongListNode.class)
             {
-                ImageIcon icon;
                 if (((SongListNode) value).heldlist.getClass() == ArtistSongList.class)
                 {
                     icon = new ImageIcon(getClass().getResource("/resources/artist.png"));
@@ -171,8 +171,9 @@ public class LibraryBrowser implements IAudioController
             }
             else
             {
-                
+                icon = new ImageIcon(getClass().getResource("/resources/music.png"));
             }
+            cell.setIcon(icon);
             return cell;
         }
     }
