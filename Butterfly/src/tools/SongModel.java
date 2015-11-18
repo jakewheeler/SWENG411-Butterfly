@@ -9,15 +9,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SongModel extends DefaultTableModel
 {
-    private Song storedSong;
-
     public SongModel()
     {
         super(
             new Object [][] {},
             new String [] {
                 "Song", "Artist", "Album", "Genre", "Year", "Length", "Track #"
-            });
+            }
+        );
     }
 
     @Override
@@ -25,9 +24,14 @@ public class SongModel extends DefaultTableModel
     {
         return false;
     }
+    
+    public void addRow(SongRowObject o)
+    {
+        super.addRow(o.getRowInfo());
+    }
 
     public Song getSong()
     {
-        return this.storedSong;
+        return null;
     }
 }

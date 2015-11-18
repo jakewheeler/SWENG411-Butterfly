@@ -2,8 +2,6 @@ package ui;
 
 import butterfly.AudioPlayer;
 import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.plaf.basic.BasicSplitPaneDivider;
 
 /**
  *

@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
 import tools.SongModel;
+import tools.SongRowObject;
 
 /**
  *
@@ -48,17 +49,8 @@ public class SongBrowser implements IAudioController
         
         for (int i = 0; i < this.player.getLibrary().getLength(); i++)
         {
-            Song song = this.player.getLibrary().getList().get(i);
-            model.addRow( new Object[] 
-            {
-                song.getSongName(),
-                song.getArtist(), 
-                song.getAlbum(),
-                song.getGenre(),
-                song.getYear(),
-                song.getFormattedLength(),
-                song.getNumberOnAlbum()
-            });
+            SongRowObject row = new SongRowObject(this.player.getLibrary().getList().get(i));
+            model.addRow(row.getRowInfo());
         }
         
         this.ui.LibraryTable.setModel(model);
@@ -71,17 +63,8 @@ public class SongBrowser implements IAudioController
         
         for (int i = 0; i < list.getLength(); i++)
         {
-            Song song = list.getList().get(i);
-            model.addRow(new Object[] 
-            {
-                song.getSongName(),
-                song.getArtist(), 
-                song.getAlbum(),
-                song.getGenre(),
-                song.getYear(),
-                song.getFormattedLength(),
-                song.getNumberOnAlbum()
-            });  
+            SongRowObject row = new SongRowObject(this.player.getLibrary().getList().get(i));
+            model.addRow(row.getRowInfo());
         }
         this.currentList = list;
         
@@ -95,8 +78,10 @@ public class SongBrowser implements IAudioController
     
     public void playList()
     {
-        int songIndex = this.ui.LibraryTable.getSelectedRow();
-        this.player.changeQueue(this.currentList.getList().get(songIndex), currentList);
+        int rowIndex = this.ui.LibraryTable.getSelectedRow(),
+                colIndex = this.ui.LibraryTable.getSelectedColumn();
+        Object valueAt = this.ui.LibraryTable.getModel().getValueAt(rowIndex, colIndex);
+        //this.player.changeQueue(this.currentList.getList().get(songIndex), currentList);
     }
     
     // threaded this to slightly boost performance, searching a lot of songs still breaks shit
