@@ -2,8 +2,8 @@ package ui;
 
 import butterfly.IAudioController;
 import butterfly.TwitterHelper;
-import java.awt.Color;
 import java.awt.event.WindowEvent;
+import tools.ColorSelections;
 
 /**
  *
@@ -18,7 +18,7 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
     {
         super(parent, modal);
         initComponents();
-        this.getContentPane().setBackground(Color.black);
+        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
     }
 
     @SuppressWarnings("unchecked")

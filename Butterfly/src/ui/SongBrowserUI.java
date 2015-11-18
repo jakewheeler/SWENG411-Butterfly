@@ -3,9 +3,9 @@ package ui;
 import tools.SongModel;
 import butterfly.IAudioController;
 import butterfly.SongBrowser;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.ListSelectionModel;
+import tools.ColorSelections;
 
 /**
  *
@@ -20,7 +20,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTable.setVisible(true);
         LibraryTable.setShowGrid(true);
         LibraryTable.setShowHorizontalLines(true);
-        LibraryTableScrollPane.setBackground(Color.black);
+        LibraryTableScrollPane.getViewport().setBackground(ColorSelections.getTableBackgroundColor());
     }
 
     @SuppressWarnings("unchecked")

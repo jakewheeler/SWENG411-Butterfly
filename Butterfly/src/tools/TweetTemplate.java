@@ -2,7 +2,6 @@ package tools;
 
 import butterfly.AudioPlayer;
 import butterfly.TwitterHelper;
-import java.awt.Color;
 import java.awt.event.WindowEvent;
 import twitter4j.TwitterException;
 
@@ -29,7 +28,7 @@ public class TweetTemplate extends javax.swing.JDialog
         }
         initComponents();
         this.twitterHelper = twitterHelper;
-        this.getContentPane().setBackground(Color.black);
+        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
     }
 
     @SuppressWarnings("unchecked")

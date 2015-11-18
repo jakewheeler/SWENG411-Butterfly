@@ -1,7 +1,7 @@
 package ui;
 
 import butterfly.AudioPlayer;
-import java.awt.Color;
+import tools.ColorSelections;
 
 /**
  *
@@ -23,7 +23,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
             AudioPlayer.HandleException(ex);
         }
         initComponents();
-        this.getContentPane().setBackground(Color.BLACK); // not working in editor, works in here....
+        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor()); // not working in editor, works in here....
     }
     
     public void setComponents(AudioPlayer controller)

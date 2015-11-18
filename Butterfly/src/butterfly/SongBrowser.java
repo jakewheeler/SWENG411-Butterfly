@@ -3,7 +3,6 @@ package butterfly;
 import audio.ISongList;
 import audio.Song;
 import audio.SongList;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Point;
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
+import tools.ColorSelections;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
 import tools.SongModel;
@@ -195,19 +195,19 @@ public class SongBrowser implements IAudioController
             Component field = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (isSelected)
             {
-                field.setBackground(new Color(0x1ED760));
-                field.setForeground(Color.black);
+                field.setBackground(ColorSelections.getTableRowSelectedColor());
+                field.setForeground(ColorSelections.getTableRowSelectedFontColor());
             }
             else
             {
-                field.setBackground((row % 2) == 0 ? new Color(51, 51, 51) : new Color(71, 71, 71));
-                field.setForeground(Color.white);
+                field.setBackground((row % 2) == 0 ? ColorSelections.getTablePrimaryRowColor() : ColorSelections.getTableSeconaryRowColor());
+                field.setForeground(ColorSelections.getTableRowUnselectedFontColor());
             }
             if (!isSelected && value.getClass() == Song.class && player.getAudioControl() != null && (Song) value == player.getAudioControl().getCurrentSong() || row == playingrow)
             {
                 playingrow = row;
-                field.setBackground(new Color(0x216339));
-                field.setForeground(Color.white);
+                field.setBackground(ColorSelections.getTableRowSongPlayingColor());
+                field.setForeground(ColorSelections.getTableRowSongPlayingFontColor());
                 field.setFont(field.getFont().deriveFont(Font.BOLD));
             }
             return field;

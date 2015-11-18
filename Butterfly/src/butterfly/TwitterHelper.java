@@ -1,7 +1,6 @@
 package butterfly;
 
 import audio.Song;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import tools.ColorSelections;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -256,9 +256,9 @@ public class TwitterHelper implements IAudioController
     public void counterLabelColorController(TweetTemplate tweetTemplate, int text)
     {
         if (TWITTER_MESSAGE_MAX_LEN - text > 0)
-            tweetTemplate.TweetLengthLabel.setForeground(Color.white);
+            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.getTwitterTemplateWithinLimitLabelColor());
         else
-            tweetTemplate.TweetLengthLabel.setForeground(Color.red);
+            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.getTwitterTemplateOutsideLimitLabelColor());
     }
     
     // makes the twitter file empty (for reauthentication purposes)
