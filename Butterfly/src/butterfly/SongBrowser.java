@@ -63,7 +63,7 @@ public class SongBrowser implements IAudioController
         
         for (int i = 0; i < list.getLength(); i++)
         {
-            SongRowObject row = new SongRowObject(this.player.getLibrary().getList().get(i));
+            SongRowObject row = new SongRowObject(list.getList().get(i));
             model.addRow(row.getRowInfo());
         }
         this.currentList = list;
@@ -78,10 +78,10 @@ public class SongBrowser implements IAudioController
     
     public void playList()
     {
-        int rowIndex = this.ui.LibraryTable.getSelectedRow(),
-                colIndex = this.ui.LibraryTable.getSelectedColumn();
-        Object valueAt = this.ui.LibraryTable.getModel().getValueAt(rowIndex, colIndex);
-        //this.player.changeQueue(this.currentList.getList().get(songIndex), currentList);
+        int rowIndex = this.ui.LibraryTable.getSelectedRow();
+        int convertRowIndexToModel = this.ui.LibraryTable.convertRowIndexToModel(rowIndex);
+        Song selectedSong = (Song) this.ui.LibraryTable.getModel().getValueAt(convertRowIndexToModel, 0);
+        this.player.changeQueue(selectedSong, currentList);
     }
     
     // threaded this to slightly boost performance, searching a lot of songs still breaks shit

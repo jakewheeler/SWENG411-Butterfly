@@ -221,6 +221,12 @@ public class Song implements Serializable
         this.mp3 = null;
     }
     
+    @Override
+    public String toString()
+    {
+        return this.songName;
+    }
+    
     private void initMp3()
     {        
         if (this.mp3 == null)

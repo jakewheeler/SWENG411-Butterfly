@@ -22,7 +22,7 @@ public class SongRowObject {
     public Object[] getRowInfo()
     {
         return new Object[]{
-            this.storedSong.getSongName(),
+            this.storedSong,
             this.storedSong.getArtist(), 
             this.storedSong.getAlbum(),
             this.storedSong.getGenre(),
