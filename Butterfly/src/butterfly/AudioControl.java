@@ -277,6 +277,9 @@ public class AudioControl implements IAudioController
         }
         else
             this.mp = null;
+        
+        if (this.player.getSongBrowser() != null)
+            this.player.getSongBrowser().refreshModel();
     }
     
     // percentage is an int from 0 to 1000
@@ -300,6 +303,7 @@ public class AudioControl implements IAudioController
         this.stop();
         this.mp = null;
         this.queue.clear();
+        this.changeSong();
         this.updateUI();
     }
     

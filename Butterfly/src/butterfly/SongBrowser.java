@@ -5,6 +5,7 @@ import audio.Song;
 import audio.SongList;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -24,6 +25,7 @@ public class SongBrowser implements IAudioController
     private SongBrowserUI ui;
     private final AudioPlayer player;
     private final SearchHelper searcher;
+    private int playingrow;
     
     public SongBrowser(AudioPlayer player)
     {
@@ -131,6 +133,15 @@ public class SongBrowser implements IAudioController
         this.displaySongList(this.createListFromTable());
     }
     
+    public void refreshModel()
+    {
+        this.playingrow = -1;
+        int row = this.ui.LibraryTable.getSelectedRow();
+        ((SongModel)this.ui.LibraryTable.getModel()).fireTableDataChanged();
+        if (row >= 0)
+            this.ui.LibraryTable.setRowSelectionInterval(row, row);
+    }
+    
     private SongList createListFromTable()
     {
         ArrayList<Song> list = new ArrayList<>();
@@ -191,6 +202,13 @@ public class SongBrowser implements IAudioController
             {
                 field.setBackground((row % 2) == 0 ? new Color(51, 51, 51) : new Color(71, 71, 71));
                 field.setForeground(Color.white);
+            }
+            if (!isSelected && value.getClass() == Song.class && player.getAudioControl() != null && (Song) value == player.getAudioControl().getCurrentSong() || row == playingrow)
+            {
+                playingrow = row;
+                field.setBackground(new Color(0x216339));
+                field.setForeground(Color.white);
+                field.setFont(field.getFont().deriveFont(Font.BOLD));
             }
             return field;
         }        

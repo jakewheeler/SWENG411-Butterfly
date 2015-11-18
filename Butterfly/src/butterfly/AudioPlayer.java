@@ -223,6 +223,11 @@ public final class AudioPlayer
         return this.audiocontrol;
     }
     
+    public SongBrowser getSongBrowser()
+    {
+        return this.songbrowser;
+    }
+    
     public void addMusicFolder()
     {
         JFileChooser chooser = new JFileChooser();

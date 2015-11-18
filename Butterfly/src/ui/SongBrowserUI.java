@@ -101,6 +101,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
             this.controller.highlight(evt.getPoint());
             this.controller.playList();
         }
+        this.controller.refreshModel();
     }//GEN-LAST:event_LibraryTableMousePressed
     
     @Override
