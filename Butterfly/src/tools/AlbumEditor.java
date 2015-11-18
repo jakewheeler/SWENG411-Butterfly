@@ -2,6 +2,7 @@ package tools;
 
 import audio.Album;
 import butterfly.AudioPlayer;
+import java.awt.Color;
 import java.text.NumberFormat;
 import javax.swing.JOptionPane;
 
@@ -17,6 +18,7 @@ public class AlbumEditor extends javax.swing.JFrame {
     public AlbumEditor(AudioPlayer player, Album album) {
         this.player = player;
         this.album = album;
+        this.getContentPane().setBackground(Color.black);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -58,15 +60,21 @@ public class AlbumEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
+        AlbumNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         AlbumNameLabel.setText("Album Name:");
 
+        ArtistLabel.setForeground(new java.awt.Color(255, 255, 255));
         ArtistLabel.setText("Artist:");
 
+        GenreLabel.setForeground(new java.awt.Color(255, 255, 255));
         GenreLabel.setText("Genre:");
 
+        YearLabel.setForeground(new java.awt.Color(255, 255, 255));
         YearLabel.setText("Year:");
 
-        OkButton.setText("Ok");
+        OkButton.setBackground(new java.awt.Color(51, 51, 51));
+        OkButton.setForeground(new java.awt.Color(255, 255, 255));
+        OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +82,8 @@ public class AlbumEditor extends javax.swing.JFrame {
             }
         });
 
+        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
+        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

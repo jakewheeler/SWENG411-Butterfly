@@ -2,6 +2,7 @@ package tools;
 
 import audio.Song;
 import butterfly.AudioPlayer;
+import java.awt.Color;
 import java.text.NumberFormat;
 import javax.swing.JOptionPane;
 
@@ -14,6 +15,7 @@ public class SongEditor extends javax.swing.JFrame {
     private final Song song;
     public SongEditor(Song song) {
         this.song = song;
+        this.getContentPane().setBackground(Color.black);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -61,19 +63,33 @@ public class SongEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
+        SongNameLabel.setBackground(new java.awt.Color(51, 51, 51));
+        SongNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         SongNameLabel.setText("Song Name:");
 
+        ArtistLabel.setBackground(new java.awt.Color(51, 51, 51));
+        ArtistLabel.setForeground(new java.awt.Color(255, 255, 255));
         ArtistLabel.setText("Artist:");
 
+        AlbumLabel.setBackground(new java.awt.Color(51, 51, 51));
+        AlbumLabel.setForeground(new java.awt.Color(255, 255, 255));
         AlbumLabel.setText("Album:");
 
+        GenreLabel.setBackground(new java.awt.Color(51, 51, 51));
+        GenreLabel.setForeground(new java.awt.Color(255, 255, 255));
         GenreLabel.setText("Genre:");
 
+        YearLabel.setBackground(new java.awt.Color(51, 51, 51));
+        YearLabel.setForeground(new java.awt.Color(255, 255, 255));
         YearLabel.setText("Year:");
 
+        TrackNumberLabel.setBackground(new java.awt.Color(51, 51, 51));
+        TrackNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
         TrackNumberLabel.setText("#:");
 
-        OkButton.setText("Ok");
+        OkButton.setBackground(new java.awt.Color(51, 51, 51));
+        OkButton.setForeground(new java.awt.Color(255, 255, 255));
+        OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +97,8 @@ public class SongEditor extends javax.swing.JFrame {
             }
         });
 
+        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
+        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,16 +106,28 @@ public class SongEditor extends javax.swing.JFrame {
             }
         });
 
+        SongField.setBackground(new java.awt.Color(51, 51, 51));
+        SongField.setForeground(new java.awt.Color(255, 255, 255));
         SongField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        ArtistField.setBackground(new java.awt.Color(51, 51, 51));
+        ArtistField.setForeground(new java.awt.Color(255, 255, 255));
         ArtistField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        AlbumField.setBackground(new java.awt.Color(51, 51, 51));
+        AlbumField.setForeground(new java.awt.Color(255, 255, 255));
         AlbumField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        GenreField.setBackground(new java.awt.Color(51, 51, 51));
+        GenreField.setForeground(new java.awt.Color(255, 255, 255));
         GenreField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        YearField.setBackground(new java.awt.Color(51, 51, 51));
+        YearField.setForeground(new java.awt.Color(255, 255, 255));
         YearField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        NumberField.setBackground(new java.awt.Color(51, 51, 51));
+        NumberField.setForeground(new java.awt.Color(255, 255, 255));
         NumberField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

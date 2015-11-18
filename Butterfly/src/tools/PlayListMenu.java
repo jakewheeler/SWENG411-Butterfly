@@ -5,6 +5,7 @@ import audio.ISongList;
 import audio.PlayList;
 import audio.Song;
 import butterfly.AudioPlayer;
+import java.awt.Color;
 import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 
@@ -21,6 +22,7 @@ public class PlayListMenu extends javax.swing.JFrame
     public PlayListMenu(AudioPlayer player, Song song) {
         this.player = player;
         this.song = song;
+        this.getContentPane().setBackground(Color.black);
         start();
     }
     
@@ -28,6 +30,7 @@ public class PlayListMenu extends javax.swing.JFrame
     {
         this.player = player;
         this.list = list;
+        this.getContentPane().setBackground(Color.black);
         start();
     }
     
@@ -80,6 +83,8 @@ public class PlayListMenu extends javax.swing.JFrame
 
         AddPlaylistLabel.setText("Add PlayList:");
 
+        PlayListField.setBackground(new java.awt.Color(51, 51, 51));
+        PlayListField.setForeground(new java.awt.Color(255, 255, 255));
         PlayListField.setText("Enter Name Here");
         PlayListField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -87,6 +92,8 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
+        NewPlayListButton.setBackground(new java.awt.Color(51, 51, 51));
+        NewPlayListButton.setForeground(new java.awt.Color(255, 255, 255));
         NewPlayListButton.setText("Add");
         NewPlayListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,8 +101,12 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
+        PlayListBox.setBackground(new java.awt.Color(51, 51, 51));
+        PlayListBox.setForeground(new java.awt.Color(255, 255, 255));
         PlayListBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 
+        AddSongButton.setBackground(new java.awt.Color(51, 51, 51));
+        AddSongButton.setForeground(new java.awt.Color(255, 255, 255));
         AddSongButton.setText("Add To List");
         AddSongButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +114,8 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
+        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
+        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

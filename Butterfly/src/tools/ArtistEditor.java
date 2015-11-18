@@ -1,9 +1,8 @@
 package tools;
 
 import audio.ArtistSongList;
-import audio.Song;
 import butterfly.AudioPlayer;
-import java.text.NumberFormat;
+import java.awt.Color;
 
 /**
  *
@@ -17,6 +16,7 @@ public class ArtistEditor extends javax.swing.JFrame {
     public ArtistEditor(AudioPlayer player, ArtistSongList artist) {
         this.player = player;
         this.artist = artist;
+        this.getContentPane().setBackground(Color.black);
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -48,9 +48,12 @@ public class ArtistEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
+        ArtistNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         ArtistNameLabel.setText("Artist Name:");
 
-        OkButton.setText("Ok");
+        OkButton.setBackground(new java.awt.Color(51, 51, 51));
+        OkButton.setForeground(new java.awt.Color(255, 255, 255));
+        OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +61,8 @@ public class ArtistEditor extends javax.swing.JFrame {
             }
         });
 
+        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
+        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +70,8 @@ public class ArtistEditor extends javax.swing.JFrame {
             }
         });
 
+        ArtistField.setBackground(new java.awt.Color(51, 51, 51));
+        ArtistField.setForeground(new java.awt.Color(255, 255, 255));
         ArtistField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
