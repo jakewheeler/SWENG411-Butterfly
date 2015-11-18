@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="AddFilePathItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Add Music Folder"/>
+                <Property name="text" type="java.lang.String" value="Manage Music Folders"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddFilePathItemActionPerformed"/>

@@ -132,5 +132,4 @@ public class ColorSelections
     {
         return UITextFieldFontColor;
     }
-
 }

@@ -30,6 +30,7 @@ import tools.PlayListMenu;
 import tools.RightClickMenu;
 import tools.SongEditor;
 import tools.ArtistEditor;
+import tools.MusicFolderMenu;
 import tools.PlaylistEditor;
 
 /**
@@ -113,13 +114,13 @@ public final class AudioPlayer
         });        
         getlibthread.start();
         
+        // wait for library to finish loading
+        getlibthread.join();
+        
         // initialize audioplayer ui
         this.ui = new AudioPlayerUI();
         this.ui.setComponents(this);
         this.ui.setVisible(true);
-        
-        // wait for library to finish loading
-        getlibthread.join();
 
         // create the components that rely on library
         Thread acthread = new Thread(() -> {
@@ -228,28 +229,37 @@ public final class AudioPlayer
         return this.songbrowser;
     }
     
-    public void addMusicFolder()
+    public void editMusicFolder()
     {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        if (chooser.showOpenDialog(this.ui) == JFileChooser.APPROVE_OPTION)
+        new Thread(()->{
+            MusicFolderMenu menu = new MusicFolderMenu(this, this.musicpaths);
+            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+            menu.setVisible(true);
+        }).start();
+    }
+    
+    public void addMusicFolder(String path)
+    {        
+        if (this.musicpaths == null)
+            this.musicpaths = new ArrayList<>();
+
+        if (!this.musicpaths.contains(path.toLowerCase()));
         {
-            try 
-            {
-                String canonicalPath = chooser.getSelectedFile().getCanonicalPath();
-                if (this.musicpaths == null)
-                    this.musicpaths = new ArrayList<>();
-                
-                if (!this.musicpaths.contains(canonicalPath.toLowerCase()));
-                {
-                    this.addSongsToLibrary(canonicalPath);
-                    this.musicpaths.add(canonicalPath);
-                }
-            } 
-            catch (IOException ex) {
-                AudioPlayer.HandleException(ex);
-            }
-        }        
+            this.addSongsToLibrary(path);
+            this.musicpaths.add(path);
+        }
+    }
+    
+    public void removeMusicFolder(String path)
+    {        
+        if (this.musicpaths == null)
+            this.musicpaths = new ArrayList<>();
+
+        if (!this.musicpaths.contains(path.toLowerCase()));
+        {
+            this.removeSongsFromLibrary(path);
+            this.musicpaths.remove(path);
+        }
     }
     
     private void addSongsToLibrary(String musicFolderPath)
@@ -279,6 +289,32 @@ public final class AudioPlayer
         
         if (this.libbrowser == null) return;
         this.libbrowser.update();
+        this.songbrowser.displaySongList(new SongList(list));
+    }
+    
+    private void removeSongsFromLibrary(String musicFolderPath)
+    {
+        if (this.library == null) return;
+        
+        ArrayList<String> filepaths = new ArrayList<>();        
+        ArrayList<File> removeSongs = this.manager.getSongsInDirectory(musicFolderPath, filepaths);
+        
+        if (removeSongs.isEmpty()) return;
+        
+        ArrayList<Song> list = new ArrayList<>();
+            
+        removeSongs.stream().forEach((mp3) -> {
+            this.library.getList().forEach(song -> {
+                try {
+                    if (song.getFilePath().equals(mp3.getCanonicalPath()))
+                        list.add(song);
+                } catch (IOException ex) {
+                    Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+        });
+        
+        this.removeSongListFromLibrary(new SongList(list));
     }
     
     public void songRightClicked(Song song, int x, int y)

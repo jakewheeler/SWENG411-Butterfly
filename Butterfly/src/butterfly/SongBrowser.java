@@ -206,8 +206,9 @@ public class SongBrowser implements IAudioController
             if (!isSelected && value.getClass() == Song.class && player.getAudioControl() != null && (Song) value == player.getAudioControl().getCurrentSong() || row == playingrow)
             {
                 playingrow = row;
-                field.setBackground(ColorSelections.getTableRowSongPlayingColor());
+
                 field.setForeground(ColorSelections.getTableRowSongPlayingFontColor());
+                field.setBackground(ColorSelections.getTableRowSongPlayingColor());
                 field.setFont(field.getFont().deriveFont(Font.BOLD));
             }
             return field;

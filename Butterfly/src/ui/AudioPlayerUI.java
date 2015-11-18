@@ -70,7 +70,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
 
         FileMenu.setText("File");
 
-        AddFilePathItem.setText("Add Music Folder");
+        AddFilePathItem.setText("Manage Music Folders");
         AddFilePathItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddFilePathItemActionPerformed(evt);
@@ -129,7 +129,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
     }//GEN-LAST:event_ExitItemMousePressed
 
     private void AddFilePathItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddFilePathItemActionPerformed
-        this.controller.addMusicFolder();
+        this.controller.editMusicFolder();
     }//GEN-LAST:event_AddFilePathItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
