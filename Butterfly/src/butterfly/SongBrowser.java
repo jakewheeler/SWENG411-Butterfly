@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 import ui.IAudioUI;
 import ui.SongBrowserUI;
 import tools.SongModel;
@@ -23,15 +24,11 @@ public class SongBrowser implements IAudioController
     private SongBrowserUI ui;
     private final AudioPlayer player;
     private final SearchHelper searcher;
-    private ISongList currentList;
     
     public SongBrowser(AudioPlayer player)
     {
         this.player = player;
         this.searcher = new SearchHelper(this.player);
-        
-        if (this.player.getLibrary() == null) return;
-        this.currentList = new SongList(this.player.getLibrary().getList());
     }
         
     @Override
@@ -46,6 +43,8 @@ public class SongBrowser implements IAudioController
     public void displaySongList()
     {
         SongModel model = new SongModel();
+        
+        if (this.player.getLibrary() == null) return;
         
         for (int i = 0; i < this.player.getLibrary().getLength(); i++)
         {
@@ -66,22 +65,19 @@ public class SongBrowser implements IAudioController
             SongRowObject row = new SongRowObject(list.getList().get(i));
             model.addRow(row.getRowInfo());
         }
-        this.currentList = list;
         
         this.ui.LibraryTable.setModel(model);
     }
     
     public ISongList getCurrentList()
     {
-        return this.currentList;
+        return this.createListFromTable();
     }
     
     public void playList()
     {
         int rowIndex = this.ui.LibraryTable.getSelectedRow();
-        int convertRowIndexToModel = this.ui.LibraryTable.convertRowIndexToModel(rowIndex);
-        Song selectedSong = (Song) this.ui.LibraryTable.getModel().getValueAt(convertRowIndexToModel, 0);
-        this.player.changeQueue(selectedSong, currentList);
+        this.player.changeQueue(this.getSongAtIndex(rowIndex), this.createListFromTable());
     }
     
     // threaded this to slightly boost performance, searching a lot of songs still breaks shit
@@ -106,13 +102,21 @@ public class SongBrowser implements IAudioController
         new Thread(() -> {
             int row = this.ui.LibraryTable.rowAtPoint(p);
             this.ui.LibraryTable.setRowSelectionInterval(row, row);
-            this.player.songRightClicked(this.currentList.getList().get(row), p.x, p.y);
+            this.player.songRightClicked(this.getSongAtIndex(row), p.x, p.y);
         }).start();
     }
     
     public void removeSong(Song song)
     {
-        this.currentList.removeSong(song);
+        SongModel model = (SongModel)this.ui.LibraryTable.getModel();
+        for(int i = 0; i < model.getRowCount(); i ++)
+        {
+            if (this.getSongAtIndex(i) == song)
+            {
+                model.removeRow(this.ui.LibraryTable.convertRowIndexToModel(i));
+                break;
+            }
+        }
         this.refresh();
     }
     
@@ -124,13 +128,30 @@ public class SongBrowser implements IAudioController
     
     public void refresh()
     {
-        this.displaySongList(this.currentList);
+        this.displaySongList(this.createListFromTable());
+    }
+    
+    private SongList createListFromTable()
+    {
+        ArrayList<Song> list = new ArrayList<>();
+        TableModel model = this.ui.LibraryTable.getModel();
+        for (int i = 0; i < model.getRowCount(); i++)
+        {
+            list.add(this.getSongAtIndex(i));
+        }
+        return new SongList(list);
     }
     
     public void highlight(Point p)
     {
         int row = this.ui.LibraryTable.rowAtPoint(p);
         this.ui.LibraryTable.setRowSelectionInterval(row, row);
+    }
+    
+    private Song getSongAtIndex(int i)
+    {
+        int row = this.ui.LibraryTable.convertRowIndexToModel(i);
+        return (Song) this.ui.LibraryTable.getModel().getValueAt(row, 0);
     }
 
     private class SearchThread implements Runnable
