@@ -20,6 +20,7 @@ public class MusicFolderMenu extends javax.swing.JFrame
     public MusicFolderMenu(AudioPlayer player, ArrayList<String> folders) 
     {
         this.player = player;
+        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -68,6 +69,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        AddFolder.setBackground(new java.awt.Color(51, 51, 51));
+        AddFolder.setForeground(new java.awt.Color(255, 255, 255));
         AddFolder.setText("Add Folder");
         AddFolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +78,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
+        RemoveButton.setBackground(new java.awt.Color(51, 51, 51));
+        RemoveButton.setForeground(new java.awt.Color(255, 255, 255));
         RemoveButton.setText("Remove Folder");
         RemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,13 +87,17 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        OkButton.setText("Ok");
+        OkButton.setBackground(new java.awt.Color(51, 51, 51));
+        OkButton.setForeground(new java.awt.Color(255, 255, 255));
+        OkButton.setText("OK");
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkButtonActionPerformed(evt);
             }
         });
 
+        FolderList.setBackground(new java.awt.Color(51, 51, 51));
+        FolderList.setForeground(new java.awt.Color(255, 255, 255));
         FolderList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
