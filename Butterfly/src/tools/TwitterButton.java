@@ -29,7 +29,7 @@ public class TwitterButton extends javax.swing.JPanel
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        TwitterButton.setBackground(new java.awt.Color(51, 51, 51));
+        TwitterButton.setBackground(ColorSelections.getUIButtonColor());
         TwitterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/twitterIconSmall.png"))); // NOI18N
         TwitterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

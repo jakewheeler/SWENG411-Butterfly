@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.ListModel;
 
 /**
  *
@@ -69,8 +68,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        AddFolder.setBackground(new java.awt.Color(51, 51, 51));
-        AddFolder.setForeground(new java.awt.Color(255, 255, 255));
+        AddFolder.setBackground(ColorSelections.getUIButtonColor());
+        AddFolder.setForeground(ColorSelections.getUIButtonTextColor());
         AddFolder.setText("Add Folder");
         AddFolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,8 +77,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        RemoveButton.setBackground(new java.awt.Color(51, 51, 51));
-        RemoveButton.setForeground(new java.awt.Color(255, 255, 255));
+        RemoveButton.setBackground(ColorSelections.getUIButtonColor());
+        RemoveButton.setForeground(ColorSelections.getUIButtonTextColor());
         RemoveButton.setText("Remove Folder");
         RemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,8 +86,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        OkButton.setBackground(new java.awt.Color(51, 51, 51));
-        OkButton.setForeground(new java.awt.Color(255, 255, 255));
+        OkButton.setBackground(ColorSelections.getUIButtonColor());
+        OkButton.setForeground(ColorSelections.getUIButtonTextColor());
         OkButton.setText("OK");
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,8 +95,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        FolderList.setBackground(new java.awt.Color(51, 51, 51));
-        FolderList.setForeground(new java.awt.Color(255, 255, 255));
+        FolderList.setBackground(ColorSelections.getLibraryBrowserBackgroundColor());
+        FolderList.setForeground(ColorSelections.getLibraryBrowserNodeFontColor());
         FolderList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }

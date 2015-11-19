@@ -48,11 +48,12 @@ public class TweetTemplate extends javax.swing.JDialog
         setMinimumSize(new java.awt.Dimension(518, 353));
         setResizable(false);
 
+        EnterMessageLabel.setForeground(ColorSelections.getUILabelColor());
         EnterMessageLabel.setText("Share what you're currently listening to on Twitter");
 
-        TweetTextArea.setBackground(new java.awt.Color(51, 51, 51));
+        TweetTextArea.setBackground(ColorSelections.getUITextFieldColor());
         TweetTextArea.setColumns(20);
-        TweetTextArea.setForeground(new java.awt.Color(255, 255, 255));
+        TweetTextArea.setForeground(ColorSelections.getUITextFieldFontColor());
         TweetTextArea.setLineWrap(true);
         TweetTextArea.setRows(5);
         TweetTextArea.setWrapStyleWord(true);
@@ -63,8 +64,8 @@ public class TweetTemplate extends javax.swing.JDialog
         });
         TweetScrollPane.setViewportView(TweetTextArea);
 
-        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
-        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        CancelButton.setBackground(ColorSelections.getUIButtonColor());
+        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,8 +73,8 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
-        SendTweetButton.setBackground(new java.awt.Color(51, 51, 51));
-        SendTweetButton.setForeground(new java.awt.Color(255, 255, 255));
+        SendTweetButton.setBackground(ColorSelections.getUIButtonColor());
+        SendTweetButton.setForeground(ColorSelections.getUIButtonTextColor());
         SendTweetButton.setText("Post Tweet");
         SendTweetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +82,9 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
-        TweetLengthLabel.setForeground(new java.awt.Color(255, 255, 255));
+        TweetLengthLabel.setForeground(ColorSelections.getUILabelColor());
         TweetLengthLabel.setText("0");
+        TweetLengthLabel.setPreferredSize(new java.awt.Dimension(6, 15));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,16 +93,17 @@ public class TweetTemplate extends javax.swing.JDialog
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TweetScrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addComponent(TweetScrollPane)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(TweetLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addGap(86, 86, 86)
                         .addComponent(SendTweetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(120, 120, 120))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 111, Short.MAX_VALUE)
                 .addComponent(EnterMessageLabel)
@@ -117,7 +120,7 @@ public class TweetTemplate extends javax.swing.JDialog
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelButton)
                     .addComponent(SendTweetButton)
-                    .addComponent(TweetLengthLabel))
+                    .addComponent(TweetLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 

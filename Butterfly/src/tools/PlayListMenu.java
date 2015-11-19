@@ -81,10 +81,11 @@ public class PlayListMenu extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
+        AddPlaylistLabel.setBackground(ColorSelections.getUILabelColor());
         AddPlaylistLabel.setText("Add PlayList:");
 
-        PlayListField.setBackground(new java.awt.Color(51, 51, 51));
-        PlayListField.setForeground(new java.awt.Color(255, 255, 255));
+        PlayListField.setBackground(ColorSelections.getUITextFieldColor());
+        PlayListField.setForeground(ColorSelections.getUITextFieldFontColor());
         PlayListField.setText("Enter Name Here");
         PlayListField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -92,8 +93,8 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
-        NewPlayListButton.setBackground(new java.awt.Color(51, 51, 51));
-        NewPlayListButton.setForeground(new java.awt.Color(255, 255, 255));
+        NewPlayListButton.setBackground(ColorSelections.getUIButtonColor());
+        NewPlayListButton.setForeground(ColorSelections.getUIButtonTextColor());
         NewPlayListButton.setText("Add");
         NewPlayListButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,12 +102,12 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
-        PlayListBox.setBackground(new java.awt.Color(51, 51, 51));
-        PlayListBox.setForeground(new java.awt.Color(255, 255, 255));
+        PlayListBox.setBackground(ColorSelections.getUITextFieldColor());
+        PlayListBox.setForeground(ColorSelections.getUITextFieldFontColor());
         PlayListBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
 
-        AddSongButton.setBackground(new java.awt.Color(51, 51, 51));
-        AddSongButton.setForeground(new java.awt.Color(255, 255, 255));
+        AddSongButton.setBackground(ColorSelections.getUIButtonColor());
+        AddSongButton.setForeground(ColorSelections.getUIButtonTextColor());
         AddSongButton.setText("Add To List");
         AddSongButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,8 +115,8 @@ public class PlayListMenu extends javax.swing.JFrame
             }
         });
 
-        CancelButton.setBackground(new java.awt.Color(51, 51, 51));
-        CancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        CancelButton.setBackground(ColorSelections.getUIButtonColor());
+        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
