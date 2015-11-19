@@ -1,10 +1,13 @@
 package tools;
 
 import butterfly.AudioPlayer;
+import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 
 /**
  *
@@ -45,6 +48,7 @@ public class MusicFolderMenu extends javax.swing.JFrame
         initComponents();
         this.model = new DefaultListModel();
         this.FolderList.setModel(this.model);
+        this.FolderList.setCellRenderer(new SelectedListCellRenderer());
         
         folders.forEach(folder -> {
             this.model.addElement(folder);
@@ -170,6 +174,24 @@ public class MusicFolderMenu extends javax.swing.JFrame
         }
     }//GEN-LAST:event_RemoveButtonActionPerformed
 
+    private class SelectedListCellRenderer extends DefaultListCellRenderer
+    {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            Component item = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            if (!isSelected)
+            {
+                item.setBackground(ColorSelections.getTablePrimaryRowColor());
+                item.setForeground(ColorSelections.getTableRowUnselectedFontColor());
+            }
+            else
+            {
+                item.setBackground(ColorSelections.getTableRowSelectedColor());
+                item.setForeground(ColorSelections.getTableRowSelectedFontColor());
+            }
+            return item;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddFolder;
     private javax.swing.JList FolderList;
