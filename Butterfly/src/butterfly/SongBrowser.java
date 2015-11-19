@@ -131,6 +131,7 @@ public class SongBrowser implements IAudioController
     public void refresh()
     {
         this.displaySongList(this.createListFromTable());
+        this.refreshModel();
     }
     
     public void refreshModel()
@@ -210,6 +211,8 @@ public class SongBrowser implements IAudioController
                 field.setForeground(ColorSelections.getTableRowSongPlayingFontColor());
                 field.setBackground(ColorSelections.getTableRowSongPlayingColor());
                 field.setFont(field.getFont().deriveFont(Font.BOLD));
+                if (column == table.getColumnCount() - 1)
+                    playingrow = -1;
             }
             return field;
         }        
