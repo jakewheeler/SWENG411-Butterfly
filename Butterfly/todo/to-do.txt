@@ -1,10 +1,6 @@
 change border color of jtree and jtable
-Change colors of jtree using custom treenode
 update song time when dragging bar
 QA the shit out of it
-Change colors of the editor panels
-new menu to add or remove folders to/from library
-move all color values to static fields in colorselections
 
 if time permits: 
 allow users to set colors themself
