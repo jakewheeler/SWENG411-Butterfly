@@ -1,11 +1,9 @@
 package ui;
 
 import butterfly.AudioControl;
-import butterfly.AudioPlayer;
 import butterfly.IAudioController;
 import java.awt.Color;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import tools.ColorSelections;
 
 /**
  *
@@ -14,8 +12,6 @@ import javax.swing.ImageIcon;
 public class AudioControlUI extends javax.swing.JPanel implements IAudioUI 
 {
     private AudioControl controller;
-    private Icon pauseIMG;
-    private Icon playIMG;
     
     public AudioControlUI()
     {        
@@ -23,15 +19,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         
         SongLabel.setText(" ");
         ArtistLabel.setText(" ");
-        AlbumLabel.setText(" ");
-        try
-        {
-            pauseIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/pause.PNG"));
-            playIMG = new ImageIcon(getClass().getClassLoader().getResource("resources/play.PNG"));
-        }
-        catch(Exception ex){
-            AudioPlayer.HandleException(ex);
-        }        
+        AlbumLabel.setText(" ");     
     }
     
     @SuppressWarnings("unchecked")
@@ -57,7 +45,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1366, 100));
 
-        PlayPauseButton.setBackground(new java.awt.Color(51, 51, 51));
+        PlayPauseButton.setBackground(ColorSelections.getUIButtonColor());
         PlayPauseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/play.PNG"))); // NOI18N
         PlayPauseButton.setMaximumSize(new java.awt.Dimension(58, 33));
         PlayPauseButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -68,22 +56,22 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        SongLabel.setBackground(new java.awt.Color(255, 255, 255));
-        SongLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SongLabel.setBackground(ColorSelections.getUILabelColor());
+        SongLabel.setForeground(ColorSelections.getUILabelColor());
         SongLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SongLabel.setText("songName");
 
-        ArtistLabel.setBackground(new java.awt.Color(255, 255, 255));
-        ArtistLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ArtistLabel.setBackground(ColorSelections.getUILabelColor());
+        ArtistLabel.setForeground(ColorSelections.getUILabelColor());
         ArtistLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ArtistLabel.setText("artist");
 
-        AlbumLabel.setBackground(new java.awt.Color(255, 255, 255));
-        AlbumLabel.setForeground(new java.awt.Color(255, 255, 255));
+        AlbumLabel.setBackground(ColorSelections.getUILabelColor());
+        AlbumLabel.setForeground(ColorSelections.getUILabelColor());
         AlbumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AlbumLabel.setText("album");
 
-        NextButton.setBackground(new java.awt.Color(51, 51, 51));
+        NextButton.setBackground(ColorSelections.getUIButtonColor());
         NextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/right.PNG"))); // NOI18N
         NextButton.setMaximumSize(new java.awt.Dimension(58, 33));
         NextButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -94,7 +82,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        BackButton.setBackground(new java.awt.Color(51, 51, 51));
+        BackButton.setBackground(ColorSelections.getUIButtonColor());
         BackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left.png"))); // NOI18N
         BackButton.setMaximumSize(new java.awt.Dimension(58, 33));
         BackButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -105,7 +93,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        ShuffleButton.setBackground(new java.awt.Color(51, 51, 51));
+        ShuffleButton.setBackground(ColorSelections.getUIButtonColor());
         ShuffleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shuffle.PNG"))); // NOI18N
         ShuffleButton.setMaximumSize(new java.awt.Dimension(58, 33));
         ShuffleButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -142,16 +130,16 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        SongStartLabel.setBackground(new java.awt.Color(255, 255, 255));
-        SongStartLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SongStartLabel.setBackground(ColorSelections.getUILabelColor());
+        SongStartLabel.setForeground(ColorSelections.getUILabelColor());
         SongStartLabel.setText("00:00");
 
-        SongEndLabel.setBackground(new java.awt.Color(255, 255, 255));
-        SongEndLabel.setForeground(new java.awt.Color(255, 255, 255));
+        SongEndLabel.setBackground(ColorSelections.getUILabelColor());
+        SongEndLabel.setForeground(ColorSelections.getUILabelColor());
         SongEndLabel.setText("00:00");
 
-        ClearQueueButton.setBackground(new java.awt.Color(51, 51, 51));
-        ClearQueueButton.setForeground(new java.awt.Color(255, 255, 255));
+        ClearQueueButton.setBackground(ColorSelections.getUIButtonColor());
+        ClearQueueButton.setForeground(ColorSelections.getUIButtonTextColor());
         ClearQueueButton.setText("Clear Queue");
         ClearQueueButton.setPreferredSize(new java.awt.Dimension(75, 35));
         ClearQueueButton.addActionListener(new java.awt.event.ActionListener() {

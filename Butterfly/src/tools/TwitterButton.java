@@ -7,7 +7,7 @@ import butterfly.TwitterHelper;
  *
  * @author Jake
  */
-public class TwitterButton extends javax.swing.JPanel 
+public class TwitterButton extends javax.swing.JPanel
 {
     private TwitterHelper controller;
 

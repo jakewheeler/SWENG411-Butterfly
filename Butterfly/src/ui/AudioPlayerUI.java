@@ -23,7 +23,7 @@ public class AudioPlayerUI extends javax.swing.JFrame
             AudioPlayer.HandleException(ex);
         }
         initComponents();
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor()); // not working in editor, works in here....
+        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
     }
     
     public void setComponents(AudioPlayer controller)

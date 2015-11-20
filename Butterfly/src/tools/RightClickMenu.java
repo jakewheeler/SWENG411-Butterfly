@@ -199,7 +199,7 @@ public class RightClickMenu extends JPopupMenu
                 item.setForeground(ColorSelections.getTableRowUnselectedFontColor());
             }
         });
-        
+        item.setSize(this.getWidth()-10, item.getHeight());
         return item;
     }
     
