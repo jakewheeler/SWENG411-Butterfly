@@ -103,7 +103,8 @@ public class Album implements INamedSongList
 
     @Override
     public ArrayList<Song> getList() {
-        return this.songList;
+        ArrayList<Song> songs = new ArrayList<>(this.songList);
+        return songs;
     }
     
     public void updateAlbum(String name, String artist, String genre, int year)

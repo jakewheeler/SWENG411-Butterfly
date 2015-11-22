@@ -21,12 +21,40 @@ import javax.swing.JPopupMenu;
  */
 public class RightClickMenu extends JPopupMenu
 {
+    private static RightClickMenu menu;
     private final AudioPlayer player;
     private final HashMap<String, String> map = new HashMap<>();
     
-    private final int delay = 100;
+    private final int delay = 350;
     
-    public RightClickMenu(AudioPlayer player, Song song)
+    public static RightClickMenu getInstance(AudioPlayer player, ISongList list)
+    {
+        if (menu != null) return null;
+        
+        switch (list.getClass().getSimpleName())
+        {
+            case "ArtistSongList":
+                menu = new RightClickMenu(player, (ArtistSongList) list);
+                break;
+            case "Album":
+                menu = new RightClickMenu(player, (Album) list);
+                break;
+            case "PlayList":
+                menu = new RightClickMenu(player, (PlayList) list);
+                break;
+        }
+        return menu;
+    }
+    
+    public static RightClickMenu getInstance(AudioPlayer player, Song song)
+    {
+        if (menu != null) return null;
+        
+        menu = new RightClickMenu(player, song);
+        return menu;
+    }
+    
+    private RightClickMenu(AudioPlayer player, Song song)
     {
         this.player = player;
         this.setBackground(ColorSelections.getUIBackgroundColor());
@@ -34,21 +62,21 @@ public class RightClickMenu extends JPopupMenu
         setMouseEvents();
     }
     
-    public RightClickMenu(AudioPlayer player, ArtistSongList artist)
+    private RightClickMenu(AudioPlayer player, ArtistSongList artist)
     {
         this.player = player;
         init(artist);
         setMouseEvents();
     }
     
-    public RightClickMenu(AudioPlayer player, Album album)
+    private RightClickMenu(AudioPlayer player, Album album)
     {
         this.player = player;
         init(album);
         setMouseEvents();
     }
     
-    public RightClickMenu(AudioPlayer player, PlayList playlist)
+    private RightClickMenu(AudioPlayer player, PlayList playlist)
     {
         this.player = player;
         init(playlist);
@@ -169,6 +197,7 @@ public class RightClickMenu extends JPopupMenu
 
             @Override
             public void mousePressed(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON3) return;
                 try {
                     String methodName = map.get(item.getActionCommand());
                     Method method;
@@ -206,5 +235,6 @@ public class RightClickMenu extends JPopupMenu
     public void dispose()
     {
         this.setVisible(false);
+        menu = null;
     }
 }

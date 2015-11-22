@@ -320,36 +320,44 @@ public final class AudioPlayer
     public void songRightClicked(Song song, int x, int y)
     {
         new Thread(()->{
-            RightClickMenu menu = new RightClickMenu(this, song);
-            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
-            menu.setVisible(true);
+            RightClickMenu menu = RightClickMenu.getInstance(this, song);
+            if (menu != null){
+                menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+                menu.setVisible(true);
+            }
         }).start();
     }
     
     public void artistRightClicked(String artist, int x, int y)
     {
         new Thread(() -> {
-            RightClickMenu menu = new RightClickMenu(this, this.library.getArtist(artist));
-            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
-            menu.setVisible(true);
+            RightClickMenu menu = RightClickMenu.getInstance(this, this.library.getArtist(artist));
+            if (menu != null){
+                menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+                menu.setVisible(true);
+            }
         }).start();
     }
     
     public void playlistRightClicked(String playlist, int x, int y)
     {
         new Thread(() -> {
-            RightClickMenu menu = new RightClickMenu(this, this.library.getPlayList(playlist));
-            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
-            menu.setVisible(true);            
+            RightClickMenu menu = RightClickMenu.getInstance(this, this.library.getPlayList(playlist));
+            if (menu != null){
+                menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+                menu.setVisible(true);
+            }
         }).start();
     }
     
     public void albumRightClicked(String album, int x, int y)
     {
         new Thread(() -> {
-            RightClickMenu menu = new RightClickMenu(this, this.library.getAlbum(album));
-            menu.setLocation(MouseInfo.getPointerInfo().getLocation());
-            menu.setVisible(true);
+            RightClickMenu menu = RightClickMenu.getInstance(this, this.library.getAlbum(album));
+            if (menu != null){
+                menu.setLocation(MouseInfo.getPointerInfo().getLocation());
+                menu.setVisible(true);
+            }
         }).start();
     }
     

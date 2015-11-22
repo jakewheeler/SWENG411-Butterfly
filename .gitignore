@@ -8,7 +8,6 @@ Butterfly/nbproject/private/
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 !beaglebuddy_mp3.jar
