@@ -49,10 +49,10 @@ public class MusicFolderMenu extends javax.swing.JFrame
         this.model = new DefaultListModel();
         this.FolderList.setModel(this.model);
         this.FolderList.setCellRenderer(new SelectedListCellRenderer());
-        
-        folders.forEach(folder -> {
-            this.model.addElement(folder);
-        });
+        if (folders != null)
+            folders.forEach(folder -> {
+                this.model.addElement(folder);
+            });
     }
 
     /**
