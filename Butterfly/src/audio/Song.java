@@ -151,6 +151,10 @@ public class Song implements Serializable
         initMp3();
         this.numberOnAlbum = num;   
         this.mp3.setTrack(num);
+        if(this.numberOnAlbum == 0)
+        {
+            this.numberOnAlbum = Integer.parseInt("Unknown");
+        }
         try {
             this.mp3.save();
         } catch (Exception ex) {
