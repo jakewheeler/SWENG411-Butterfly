@@ -1,0 +1,1448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Butterfly">
+  <ClassDiagramComponents>
+    <Class name="Album" package="audio" visibility="public" xPosition="6089.0" yPosition="4808.0">
+      <Fields>
+        <Field name="name" type="String" visibility="protected"/>
+        <Field name="year" type="int" visibility="protected"/>
+        <Field name="songList" type="ArrayList&lt;Song&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="genre"/>
+          <Argument type="String" name="artist"/>
+          <Argument type="int" name="year"/>
+          <Argument type="Song" name="song"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getGenre" returnType="String" visibility="public"/>
+        <Method name="setGenre" returnType="void" visibility="public">
+          <Argument type="String" name="genre"/>
+        </Method>
+        <Method name="getArtist" returnType="String" visibility="public"/>
+        <Method name="setArtist" returnType="void" visibility="public">
+          <Argument type="String" name="artist"/>
+        </Method>
+        <Method name="getYear" returnType="int" visibility="public"/>
+        <Method name="setYear" returnType="void" visibility="public">
+          <Argument type="int" name="year"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+        <Method name="updateAlbum" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="artist"/>
+          <Argument type="String" name="genre"/>
+          <Argument type="int" name="year"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ArtistSongList" package="audio" visibility="public" xPosition="7179.0" yPosition="2238.0">
+      <Fields>
+        <Field name="name" type="String" visibility="protected"/>
+        <Field name="albums" type="TreeMap&lt;String, Album&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAlbums" returnType="TreeMap&lt;String, Album&gt;" visibility="public"/>
+        <Method name="addAlbum" returnType="void" visibility="public">
+          <Argument type="Album" name="album"/>
+        </Method>
+        <Method name="removeAlbum" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Library" package="audio" visibility="public" xPosition="2647.0" yPosition="1055.0">
+      <Fields>
+        <Field name="artists" type="TreeMap&lt;String, ArtistSongList&gt;" visibility="protected"/>
+        <Field name="playlists" type="TreeMap&lt;String, PlayList&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="list"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getArtist" returnType="ArtistSongList" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getArtistBySong" returnType="ArtistSongList" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="getAlbum" returnType="Album" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="organize" returnType="void" visibility="private">
+          <Argument type="ArrayList&lt;Song&gt;" name="songList"/>
+        </Method>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getPlayList" returnType="PlayList" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="updateArtistName" returnType="void" visibility="public">
+          <Argument type="ArtistSongList" name="artist"/>
+          <Argument type="String" name="newName"/>
+        </Method>
+        <Method name="updateAlbumArtist" returnType="void" visibility="public">
+          <Argument type="Album" name="album"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="newArtist"/>
+          <Argument type="String" name="genre"/>
+          <Argument type="int" name="year"/>
+        </Method>
+        <Method name="updatePlaylistName" returnType="void" visibility="public">
+          <Argument type="PlayList" name="list"/>
+          <Argument type="String" name="newName"/>
+        </Method>
+        <Method name="addPlaylist" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addPlaylist" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addPlaylist" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="addSongToPlaylist" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addListToPlayList" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="getAllPlaylists" returnType="ISongList" visibility="public"/>
+        <Method name="removePlayList" returnType="void" visibility="public">
+          <Argument type="PlayList" name="list"/>
+        </Method>
+        <Method name="removePlayList" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getArtistMap" returnType="TreeMap&lt;String, ArtistSongList&gt;" visibility="public"/>
+        <Method name="getPlayListMap" returnType="TreeMap&lt;String, PlayList&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PlayList" package="audio" visibility="public" xPosition="1401.0" yPosition="1859.0">
+      <Fields>
+        <Field name="name" type="String" visibility="protected"/>
+        <Field name="songList" type="ArrayList&lt;Song&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Song" package="audio" visibility="public" xPosition="3482.0" yPosition="5799.0">
+      <Fields>
+        <Field name="numberOnAlbum" type="int" visibility="private"/>
+        <Field name="audio" type="Media" visibility="private" isTransient="true"/>
+        <Field name="mp3" type="MP3" visibility="private" isTransient="true"/>
+        <Field name="songfile" type="File" visibility="private" isTransient="true"/>
+        <Field name="jfxp" type="JFXPanel" visibility="private" isTransient="true"/>
+        <Field name="url" type="URL" visibility="private"/>
+        <Field name="artist" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="filePath"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="load" returnType="void" visibility="public"/>
+        <Method name="unload" returnType="void" visibility="public"/>
+        <Method name="getArtist" returnType="String" visibility="public"/>
+        <Method name="setArtist" returnType="void" visibility="public">
+          <Argument type="String" name="artist"/>
+        </Method>
+        <Method name="getAlbum" returnType="String" visibility="public"/>
+        <Method name="setAlbum" returnType="void" visibility="public">
+          <Argument type="String" name="album"/>
+        </Method>
+        <Method name="getSongName" returnType="String" visibility="public"/>
+        <Method name="setSongName" returnType="void" visibility="public">
+          <Argument type="String" name="songName"/>
+        </Method>
+        <Method name="getGenre" returnType="String" visibility="public"/>
+        <Method name="setGenre" returnType="void" visibility="public">
+          <Argument type="String" name="genre"/>
+        </Method>
+        <Method name="getNumberOnAlbum" returnType="int" visibility="public"/>
+        <Method name="setNumberOnAlbum" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="getAudio" returnType="Media" visibility="public"/>
+        <Method name="getFilePath" returnType="String" visibility="public"/>
+        <Method name="getFormattedLength" returnType="String" visibility="public"/>
+        <Method name="getSongLength" returnType="int" visibility="public"/>
+        <Method name="getYear" returnType="int" visibility="public"/>
+        <Method name="setYear" returnType="void" visibility="public">
+          <Argument type="int" name="year"/>
+        </Method>
+        <Method name="updateSong" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="artist"/>
+          <Argument type="String" name="album"/>
+          <Argument type="String" name="genre"/>
+          <Argument type="int" name="year"/>
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="initMp3" returnType="void" visibility="private"/>
+        <Method name="getTag" returnType="String" visibility="private">
+          <Argument type="String" name="tag"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SongList" package="audio" visibility="public" xPosition="3810.0" yPosition="-61.0">
+      <Fields>
+        <Field name="songList" type="ArrayList&lt;Song&gt;" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SongQueue" package="audio" visibility="public" xPosition="2715.0" yPosition="4288.0">
+      <Fields>
+        <Field name="currentSong" type="Song" visibility="private"/>
+        <Field name="isRepeat" type="boolean" visibility="private"/>
+        <Field name="index" type="int" visibility="private"/>
+        <Field name="songList" type="ArrayList&lt;Song&gt;" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCurrentSong" returnType="Song" visibility="public"/>
+        <Method name="setCurrentSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="setCurrentQueue" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songList"/>
+        </Method>
+        <Method name="next" returnType="void" visibility="public"/>
+        <Method name="previous" returnType="void" visibility="public"/>
+        <Method name="canSkip" returnType="boolean" visibility="private"/>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="toggleRepeat" returnType="void" visibility="public"/>
+        <Method name="shuffle" returnType="void" visibility="public"/>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AudioControl" package="butterfly" visibility="public" xPosition="5135.0" yPosition="3125.0">
+      <Fields>
+        <Field name="mp" type="MediaPlayer" visibility="private"/>
+        <Field name="playFlag" type="boolean" visibility="private"/>
+        <Field name="queue" type="SongQueue" visibility="private" isFinal="true"/>
+        <Field name="ui" type="AudioControlUI" visibility="private"/>
+        <Field name="volume" type="double" visibility="private"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="pauseIMG" type="Icon" visibility="private"/>
+        <Field name="playIMG" type="Icon" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="IAudioUI" name="ui"/>
+        </Method>
+        <Method name="play" returnType="void" visibility="public"/>
+        <Method name="isPlaying" returnType="boolean" visibility="public"/>
+        <Method name="pause" returnType="void" visibility="public"/>
+        <Method name="stop" returnType="void" visibility="public"/>
+        <Method name="getCurrentSong" returnType="Song" visibility="public"/>
+        <Method name="next" returnType="void" visibility="public"/>
+        <Method name="previous" returnType="void" visibility="public"/>
+        <Method name="canSkip" returnType="boolean" visibility="private"/>
+        <Method name="repeat" returnType="void" visibility="public"/>
+        <Method name="shuffle" returnType="void" visibility="public"/>
+        <Method name="addSongsToQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongsToQueue" returnType="void" visibility="public">
+          <Argument type="ISongList" name="songs"/>
+        </Method>
+        <Method name="removeSongFromQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongsFromQueue" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="playSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="newQueue" returnType="void" visibility="public">
+          <Argument type="SongList" name="songs"/>
+        </Method>
+        <Method name="newQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+          <Argument type="ISongList" name="songs"/>
+        </Method>
+        <Method name="updateUI" returnType="void" visibility="private"/>
+        <Method name="setVolume" returnType="void" visibility="public">
+          <Argument type="double" name="volume"/>
+        </Method>
+        <Method name="changeSong" returnType="void" visibility="private"/>
+        <Method name="setDuration" returnType="void" visibility="public">
+          <Argument type="int" name="percentage"/>
+        </Method>
+        <Method name="clearQueue" returnType="void" visibility="public"/>
+        <Method name="getCurrentQueue" returnType="ISongList" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AudioPlayer" package="butterfly" visibility="public" isFinal="true" xPosition="4966.0" yPosition="1090.0">
+      <Fields>
+        <Field name="ui" type="AudioPlayerUI" visibility="private"/>
+        <Field name="audiocontrol" type="AudioControl" visibility="private"/>
+        <Field name="searchhelper" type="SearchHelper" visibility="private"/>
+        <Field name="songbrowser" type="SongBrowser" visibility="private"/>
+        <Field name="manager" type="LibraryManager" visibility="private"/>
+        <Field name="libbrowser" type="LibraryBrowser" visibility="private"/>
+        <Field name="library" type="Library" visibility="private"/>
+        <Field name="twitterHelper" type="TwitterHelper" visibility="private"/>
+        <Field name="musicpaths" type="ArrayList&lt;String&gt;" visibility="private"/>
+        <Field name="libraryfile" type="String" visibility="private" isFinal="true"/>
+        <Field name="locationfile" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setSearchHelper" returnType="void" visibility="public">
+          <Argument type="SearchHelper" name="helper"/>
+        </Method>
+        <Method name="search" returnType="SongList" visibility="public">
+          <Argument type="String" name="words"/>
+        </Method>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="AudioPlayerUI" name="ui"/>
+        </Method>
+        <Method name="displaySongs" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="initMain" returnType="void" visibility="public"/>
+        <Method name="readFromFile" returnType="Object" visibility="private">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="closing" returnType="void" visibility="public"/>
+        <Method name="writeToFile" returnType="void" visibility="private">
+          <Argument type="String" name="path"/>
+          <Argument type="Object" name="objectToWrite"/>
+        </Method>
+        <Method name="changeQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+          <Argument type="ISongList" name="newList"/>
+        </Method>
+        <Method name="getLibrary" returnType="Library" visibility="public"/>
+        <Method name="getTwitterHelper" returnType="TwitterHelper" visibility="public"/>
+        <Method name="getAudioControl" returnType="AudioControl" visibility="public"/>
+        <Method name="getSongBrowser" returnType="SongBrowser" visibility="public"/>
+        <Method name="editMusicFolder" returnType="void" visibility="public"/>
+        <Method name="addMusicFolder" returnType="void" visibility="public">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="removeMusicFolder" returnType="void" visibility="public">
+          <Argument type="String" name="path"/>
+        </Method>
+        <Method name="addSongsToLibrary" returnType="void" visibility="private">
+          <Argument type="String" name="musicFolderPath"/>
+        </Method>
+        <Method name="removeSongsFromLibrary" returnType="void" visibility="private">
+          <Argument type="String" name="musicFolderPath"/>
+        </Method>
+        <Method name="songRightClicked" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="artistRightClicked" returnType="void" visibility="public">
+          <Argument type="String" name="artist"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="playlistRightClicked" returnType="void" visibility="public">
+          <Argument type="String" name="playlist"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="albumRightClicked" returnType="void" visibility="public">
+          <Argument type="String" name="album"/>
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="addSongToQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongFromQueue" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongFromLibrary" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="editSongInfo" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongToPlayList" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="editArtistInfo" returnType="void" visibility="public">
+          <Argument type="ISongList" name="artist"/>
+        </Method>
+        <Method name="removePlaylistFromLibrary" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="editPlaylistInfo" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="addSongListToQueue" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="removeSongListFromLibrary" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="editAlbumInfo" returnType="void" visibility="public">
+          <Argument type="ISongList" name="album"/>
+        </Method>
+        <Method name="addSonglistToPlaylist" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="getCurrentQueue" returnType="ISongList" visibility="public"/>
+        <Method name="addNewPlaylist" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addToPlayList" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addToPlayList" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="HandleException" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Exception" name="ex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FileMenu" package="butterfly" visibility="public" xPosition="1465.0" yPosition="66.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LibraryBrowser" package="butterfly" visibility="public" xPosition="7823.0" yPosition="2030.0">
+      <Fields>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="ui" type="LibraryBrowserUI" visibility="private"/>
+        <Field name="renderer" type="SongTreeCellRenderer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="update" returnType="void" visibility="public"/>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="IAudioUI" name="ui"/>
+        </Method>
+        <Method name="displaySelection" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+        <Method name="rightClick" returnType="void" visibility="public">
+          <Argument type="int" name="x"/>
+          <Argument type="int" name="y"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LibraryManager" package="butterfly" visibility="public" xPosition="4790.0" yPosition="66.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getSongsInDirectory" returnType="ArrayList&lt;File&gt;" visibility="public">
+          <Argument type="String" name="directoryPath"/>
+          <Argument type="ArrayList&lt;String&gt;" name="filesInLibrary"/>
+        </Method>
+        <Method name="getMP3s" returnType="void" visibility="private">
+          <Argument type="ArrayList&lt;File&gt;" name="songs"/>
+          <Argument type="File" name="file"/>
+          <Argument type="ArrayList&lt;String&gt;" name="filesInLibrary"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SearchHelper" package="butterfly" visibility="public" xPosition="3831.0" yPosition="1290.0">
+      <Fields>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="search" returnType="SongList" visibility="public">
+          <Argument type="String" name="keyword"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="private">
+          <Argument type="Song" name="song"/>
+          <Argument type="List&lt;String&gt;" name="keywords"/>
+        </Method>
+        <Method name="compare" returnType="boolean" visibility="private">
+          <Argument type="Song" name="song"/>
+          <Argument type="String" name="keyword"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SongBrowser" package="butterfly" visibility="public" xPosition="4273.0" yPosition="3241.0">
+      <Fields>
+        <Field name="ui" type="SongBrowserUI" visibility="private"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="searcher" type="SearchHelper" visibility="private" isFinal="true"/>
+        <Field name="playingrow" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="IAudioUI" name="ui"/>
+        </Method>
+        <Method name="displaySongList" returnType="void" visibility="public"/>
+        <Method name="displaySongList" returnType="void" visibility="public">
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="getCurrentList" returnType="ISongList" visibility="public"/>
+        <Method name="playList" returnType="void" visibility="public"/>
+        <Method name="search" returnType="void" visibility="public">
+          <Argument type="String" name="words"/>
+        </Method>
+        <Method name="rightClick" returnType="void" visibility="public">
+          <Argument type="Point" name="p"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="refresh" returnType="void" visibility="public"/>
+        <Method name="refreshModel" returnType="void" visibility="public"/>
+        <Method name="createListFromTable" returnType="SongList" visibility="private"/>
+        <Method name="highlight" returnType="void" visibility="public">
+          <Argument type="Point" name="p"/>
+        </Method>
+        <Method name="getSongAtIndex" returnType="Song" visibility="private">
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TwitterHelper" package="butterfly" visibility="public" xPosition="8377.0" yPosition="3049.0">
+      <Fields>
+        <Field name="audioPlayer" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="parentUI" type="AudioPlayerUI" visibility="private" isFinal="true"/>
+        <Field name="ui" type="TwitterHelperUI" visibility="private"/>
+        <Field name="CONSUMER_KEY" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="CONSUMER_SECRET_KEY" type="String" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="twitter" type="Twitter" visibility="private"/>
+        <Field name="requestToken" type="RequestToken" visibility="private"/>
+        <Field name="accessToken" type="AccessToken" visibility="private"/>
+        <Field name="pin" type="String" visibility="private"/>
+        <Field name="pinIsCorrect" type="boolean" visibility="private"/>
+        <Field name="writer" type="PrintWriter" visibility="private"/>
+        <Field name="file" type="File" visibility="private" isFinal="true"/>
+        <Field name="twitterFileName" type="String" visibility="private" isFinal="true"/>
+        <Field name="authenticationURL" type="String" visibility="private"/>
+        <Field name="hasCredentials" type="boolean" visibility="private"/>
+        <Field name="TWITTER_MESSAGE_MAX_LEN" type="int" visibility="private" isFinal="true"/>
+        <Field name="defaultTweet" type="String" visibility="private"/>
+        <Field name="butterflyURL" type="String" visibility="private" isFinal="true"/>
+        <Field name="PINErrorMessage" type="String" visibility="private" isFinal="true"/>
+        <Field name="tooManyCharsInTweetError" type="String" visibility="private" isFinal="true"/>
+        <Field name="reauthenticationSuccess" type="String" visibility="private" isFinal="true"/>
+        <Field name="noSongDataError" type="String" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="audioPlayer"/>
+          <Argument type="AudioPlayerUI" name="parentUI"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="IAudioUI" name="ui"/>
+        </Method>
+        <Method name="startTwitter" returnType="void" visibility="public"/>
+        <Method name="setCredentialMethod" returnType="void" visibility="public"/>
+        <Method name="openAuthenticationURL" returnType="void" visibility="private"/>
+        <Method name="getSavedAccessToken" returnType="String" visibility="private"/>
+        <Method name="getSavedAccessTokenSecret" returnType="String" visibility="private"/>
+        <Method name="useSavedCredentials" returnType="void" visibility="public"/>
+        <Method name="getNewCredentials" returnType="void" visibility="public"/>
+        <Method name="getPinFromUser" returnType="void" visibility="public"/>
+        <Method name="writeTokensToFile" returnType="void" visibility="private"/>
+        <Method name="hasCredentialsStatus" returnType="boolean" visibility="public"/>
+        <Method name="sendTweet" returnType="void" visibility="public">
+          <Argument type="TweetTemplate" name="temp"/>
+        </Method>
+        <Method name="createTweetTemplate" returnType="void" visibility="public"/>
+        <Method name="createPinEntryForm" returnType="void" visibility="public"/>
+        <Method name="getPinStatus" returnType="boolean" visibility="public"/>
+        <Method name="getTwitterMessageMaxLength" returnType="int" visibility="public"/>
+        <Method name="counterLabelColorController" returnType="void" visibility="public">
+          <Argument type="TweetTemplate" name="tweetTemplate"/>
+          <Argument type="int" name="text"/>
+        </Method>
+        <Method name="clearTwitterFile" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AlbumEditor" package="tools" visibility="public" xPosition="4413.0" yPosition="4846.0">
+      <Fields>
+        <Field name="album" type="Album" visibility="private" isFinal="true"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="AlbumNameLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="ArtistField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="ArtistLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="GenreField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="GenreLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="NameField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="OkButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="YearField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="YearLabel" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="Album" name="album"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OkButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ArtistEditor" package="tools" visibility="public" xPosition="5863.0" yPosition="3225.0">
+      <Fields>
+        <Field name="artist" type="ArtistSongList" visibility="private" isFinal="true"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="ArtistField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="ArtistNameLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="OkButton" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="ArtistSongList" name="artist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OkButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ColorSelections" package="tools" visibility="public" xPosition="6754.0" yPosition="8.0">
+      <Fields>
+        <Field name="tableBackgroundColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tablePrimaryRowColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableSecondaryRowColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableRowSelectedColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableRowSongPlayingColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableRowUnselectedFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableRowSelectedFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tableRowSongPlayingFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="libraryBrowserBackgroundColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="libraryBrowserNodeFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="twitterTemplateWithinLimitLabelColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="twitterTemplateOutsideLimitLabelColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UIBackgroundColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UIButtonColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UIButtonFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UILabelColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UITextFieldColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="UITextFieldFontColor" type="Color" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getTableBackgroundColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTablePrimaryRowColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableSeconaryRowColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableRowSelectedColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableRowSongPlayingColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableRowUnselectedFontColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableRowSelectedFontColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTableRowSongPlayingFontColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getLibraryBrowserBackgroundColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getLibraryBrowserNodeFontColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTwitterTemplateWithinLimitLabelColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getTwitterTemplateOutsideLimitLabelColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUIBackgroundColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUIButtonColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUIButtonTextColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUILabelColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUITextFieldColor" returnType="Color" visibility="public" isStatic="true"/>
+        <Method name="getUITextFieldFontColor" returnType="Color" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="CustomFileMenu" package="tools" visibility="public" xPosition="7378.0" yPosition="174.0">
+      <Fields>
+        <Field name="BGColor" type="Color" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setColor" returnType="void" visibility="public">
+          <Argument type="Color" name="color"/>
+        </Method>
+        <Method name="paintComponent" returnType="void" visibility="protected">
+          <Argument type="Graphics" name="g"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MusicFolderMenu" package="tools" visibility="public" xPosition="8151.0" yPosition="1136.0">
+      <Fields>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="model" type="DefaultListModel" visibility="private" isFinal="true"/>
+        <Field name="AddFolder" type="javax.swing.JButton" visibility="private"/>
+        <Field name="FolderList" type="javax.swing.JList" visibility="private"/>
+        <Field name="FolderListScroll" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="OkButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="RemoveButton" type="javax.swing.JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="ArrayList&lt;String&gt;" name="folders"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AddFolderActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OkButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="RemoveButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PlaylistEditor" package="tools" visibility="public" xPosition="2054.0" yPosition="1888.0">
+      <Fields>
+        <Field name="playlist" type="PlayList" visibility="private" isFinal="true"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="NameField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="OkButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="PlaylistLabel" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="PlayList" name="playlist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OkButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PlayListMenu" package="tools" visibility="public" xPosition="5276.0" yPosition="6075.0">
+      <Fields>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="song" type="Song" visibility="private"/>
+        <Field name="list" type="ISongList" visibility="private"/>
+        <Field name="AddPlaylistLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="AddSongButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="NewPlayListButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="PlayListBox" type="javax.swing.JComboBox" visibility="private"/>
+        <Field name="PlayListField" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="ISongList" name="list"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="start" returnType="void" visibility="private"/>
+        <Method name="updateBox" returnType="void" visibility="private"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="AddSongButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="PlayListFieldMousePressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="NewPlayListButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RightClickMenu" package="tools" visibility="public" xPosition="3085.0" yPosition="3291.0">
+      <Fields>
+        <Field name="menu" type="RightClickMenu" visibility="private" isStatic="true"/>
+        <Field name="player" type="AudioPlayer" visibility="private" isFinal="true"/>
+        <Field name="map" type="HashMap&lt;String, String&gt;" visibility="private" isFinal="true"/>
+        <Field name="delay" type="int" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="private">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="Song" name="song"/>
+        </Constructor>
+        <Constructor visibility="private">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="ArtistSongList" name="artist"/>
+        </Constructor>
+        <Constructor visibility="private">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="Album" name="album"/>
+        </Constructor>
+        <Constructor visibility="private">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="PlayList" name="playlist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getInstance" returnType="RightClickMenu" visibility="public" isStatic="true">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="ISongList" name="list"/>
+        </Method>
+        <Method name="getInstance" returnType="RightClickMenu" visibility="public" isStatic="true">
+          <Argument type="AudioPlayer" name="player"/>
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="private">
+          <Argument type="ArtistSongList" name="artist"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="private">
+          <Argument type="Album" name="album"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="private">
+          <Argument type="PlayList" name="list"/>
+        </Method>
+        <Method name="init" returnType="void" visibility="private">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="setMouseEvents" returnType="void" visibility="private"/>
+        <Method name="getItem" returnType="JMenuItem" visibility="private">
+          <Argument type="String" name="text"/>
+          <Argument type="Object" name="object"/>
+        </Method>
+        <Method name="dispose" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SongEditor" package="tools" visibility="public" xPosition="3350.0" yPosition="6989.0">
+      <Fields>
+        <Field name="song" type="Song" visibility="private" isFinal="true"/>
+        <Field name="AlbumField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="AlbumLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="ArtistField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="ArtistLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="GenreField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="GenreLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="NumberField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="OkButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="SongField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="SongNameLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="TrackNumberLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="YearField" type="javax.swing.JFormattedTextField" visibility="private"/>
+        <Field name="YearLabel" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Song" name="song"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OkButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SongModel" package="tools" visibility="public" xPosition="2385.0" yPosition="6093.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="isCellEditable" returnType="boolean" visibility="public">
+          <Argument type="int" name="row"/>
+          <Argument type="int" name="col"/>
+        </Method>
+        <Method name="addRow" returnType="void" visibility="public">
+          <Argument type="SongRowObject" name="o"/>
+        </Method>
+        <Method name="getSong" returnType="Song" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="SongRowObject" package="tools" visibility="public" xPosition="1940.0" yPosition="998.0">
+      <Fields>
+        <Field name="storedSong" type="Song" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Song" name="song"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getSong" returnType="Song" visibility="public"/>
+        <Method name="getRowInfo" returnType="Object[]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TweetTemplate" package="tools" visibility="public" xPosition="8270.0" yPosition="4412.0">
+      <Fields>
+        <Field name="twitterHelper" type="TwitterHelper" visibility="private" isFinal="true"/>
+        <Field name="CancelButton" type="javax.swing.JButton" visibility="public"/>
+        <Field name="EnterMessageLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="SendTweetButton" type="javax.swing.JButton" visibility="public"/>
+        <Field name="TweetLengthLabel" type="javax.swing.JLabel" visibility="public"/>
+        <Field name="TweetScrollPane" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="TweetTextArea" type="javax.swing.JTextArea" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="TwitterHelper" name="twitterHelper"/>
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="SendTweetButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="CancelButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="TweetTextAreaKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TwitterButton" package="tools" visibility="public" xPosition="9449.0" yPosition="3110.0">
+      <Fields>
+        <Field name="controller" type="TwitterHelper" visibility="private"/>
+        <Field name="TwitterButton" type="javax.swing.JButton" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setTwitterHelper" returnType="void" visibility="public">
+          <Argument type="TwitterHelper" name="twitterHelper"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="TwitterButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AudioControlUI" package="ui" visibility="public" xPosition="7138.0" yPosition="4534.0">
+      <Fields>
+        <Field name="controller" type="AudioControl" visibility="private"/>
+        <Field name="AlbumLabel" type="javax.swing.JLabel" visibility="public"/>
+        <Field name="ArtistLabel" type="javax.swing.JLabel" visibility="public"/>
+        <Field name="BackButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="ClearQueueButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="NextButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="PlayPauseButton" type="javax.swing.JButton" visibility="public"/>
+        <Field name="ShuffleButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="SongEndLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="SongLabel" type="javax.swing.JLabel" visibility="public"/>
+        <Field name="SongLocationSlider" type="javax.swing.JSlider" visibility="public"/>
+        <Field name="SongStartLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="TheGreatBigInvisibleButton" type="javax.swing.JButton" visibility="private"/>
+        <Field name="TwitterButtonControl" type="tools.TwitterButton" visibility="public"/>
+        <Field name="VolumeSlider" type="javax.swing.JSlider" visibility="private"/>
+        <Field name="repeatButton" type="javax.swing.JToggleButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="PlayPauseButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="BackButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="NextButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="ShuffleButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="VolumeSliderStateChanged" returnType="void" visibility="private">
+          <Argument type="javax.swing.event.ChangeEvent" name="evt"/>
+        </Method>
+        <Method name="repeatButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="SongLocationSliderMouseReleased" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="ClearQueueButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="IAudioController" name="controller"/>
+        </Method>
+        <Method name="setSongEndLabel" returnType="void" visibility="public">
+          <Argument type="String" name="time"/>
+        </Method>
+        <Method name="setSongStartLabel" returnType="void" visibility="public">
+          <Argument type="String" name="time"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AudioPlayerUI" package="ui" visibility="public" xPosition="6881.0" yPosition="3241.0">
+      <Fields>
+        <Field name="controller" type="AudioPlayer" visibility="private"/>
+        <Field name="AddFilePathItem" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="AudioControlUI" type="ui.AudioControlUI" visibility="public"/>
+        <Field name="ExitItem" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="FileMenu" type="javax.swing.JMenu" visibility="private"/>
+        <Field name="FileMenuBar" type="javax.swing.JMenuBar" visibility="private"/>
+        <Field name="LibraryBrowserUI" type="ui.LibraryBrowserUI" visibility="public"/>
+        <Field name="LibrarySplitter" type="javax.swing.JSplitPane" visibility="private"/>
+        <Field name="ReauthTwitterItem" type="javax.swing.JMenuItem" visibility="private"/>
+        <Field name="SongBrowserUI" type="ui.SongBrowserUI" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setComponents" returnType="void" visibility="public">
+          <Argument type="AudioPlayer" name="controller"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="formWindowClosing" returnType="void" visibility="private">
+          <Argument type="java.awt.event.WindowEvent" name="evt"/>
+        </Method>
+        <Method name="ReauthTwitterItemMousePressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="ExitItemMousePressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="AddFilePathItemActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LibraryBrowserUI" package="ui" visibility="public" xPosition="8320.0" yPosition="2470.0">
+      <Fields>
+        <Field name="controller" type="LibraryBrowser" visibility="private"/>
+        <Field name="LibraryTree" type="javax.swing.JTree" visibility="public"/>
+        <Field name="TreeScollPane" type="javax.swing.JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="LibraryTreeMousePressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="getTree" returnType="JTree" visibility="public"/>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="IAudioController" name="controller"/>
+        </Method>
+        <Method name="initTree" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SongBrowserUI" package="ui" visibility="public" xPosition="1401.0" yPosition="6331.0">
+      <Fields>
+        <Field name="controller" type="SongBrowser" visibility="private"/>
+        <Field name="LibraryTable" type="javax.swing.JTable" visibility="public"/>
+        <Field name="LibraryTableScrollPane" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="SearchField" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="SearchLibraryLabel" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="SearchFieldKeyReleased" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="LibraryTableMousePressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="IAudioController" name="controller"/>
+        </Method>
+        <Method name="search" returnType="void" visibility="private">
+          <Argument type="String" name="words"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TwitterHelperUI" package="ui" visibility="public" xPosition="9259.0" yPosition="3927.0">
+      <Fields>
+        <Field name="controller" type="TwitterHelper" visibility="private"/>
+        <Field name="EnterPinLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="InstructionLabel" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="OKButton" type="javax.swing.JButton" visibility="public"/>
+        <Field name="PINEntryTextField" type="javax.swing.JTextField" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="java.awt.Frame" name="parent"/>
+          <Argument type="boolean" name="modal"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents void" visibility="private"/>
+        <Method name="PINEntryTextFieldActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OKButtonActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="IAudioController" name="controller"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="INamedSongList" package="audio" visibility="public" xPosition="1364.0" yPosition="888.0">
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="ISongList" package="audio" visibility="public" xPosition="3257.0" yPosition="2348.0">
+      <Methods>
+        <Method name="addSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="addSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="removeSong" returnType="void" visibility="public">
+          <Argument type="Song" name="song"/>
+        </Method>
+        <Method name="removeSongs" returnType="void" visibility="public">
+          <Argument type="ArrayList&lt;Song&gt;" name="songs"/>
+        </Method>
+        <Method name="getLength" returnType="int" visibility="public"/>
+        <Method name="getList" returnType="ArrayList&lt;Song&gt;" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="IAudioController" package="butterfly" visibility="public" xPosition="1732.0" yPosition="304.0">
+      <Methods>
+        <Method name="setUI" returnType="void" visibility="public">
+          <Argument type="IAudioUI" name="ui"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="IAudioPlayerComponent" package="butterfly" visibility="public" xPosition="2302.0" yPosition="66.0">
+      <Methods/>
+    </Interface>
+    <Interface name="IAudioUI" package="ui" visibility="public" xPosition="5961.0" yPosition="346.0">
+      <Methods>
+        <Method name="setController" returnType="void" visibility="public">
+          <Argument type="IAudioController" name="controller"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.PlayList" target="audio.INamedSongList"/>
+    <HasRelation name="ui" source="butterfly.AudioPlayer" target="ui.AudioPlayerUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.RightClickMenu" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.IAudioController" target="ui.IAudioUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="tools.PlayListMenu" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="playlists" source="audio.Library" target="audio.PlayList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="TreeMap&lt;String, PlayList&gt;"/>
+    <HasRelation name="searchhelper" source="butterfly.AudioPlayer" target="butterfly.SearchHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.SongList" target="audio.ISongList"/>
+    <UseRelation source="butterfly.TwitterHelper" target="ui.IAudioUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.SongBrowser" target="butterfly.IAudioController"/>
+    <UseRelation source="tools.SongModel" target="tools.SongRowObject" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.Library" target="audio.ISongList"/>
+    <HasRelation name="audiocontrol" source="butterfly.AudioPlayer" target="butterfly.AudioControl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="ui.AudioControlUI" target="ui.IAudioUI"/>
+    <HasRelation name="songbrowser" source="butterfly.AudioPlayer" target="butterfly.SongBrowser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="searcher" source="butterfly.SongBrowser" target="butterfly.SearchHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ui.IAudioUI" target="butterfly.IAudioController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.LibraryBrowser" target="butterfly.IAudioController"/>
+    <UseRelation source="butterfly.SearchHelper" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="songList" source="audio.SongQueue" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Song&gt;"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.SongQueue" target="audio.ISongList"/>
+    <HasRelation name="controller" source="ui.AudioPlayerUI" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.SongBrowser" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.Library" target="audio.PlayList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioPlayer" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.PlayList" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ui.AudioControlUI" target="butterfly.IAudioController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.SongQueue" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ui" source="butterfly.SongBrowser" target="ui.SongBrowserUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioPlayer" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="ui.SongBrowserUI" target="butterfly.IAudioController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.RightClickMenu" target="tools.RightClickMenu" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.SongBrowser" target="ui.IAudioUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.ArtistSongList" target="audio.INamedSongList"/>
+    <UseRelation source="butterfly.AudioPlayer" target="butterfly.SearchHelper" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="songList" source="audio.SongList" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Song&gt;"/>
+    <UseRelation source="butterfly.AudioControl" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="butterfly.SearchHelper" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioControl" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.ISongList" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioControl" target="ui.IAudioUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="twitterHelper" source="tools.TweetTemplate" target="butterfly.TwitterHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="song" source="tools.PlayListMenu" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioPlayer" target="butterfly.AudioControl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="parentUI" source="butterfly.TwitterHelper" target="ui.AudioPlayerUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="menu" source="tools.RightClickMenu" target="tools.RightClickMenu" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.ArtistSongList" target="audio.Album" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.Album" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="ui.TwitterHelperUI" target="butterfly.TwitterHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="tools.RightClickMenu" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="storedSong" source="tools.SongRowObject" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="songList" source="audio.PlayList" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Song&gt;"/>
+    <UseRelation source="ui.LibraryBrowserUI" target="butterfly.IAudioController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="butterfly.LibraryBrowser" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="ui.SongBrowserUI" target="butterfly.SongBrowser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="ui.SongBrowserUI" target="ui.IAudioUI"/>
+    <HasRelation name="list" source="tools.PlayListMenu" target="audio.ISongList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ISongList"/>
+    <HasRelation name="ui" source="butterfly.TwitterHelper" target="ui.TwitterHelperUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.LibraryBrowser" target="ui.IAudioUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.TwitterButton" target="butterfly.TwitterHelper" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.SongRowObject" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="ui.LibraryBrowserUI" target="ui.IAudioUI"/>
+    <UseRelation source="audio.ArtistSongList" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="ui.TwitterHelperUI" target="ui.IAudioUI"/>
+    <UseRelation source="tools.RightClickMenu" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="tools.AlbumEditor" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.FileMenu" target="butterfly.IAudioPlayerComponent"/>
+    <UseRelation source="audio.Library" target="audio.Album" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.LibraryManager" target="butterfly.IAudioPlayerComponent"/>
+    <HasRelation name="libbrowser" source="butterfly.AudioPlayer" target="butterfly.LibraryBrowser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="currentSong" source="audio.SongQueue" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="twitterHelper" source="butterfly.AudioPlayer" target="butterfly.TwitterHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.SongModel" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioPlayer" target="butterfly.TwitterHelper" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="tools.MusicFolderMenu" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="albums" source="audio.ArtistSongList" target="audio.Album" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="TreeMap&lt;String, Album&gt;"/>
+    <HasRelation name="manager" source="butterfly.AudioPlayer" target="butterfly.LibraryManager" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="tools.PlaylistEditor" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="artists" source="audio.Library" target="audio.ArtistSongList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="TreeMap&lt;String, ArtistSongList&gt;"/>
+    <UseRelation source="ui.TwitterHelperUI" target="butterfly.IAudioController" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.SearchHelper" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.SongBrowser" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.SongList" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="songList" source="audio.Album" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Song&gt;"/>
+    <HasRelation name="audioPlayer" source="butterfly.TwitterHelper" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="player" source="butterfly.AudioControl" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="butterfly.IAudioController" target="butterfly.IAudioPlayerComponent"/>
+    <UseRelation source="ui.AudioPlayerUI" target="butterfly.AudioPlayer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="album" source="tools.AlbumEditor" target="audio.Album" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.SearchHelper" target="butterfly.IAudioPlayerComponent"/>
+    <HasRelation name="ui" source="butterfly.AudioControl" target="ui.AudioControlUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.TwitterHelper" target="tools.TweetTemplate" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.TwitterHelper" target="butterfly.IAudioController"/>
+    <UseRelation source="butterfly.AudioPlayer" target="audio.Library" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tools.RightClickMenu" target="audio.Album" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ui" source="butterfly.LibraryBrowser" target="ui.LibraryBrowserUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="tools.TwitterButton" target="butterfly.TwitterHelper" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="playlist" source="tools.PlaylistEditor" target="audio.PlayList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="PlayList"/>
+    <UseRelation source="tools.RightClickMenu" target="audio.PlayList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="butterfly.AudioControl" target="butterfly.IAudioController"/>
+    <HasRelation name="controller" source="ui.LibraryBrowserUI" target="butterfly.LibraryBrowser" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="audio.Album" target="audio.INamedSongList"/>
+    <HasRelation name="song" source="tools.SongEditor" target="audio.Song" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="library" source="butterfly.AudioPlayer" target="audio.Library" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="controller" source="ui.AudioControlUI" target="butterfly.AudioControl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.Library" target="audio.SongList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="audio.INamedSongList" target="audio.ISongList"/>
+    <UseRelation source="butterfly.AudioPlayer" target="ui.AudioPlayerUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="artist" source="tools.ArtistEditor" target="audio.ArtistSongList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArtistSongList"/>
+    <HasRelation name="player" source="butterfly.SongBrowser" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="queue" source="butterfly.AudioControl" target="audio.SongQueue" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SongQueue"/>
+    <HasRelation name="player" source="tools.ArtistEditor" target="butterfly.AudioPlayer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="butterfly.AudioPlayer" target="butterfly.SongBrowser" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="audio.Library" target="audio.Song" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
