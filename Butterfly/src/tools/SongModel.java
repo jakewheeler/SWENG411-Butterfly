@@ -1,6 +1,5 @@
 package tools;
 
-import audio.Song;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,10 +27,5 @@ public class SongModel extends DefaultTableModel
     public void addRow(SongRowObject o)
     {
         super.addRow(o.getRowInfo());
-    }
-
-    public Song getSong()
-    {
-        return null;
     }
 }

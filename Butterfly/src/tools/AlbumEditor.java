@@ -17,7 +17,7 @@ public class AlbumEditor extends javax.swing.JFrame {
     public AlbumEditor(AudioPlayer player, Album album) {
         this.player = player;
         this.album = album;
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -59,20 +59,20 @@ public class AlbumEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
-        AlbumNameLabel.setForeground(ColorSelections.getUILabelColor());
+        AlbumNameLabel.setForeground(ColorSelections.UILabelColor);
         AlbumNameLabel.setText("Album Name:");
 
-        ArtistLabel.setForeground(ColorSelections.getUILabelColor());
+        ArtistLabel.setForeground(ColorSelections.UILabelColor);
         ArtistLabel.setText("Artist:");
 
-        GenreLabel.setForeground(ColorSelections.getUILabelColor());
+        GenreLabel.setForeground(ColorSelections.UILabelColor);
         GenreLabel.setText("Genre:");
 
-        YearLabel.setForeground(ColorSelections.getUILabelColor());
+        YearLabel.setForeground(ColorSelections.UILabelColor);
         YearLabel.setText("Year:");
 
-        OkButton.setBackground(ColorSelections.getUIButtonColor());
-        OkButton.setForeground(ColorSelections.getUIButtonTextColor());
+        OkButton.setBackground(ColorSelections.UIButtonColor);
+        OkButton.setForeground(ColorSelections.UIButtonFontColor);
         OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,8 +81,8 @@ public class AlbumEditor extends javax.swing.JFrame {
             }
         });
 
-        CancelButton.setBackground(ColorSelections.getUIButtonColor());
-        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
+        CancelButton.setBackground(ColorSelections.UIButtonColor);
+        CancelButton.setForeground(ColorSelections.UIButtonFontColor);
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,20 +90,20 @@ public class AlbumEditor extends javax.swing.JFrame {
             }
         });
 
-        NameField.setBackground(ColorSelections.getUITextFieldColor());
-        NameField.setForeground(ColorSelections.getUITextFieldFontColor());
+        NameField.setBackground(ColorSelections.UITextFieldColor);
+        NameField.setForeground(ColorSelections.UITextFieldFontColor);
         NameField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        ArtistField.setBackground(ColorSelections.getUITextFieldColor());
-        ArtistField.setForeground(ColorSelections.getUITextFieldFontColor());
+        ArtistField.setBackground(ColorSelections.UITextFieldColor);
+        ArtistField.setForeground(ColorSelections.UITextFieldFontColor);
         ArtistField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        GenreField.setBackground(ColorSelections.getUITextFieldColor());
-        GenreField.setForeground(ColorSelections.getUITextFieldFontColor());
+        GenreField.setBackground(ColorSelections.UITextFieldColor);
+        GenreField.setForeground(ColorSelections.UITextFieldFontColor);
         GenreField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        YearField.setBackground(ColorSelections.getUITextFieldColor());
-        YearField.setForeground(ColorSelections.getUITextFieldFontColor());
+        YearField.setBackground(ColorSelections.UITextFieldColor);
+        YearField.setForeground(ColorSelections.UITextFieldFontColor);
         YearField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,6 +165,11 @@ public class AlbumEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelButtonActionPerformed
 
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
+        this.updateAlbum();
+    }//GEN-LAST:event_OkButtonActionPerformed
+
+    private void updateAlbum()
+    {
         int year = Integer.parseInt(this.YearField.getText().replace(",", "").replace(".", ""));
         
         if (year > 0)
@@ -180,8 +185,7 @@ public class AlbumEditor extends javax.swing.JFrame {
         }
         else
             JOptionPane.showMessageDialog(null, "Error, year must be greater than 0", "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_OkButtonActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AlbumNameLabel;

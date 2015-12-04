@@ -20,7 +20,7 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTable.setVisible(true);
         LibraryTable.setShowGrid(true);
         LibraryTable.setShowHorizontalLines(true);
-        LibraryTableScrollPane.getViewport().setBackground(ColorSelections.getTableBackgroundColor());
+        LibraryTableScrollPane.getViewport().setBackground(ColorSelections.tableBackgroundColor);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,13 +50,13 @@ public class SongBrowserUI extends javax.swing.JPanel implements IAudioUI
         LibraryTableScrollPane.setViewportView(LibraryTable);
         LibraryTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        SearchLibraryLabel.setBackground(ColorSelections.getUILabelColor());
-        SearchLibraryLabel.setForeground(ColorSelections.getUILabelColor());
+        SearchLibraryLabel.setBackground(ColorSelections.UILabelColor);
+        SearchLibraryLabel.setForeground(ColorSelections.UILabelColor);
         SearchLibraryLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SearchLibraryLabel.setText("Search Library:");
 
-        SearchField.setBackground(ColorSelections.getUITextFieldColor());
-        SearchField.setForeground(ColorSelections.getUITextFieldFontColor());
+        SearchField.setBackground(ColorSelections.UITextFieldColor);
+        SearchField.setForeground(ColorSelections.UITextFieldFontColor);
         SearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 SearchFieldKeyReleased(evt);

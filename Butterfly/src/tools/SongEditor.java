@@ -14,7 +14,7 @@ public class SongEditor extends javax.swing.JFrame {
     private final Song song;
     public SongEditor(Song song) {
         this.song = song;
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -62,32 +62,32 @@ public class SongEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
-        SongNameLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        SongNameLabel.setForeground(ColorSelections.getUILabelColor());
+        SongNameLabel.setBackground(ColorSelections.UIBackgroundColor);
+        SongNameLabel.setForeground(ColorSelections.UILabelColor);
         SongNameLabel.setText("Song Name:");
 
-        ArtistLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        ArtistLabel.setForeground(ColorSelections.getUILabelColor());
+        ArtistLabel.setBackground(ColorSelections.UIBackgroundColor);
+        ArtistLabel.setForeground(ColorSelections.UILabelColor);
         ArtistLabel.setText("Artist:");
 
-        AlbumLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        AlbumLabel.setForeground(ColorSelections.getUILabelColor());
+        AlbumLabel.setBackground(ColorSelections.UIBackgroundColor);
+        AlbumLabel.setForeground(ColorSelections.UILabelColor);
         AlbumLabel.setText("Album:");
 
-        GenreLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        GenreLabel.setForeground(ColorSelections.getUILabelColor());
+        GenreLabel.setBackground(ColorSelections.UIBackgroundColor);
+        GenreLabel.setForeground(ColorSelections.UILabelColor);
         GenreLabel.setText("Genre:");
 
-        YearLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        YearLabel.setForeground(ColorSelections.getUILabelColor());
+        YearLabel.setBackground(ColorSelections.UIBackgroundColor);
+        YearLabel.setForeground(ColorSelections.UILabelColor);
         YearLabel.setText("Year:");
 
-        TrackNumberLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        TrackNumberLabel.setForeground(ColorSelections.getUILabelColor());
+        TrackNumberLabel.setBackground(ColorSelections.UIBackgroundColor);
+        TrackNumberLabel.setForeground(ColorSelections.UILabelColor);
         TrackNumberLabel.setText("#:");
 
-        OkButton.setBackground(ColorSelections.getUIButtonColor());
-        OkButton.setForeground(ColorSelections.getUIButtonTextColor());
+        OkButton.setBackground(ColorSelections.UIButtonColor);
+        OkButton.setForeground(ColorSelections.UIButtonFontColor);
         OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,8 +96,8 @@ public class SongEditor extends javax.swing.JFrame {
             }
         });
 
-        CancelButton.setBackground(ColorSelections.getUIButtonColor());
-        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
+        CancelButton.setBackground(ColorSelections.UIButtonColor);
+        CancelButton.setForeground(ColorSelections.UIButtonFontColor);
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,28 +105,28 @@ public class SongEditor extends javax.swing.JFrame {
             }
         });
 
-        SongField.setBackground(ColorSelections.getUITextFieldColor());
-        SongField.setForeground(ColorSelections.getUITextFieldFontColor());
+        SongField.setBackground(ColorSelections.UITextFieldColor);
+        SongField.setForeground(ColorSelections.UITextFieldFontColor);
         SongField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        ArtistField.setBackground(ColorSelections.getUITextFieldColor());
-        ArtistField.setForeground(ColorSelections.getUITextFieldFontColor());
+        ArtistField.setBackground(ColorSelections.UITextFieldColor);
+        ArtistField.setForeground(ColorSelections.UITextFieldFontColor);
         ArtistField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        AlbumField.setBackground(ColorSelections.getUITextFieldColor());
-        AlbumField.setForeground(ColorSelections.getUITextFieldFontColor());
+        AlbumField.setBackground(ColorSelections.UITextFieldColor);
+        AlbumField.setForeground(ColorSelections.UITextFieldFontColor);
         AlbumField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        GenreField.setBackground(ColorSelections.getUITextFieldColor());
-        GenreField.setForeground(ColorSelections.getUITextFieldFontColor());
+        GenreField.setBackground(ColorSelections.UITextFieldColor);
+        GenreField.setForeground(ColorSelections.UITextFieldFontColor);
         GenreField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        YearField.setBackground(ColorSelections.getUITextFieldColor());
-        YearField.setForeground(ColorSelections.getUITextFieldFontColor());
+        YearField.setBackground(ColorSelections.UITextFieldColor);
+        YearField.setForeground(ColorSelections.UITextFieldFontColor);
         YearField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
-        NumberField.setBackground(ColorSelections.getUITextFieldColor());
-        NumberField.setForeground(ColorSelections.getUITextFieldFontColor());
+        NumberField.setBackground(ColorSelections.UITextFieldColor);
+        NumberField.setForeground(ColorSelections.UITextFieldFontColor);
         NumberField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

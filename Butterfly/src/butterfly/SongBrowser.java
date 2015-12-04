@@ -196,20 +196,20 @@ public class SongBrowser implements IAudioController
             Component field = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             if (isSelected)
             {
-                field.setBackground(ColorSelections.getTableRowSelectedColor());
-                field.setForeground(ColorSelections.getTableRowSelectedFontColor());
+                field.setBackground(ColorSelections.tableRowSelectedColor);
+                field.setForeground(ColorSelections.tableRowSelectedFontColor);
             }
             else
             {
-                field.setBackground((row % 2) == 0 ? ColorSelections.getTablePrimaryRowColor() : ColorSelections.getTableSeconaryRowColor());
-                field.setForeground(ColorSelections.getTableRowUnselectedFontColor());
+                field.setBackground((row % 2) == 0 ? ColorSelections.tablePrimaryRowColor : ColorSelections.tableSecondaryRowColor);
+                field.setForeground(ColorSelections.tableRowUnselectedFontColor);
             }
             if (!isSelected && value.getClass() == Song.class && player.getAudioControl() != null && (Song) value == player.getAudioControl().getCurrentSong() || row == playingrow)
             {
                 playingrow = row;
 
-                field.setForeground(ColorSelections.getTableRowSongPlayingFontColor());
-                field.setBackground(ColorSelections.getTableRowSongPlayingColor());
+                field.setForeground(ColorSelections.tableRowSongPlayingFontColor);
+                field.setBackground(ColorSelections.tableRowSongPlayingColor);
                 field.setFont(field.getFont().deriveFont(Font.BOLD));
                 if (column == table.getColumnCount() - 1)
                     playingrow = -1;

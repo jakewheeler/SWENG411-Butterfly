@@ -29,7 +29,7 @@ public class TwitterButton extends javax.swing.JPanel
 
         setBackground(new java.awt.Color(0, 0, 0));
 
-        TwitterButton.setBackground(ColorSelections.getUIButtonColor());
+        TwitterButton.setBackground(ColorSelections.UIButtonColor);
         TwitterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/twitterIconSmall.png"))); // NOI18N
         TwitterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +50,11 @@ public class TwitterButton extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void TwitterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TwitterButtonActionPerformed
-        
+        this.performTwitter();
+    }//GEN-LAST:event_TwitterButtonActionPerformed
+
+    private void performTwitter()
+    {
         try {
             // start Twitter
             controller.startTwitter();            
@@ -89,8 +93,7 @@ public class TwitterButton extends javax.swing.JPanel
             
             controller.createPinEntryForm();
         }
-    }//GEN-LAST:event_TwitterButtonActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton TwitterButton;

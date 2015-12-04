@@ -45,7 +45,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(1366, 100));
 
-        PlayPauseButton.setBackground(ColorSelections.getUIButtonColor());
+        PlayPauseButton.setBackground(ColorSelections.UIButtonColor);
         PlayPauseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/play.PNG"))); // NOI18N
         PlayPauseButton.setMaximumSize(new java.awt.Dimension(58, 33));
         PlayPauseButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -56,22 +56,22 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        SongLabel.setBackground(ColorSelections.getUILabelColor());
-        SongLabel.setForeground(ColorSelections.getUILabelColor());
+        SongLabel.setBackground(ColorSelections.UILabelColor);
+        SongLabel.setForeground(ColorSelections.UILabelColor);
         SongLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         SongLabel.setText("songName");
 
-        ArtistLabel.setBackground(ColorSelections.getUILabelColor());
-        ArtistLabel.setForeground(ColorSelections.getUILabelColor());
+        ArtistLabel.setBackground(ColorSelections.UILabelColor);
+        ArtistLabel.setForeground(ColorSelections.UILabelColor);
         ArtistLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ArtistLabel.setText("artist");
 
-        AlbumLabel.setBackground(ColorSelections.getUILabelColor());
-        AlbumLabel.setForeground(ColorSelections.getUILabelColor());
+        AlbumLabel.setBackground(ColorSelections.UILabelColor);
+        AlbumLabel.setForeground(ColorSelections.UILabelColor);
         AlbumLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         AlbumLabel.setText("album");
 
-        NextButton.setBackground(ColorSelections.getUIButtonColor());
+        NextButton.setBackground(ColorSelections.UIButtonColor);
         NextButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/right.PNG"))); // NOI18N
         NextButton.setMaximumSize(new java.awt.Dimension(58, 33));
         NextButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -82,7 +82,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        BackButton.setBackground(ColorSelections.getUIButtonColor());
+        BackButton.setBackground(ColorSelections.UIButtonColor);
         BackButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/left.png"))); // NOI18N
         BackButton.setMaximumSize(new java.awt.Dimension(58, 33));
         BackButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -93,7 +93,7 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        ShuffleButton.setBackground(ColorSelections.getUIButtonColor());
+        ShuffleButton.setBackground(ColorSelections.UIButtonColor);
         ShuffleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/shuffle.PNG"))); // NOI18N
         ShuffleButton.setMaximumSize(new java.awt.Dimension(58, 33));
         ShuffleButton.setMinimumSize(new java.awt.Dimension(58, 33));
@@ -130,16 +130,16 @@ public class AudioControlUI extends javax.swing.JPanel implements IAudioUI
             }
         });
 
-        SongStartLabel.setBackground(ColorSelections.getUILabelColor());
-        SongStartLabel.setForeground(ColorSelections.getUILabelColor());
+        SongStartLabel.setBackground(ColorSelections.UILabelColor);
+        SongStartLabel.setForeground(ColorSelections.UILabelColor);
         SongStartLabel.setText("00:00");
 
-        SongEndLabel.setBackground(ColorSelections.getUILabelColor());
-        SongEndLabel.setForeground(ColorSelections.getUILabelColor());
+        SongEndLabel.setBackground(ColorSelections.UILabelColor);
+        SongEndLabel.setForeground(ColorSelections.UILabelColor);
         SongEndLabel.setText("00:00");
 
-        ClearQueueButton.setBackground(ColorSelections.getUIButtonColor());
-        ClearQueueButton.setForeground(ColorSelections.getUIButtonTextColor());
+        ClearQueueButton.setBackground(ColorSelections.UIButtonColor);
+        ClearQueueButton.setForeground(ColorSelections.UIButtonFontColor);
         ClearQueueButton.setText("Clear Queue");
         ClearQueueButton.setPreferredSize(new java.awt.Dimension(75, 35));
         ClearQueueButton.addActionListener(new java.awt.event.ActionListener() {

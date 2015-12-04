@@ -22,7 +22,7 @@ public class MusicFolderMenu extends javax.swing.JFrame
     public MusicFolderMenu(AudioPlayer player, ArrayList<String> folders) 
     {
         this.player = player;
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -72,8 +72,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        AddFolder.setBackground(ColorSelections.getUIButtonColor());
-        AddFolder.setForeground(ColorSelections.getUIButtonTextColor());
+        AddFolder.setBackground(ColorSelections.UIButtonColor);
+        AddFolder.setForeground(ColorSelections.UIButtonFontColor);
         AddFolder.setText("Add Folder");
         AddFolder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +81,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        RemoveButton.setBackground(ColorSelections.getUIButtonColor());
-        RemoveButton.setForeground(ColorSelections.getUIButtonTextColor());
+        RemoveButton.setBackground(ColorSelections.UIButtonColor);
+        RemoveButton.setForeground(ColorSelections.UIButtonFontColor);
         RemoveButton.setText("Remove Folder");
         RemoveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,8 +90,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        OkButton.setBackground(ColorSelections.getUIButtonColor());
-        OkButton.setForeground(ColorSelections.getUIButtonTextColor());
+        OkButton.setBackground(ColorSelections.UIButtonColor);
+        OkButton.setForeground(ColorSelections.UIButtonFontColor);
         OkButton.setText("OK");
         OkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,8 +99,8 @@ public class MusicFolderMenu extends javax.swing.JFrame
             }
         });
 
-        FolderList.setBackground(ColorSelections.getLibraryBrowserBackgroundColor());
-        FolderList.setForeground(ColorSelections.getLibraryBrowserNodeFontColor());
+        FolderList.setBackground(ColorSelections.libraryBrowserBackgroundColor);
+        FolderList.setForeground(ColorSelections.libraryBrowserNodeFontColor);
         FolderList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -181,13 +181,13 @@ public class MusicFolderMenu extends javax.swing.JFrame
             Component item = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (!isSelected)
             {
-                item.setBackground(ColorSelections.getTablePrimaryRowColor());
-                item.setForeground(ColorSelections.getTableRowUnselectedFontColor());
+                item.setBackground(ColorSelections.tablePrimaryRowColor);
+                item.setForeground(ColorSelections.tableRowUnselectedFontColor);
             }
             else
             {
-                item.setBackground(ColorSelections.getTableRowSelectedColor());
-                item.setForeground(ColorSelections.getTableRowSelectedFontColor());
+                item.setBackground(ColorSelections.tableRowSelectedColor);
+                item.setForeground(ColorSelections.tableRowSelectedFontColor);
             }
             return item;
         }

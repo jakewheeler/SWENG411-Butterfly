@@ -57,7 +57,7 @@ public class RightClickMenu extends JPopupMenu
     private RightClickMenu(AudioPlayer player, Song song)
     {
         this.player = player;
-        this.setBackground(ColorSelections.getUIBackgroundColor());
+        this.setBackground(ColorSelections.UIBackgroundColor);
         init(song);
         setMouseEvents();
     }
@@ -187,8 +187,8 @@ public class RightClickMenu extends JPopupMenu
     private JMenuItem getItem(String text, Object object)
     {
         JMenuItem item = new JMenuItem(text);
-        item.setBackground(ColorSelections.getTablePrimaryRowColor());
-        item.setForeground(ColorSelections.getTableRowUnselectedFontColor());
+        item.setBackground(ColorSelections.tablePrimaryRowColor);
+        item.setForeground(ColorSelections.tableRowUnselectedFontColor);
         item.setOpaque(true);
         item.addMouseListener(new MouseListener() {
             @Override
@@ -218,14 +218,14 @@ public class RightClickMenu extends JPopupMenu
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                item.setBackground(ColorSelections.getTableRowSelectedColor());
-                item.setForeground(ColorSelections.getTableRowSelectedFontColor());
+                item.setBackground(ColorSelections.tableRowSelectedColor);
+                item.setForeground(ColorSelections.tableRowSelectedFontColor);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                item.setBackground(ColorSelections.getTablePrimaryRowColor());
-                item.setForeground(ColorSelections.getTableRowUnselectedFontColor());
+                item.setBackground(ColorSelections.tablePrimaryRowColor);
+                item.setForeground(ColorSelections.tableRowUnselectedFontColor);
             }
         });
         item.setSize(this.getWidth()-10, item.getHeight());

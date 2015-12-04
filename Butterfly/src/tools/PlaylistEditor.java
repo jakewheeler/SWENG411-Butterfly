@@ -15,7 +15,7 @@ public class PlaylistEditor extends javax.swing.JFrame {
     public PlaylistEditor(AudioPlayer player, PlayList playlist) {
         this.player = player;
         this.playlist = playlist;
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -48,11 +48,11 @@ public class PlaylistEditor extends javax.swing.JFrame {
 
         setResizable(false);
 
-        PlaylistLabel.setForeground(ColorSelections.getUILabelColor());
+        PlaylistLabel.setForeground(ColorSelections.UILabelColor);
         PlaylistLabel.setText("Playlist Name:");
 
-        OkButton.setBackground(ColorSelections.getUIButtonColor());
-        OkButton.setForeground(ColorSelections.getUIButtonTextColor());
+        OkButton.setBackground(ColorSelections.UIButtonColor);
+        OkButton.setForeground(ColorSelections.UIButtonFontColor);
         OkButton.setText("OK");
         OkButton.setPreferredSize(new java.awt.Dimension(65, 23));
         OkButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,8 +61,8 @@ public class PlaylistEditor extends javax.swing.JFrame {
             }
         });
 
-        CancelButton.setBackground(ColorSelections.getUIButtonColor());
-        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
+        CancelButton.setBackground(ColorSelections.UIButtonColor);
+        CancelButton.setForeground(ColorSelections.UIButtonFontColor);
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,8 +70,8 @@ public class PlaylistEditor extends javax.swing.JFrame {
             }
         });
 
-        NameField.setBackground(ColorSelections.getUITextFieldColor());
-        NameField.setForeground(ColorSelections.getUITextFieldFontColor());
+        NameField.setBackground(ColorSelections.UITextFieldColor);
+        NameField.setForeground(ColorSelections.UITextFieldFontColor);
         NameField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

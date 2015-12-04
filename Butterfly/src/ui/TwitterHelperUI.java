@@ -18,7 +18,7 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
     {
         super(parent, modal);
         initComponents();
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
     }
 
     @SuppressWarnings("unchecked")
@@ -38,16 +38,16 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
         EnterPinLabel.setForeground(new java.awt.Color(255, 255, 255));
         EnterPinLabel.setText("Enter PIN:");
 
-        PINEntryTextField.setBackground(ColorSelections.getUITextFieldColor());
-        PINEntryTextField.setForeground(ColorSelections.getUITextFieldFontColor());
+        PINEntryTextField.setBackground(ColorSelections.UITextFieldColor);
+        PINEntryTextField.setForeground(ColorSelections.UITextFieldFontColor);
         PINEntryTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PINEntryTextFieldActionPerformed(evt);
             }
         });
 
-        OKButton.setBackground(ColorSelections.getUIButtonColor());
-        OKButton.setForeground(ColorSelections.getUIButtonTextColor());
+        OKButton.setBackground(ColorSelections.UIButtonColor);
+        OKButton.setForeground(ColorSelections.UIButtonFontColor);
         OKButton.setText("OK");
         OKButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,8 +55,8 @@ public class TwitterHelperUI extends javax.swing.JDialog implements IAudioUI
             }
         });
 
-        InstructionLabel.setBackground(ColorSelections.getUIBackgroundColor());
-        InstructionLabel.setForeground(ColorSelections.getUILabelColor());
+        InstructionLabel.setBackground(ColorSelections.UIBackgroundColor);
+        InstructionLabel.setForeground(ColorSelections.UILabelColor);
         InstructionLabel.setText("Enter the PIN given to you by Twitter and hit the OK button to continue.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

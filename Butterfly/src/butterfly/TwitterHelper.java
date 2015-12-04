@@ -256,9 +256,9 @@ public class TwitterHelper implements IAudioController
     public void counterLabelColorController(TweetTemplate tweetTemplate, int text)
     {
         if (TWITTER_MESSAGE_MAX_LEN - text > 0)
-            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.getTwitterTemplateWithinLimitLabelColor());
+            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.twitterTemplateWithinLimitLabelColor);
         else
-            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.getTwitterTemplateOutsideLimitLabelColor());
+            tweetTemplate.TweetLengthLabel.setForeground(ColorSelections.twitterTemplateOutsideLimitLabelColor);
     }
     
     // makes the twitter file empty (for reauthentication purposes)

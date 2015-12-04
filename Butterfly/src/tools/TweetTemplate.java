@@ -28,7 +28,7 @@ public class TweetTemplate extends javax.swing.JDialog
         }
         initComponents();
         this.twitterHelper = twitterHelper;
-        this.getContentPane().setBackground(ColorSelections.getUIBackgroundColor());
+        this.getContentPane().setBackground(ColorSelections.UIBackgroundColor);
     }
 
     @SuppressWarnings("unchecked")
@@ -48,12 +48,12 @@ public class TweetTemplate extends javax.swing.JDialog
         setMinimumSize(new java.awt.Dimension(518, 353));
         setResizable(false);
 
-        EnterMessageLabel.setForeground(ColorSelections.getUILabelColor());
+        EnterMessageLabel.setForeground(ColorSelections.UILabelColor);
         EnterMessageLabel.setText("Share what you're currently listening to on Twitter");
 
-        TweetTextArea.setBackground(ColorSelections.getUITextFieldColor());
+        TweetTextArea.setBackground(ColorSelections.UITextFieldColor);
         TweetTextArea.setColumns(20);
-        TweetTextArea.setForeground(ColorSelections.getUITextFieldFontColor());
+        TweetTextArea.setForeground(ColorSelections.UITextFieldFontColor);
         TweetTextArea.setLineWrap(true);
         TweetTextArea.setRows(5);
         TweetTextArea.setWrapStyleWord(true);
@@ -64,8 +64,8 @@ public class TweetTemplate extends javax.swing.JDialog
         });
         TweetScrollPane.setViewportView(TweetTextArea);
 
-        CancelButton.setBackground(ColorSelections.getUIButtonColor());
-        CancelButton.setForeground(ColorSelections.getUIButtonTextColor());
+        CancelButton.setBackground(ColorSelections.UIButtonColor);
+        CancelButton.setForeground(ColorSelections.UIButtonFontColor);
         CancelButton.setText("Cancel");
         CancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,8 +73,8 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
-        SendTweetButton.setBackground(ColorSelections.getUIButtonColor());
-        SendTweetButton.setForeground(ColorSelections.getUIButtonTextColor());
+        SendTweetButton.setBackground(ColorSelections.UIButtonColor);
+        SendTweetButton.setForeground(ColorSelections.UIButtonFontColor);
         SendTweetButton.setText("Post Tweet");
         SendTweetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +82,7 @@ public class TweetTemplate extends javax.swing.JDialog
             }
         });
 
-        TweetLengthLabel.setForeground(ColorSelections.getUILabelColor());
+        TweetLengthLabel.setForeground(ColorSelections.UILabelColor);
         TweetLengthLabel.setText("0");
         TweetLengthLabel.setPreferredSize(new java.awt.Dimension(6, 15));
 

@@ -26,7 +26,7 @@ public class LibraryBrowser implements IAudioController
 {
     private final AudioPlayer player;
     private LibraryBrowserUI ui;
-    private SongTreeCellRenderer renderer;
+    private final SongTreeCellRenderer renderer;
     
     public LibraryBrowser(AudioPlayer player)
     {
@@ -146,7 +146,7 @@ public class LibraryBrowser implements IAudioController
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus)
         {
             JLabel cell = (JLabel) super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-            cell.setForeground(ColorSelections.getLibraryBrowserNodeFontColor());
+            cell.setForeground(ColorSelections.libraryBrowserNodeFontColor);
             ImageIcon icon;
             if (value.getClass() == SongListNode.class)
             {

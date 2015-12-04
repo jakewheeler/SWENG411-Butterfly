@@ -23,7 +23,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
 import tools.AlbumEditor;
 import ui.AudioPlayerUI;
 import tools.PlayListMenu;
