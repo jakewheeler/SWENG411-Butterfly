@@ -1,15 +1,9 @@
 change border color of jtree and jtable
 update song time when dragging bar
 save settings to settings.bdf: window size, volume, queue, maybe more
-QA the shit out of it
 
 if time permits: 
 allow users to set colors themself
 open all forms when selecting butterfly
 
 Bugs:
-removing artist from library didn't remove a song from them from the queue?
-?:
--right click song, song removed, option window stays up, remove again = null pointer exception
--invocation target exception using right click menu
-	- right click song that has been removed but hasnt been updated in browser, right clicking past index throws exception
